@@ -1,0 +1,5 @@
+
+=============================
+Bugs found:
+
+rxlform: need to #define _CYGWIN_ when running under lesstif

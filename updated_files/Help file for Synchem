@@ -1,0 +1,39 @@
+Superuser mode:
+
+sudo -i
+------------------------------------------------
+
+To install gcc in Ubuntu:
+
+google: gcc for ubuntu
+
+http://fontignie.blogspot.com/2006/04/install-gcc-on-ubuntu.html
+
+sudo apt-get install gcc build-essential
+------------------------------------------------
+
+Installing packages
+
+Go to System menu -> Administration -> Synaptic Package Manager
+
+Under Development, choose gcc, gcc-3.3 base, gcc-4.0, gcc-4.0-base and gdb
+
+Under Development (multiverse), choose lesstif-dev
+
+Search for "font", choose libfontconfig1-dev
+
+
+Choose Settings, Add, Community maintained (universe)(mark this)
+------------------------------------------------
+
+Symbolic Links
+
+--------------------------------------------------
+
+
+
+=============================
+Bugs found:
+
+rxledit: need to #define _CYGWIN_ when running under lesstif
+
