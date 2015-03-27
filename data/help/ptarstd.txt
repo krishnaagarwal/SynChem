@@ -1,0 +1,38 @@
+While ARSTD may appear at first glance to be nearly identical to ARRAT, the difference
+is that ARSTD is unconcerned with the degree of activation at a site - its purpose is
+to compare the site against potentially competing sites on the ring.
+
+Node Field (enter the node number of a carbon atom whose relative activation toward
+	electrophilic aromatic substitution is to be determined)
+
+IS/IS NOT Menu (select one)
+
+Comparison Operator Menu (select one)
+Note: The comparison operator will often be the opposite of what seems intuitive,
+	because the number 1 is less than (<) the number 2, but the activation
+	represented by 1 is greater than the activation represented by 2.  For
+	example, an activation that is less than 2 (<2) implies an activation
+	of 1, i.e., the most activated ranking.
+
+Constant Menu:
+	Select the value appropriate to the context of the condition, using a value of
+	1 to denote the most activated position and 6 the least.
+
+ONLY HYDROGENS/ALL SUBSTITUENTS Menu:
+	For most better-known examples, ONLY HYDROGENS will be selected; however, the
+	alternative is provided in recognition that substituted positions (sulfonated
+	sites, for example) are sometimes known to undergo substitution as well.
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur until
+	exit from the main posttransform test editor.  Note that any condition that
+	appears in the logic string of one or more tests may not be deleted (button
+	will be disabled) so long as any of those tests remain unmarked.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current condition.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

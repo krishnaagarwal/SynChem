@@ -1,0 +1,140 @@
+/******************************************************************************
+*
+*  Copyright (C) 2000, Synchem Group at SUNY-Stony Brook
+*
+*  Module Name:                     AVL_IMPORT.C
+*
+*    This utility reads an ASCII dump of the available compounds library from
+*    the AVL_EXPORT utility, using it to construct a replica of the library.
+*
+*  Creation Date:
+*
+*    11-Oct-2000
+*
+*  Authors:
+*
+*    Gerald A. Miller
+*
+*  Modification History, reverse chronological
+*
+* Date       Author     Modification Description
+*------------------------------------------------------------------------------
+* dd-mmm-yy  Fred       xxx
+*
+******************************************************************************/
+
+#include <stddef.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <malloc.h>
+
+#include "synchem.h"
+#include "debug.h"
+#include "synio.h"
+
+#ifndef _H_ISAM_
+#include "isam.h"
+#endif
+
+#ifndef _H_AVLDICT_
+#include "avldict.h"
+#endif
+
+#ifndef _H_AVLINFO_
+#include "avlinfo.h"
+#endif
+
+#ifndef _H_AVLCOMP_
+#include "avlcomp.h"
+#endif
+
+#ifndef _H_SLING_
+#include "sling.h"
+#endif
+
+#ifndef _H_XTR_
+#include "xtr.h"
+#endif
+
+#ifndef _H_SLING2XTR_
+#include "sling2xtr.h"
+#endif
+
+#ifndef _H_EXTERN_
+#define _GLOBAL_DEF_
+#include "extern.h"
+#undef _GLOBAL_DEF_
+#endif
+
+void main ()
+{
+  char       *fn_p;                       /* temp filename ptr */
+  char       *dp_p;                       /* dirpath ptr */
+  size_t      dir_len;                    /* length of dirpath */
+  U32_t       i,j;                        /* index */
+  U32_t       num_slings;                 /* number of slings */
+  U8_t          buff[AVI_INFOREC_LENMAX];   /* comp info record buffer */
+  Avi_CmpInfo_t avinfo;
+  char cat[64], name[256], sling[512], line[1024], junk[32];
+  Sling_t       sling_st;
+  Xtr_t         *xtr;
+  Boolean_t     found;
+  char          ans[16];
+  U16_t         rec_len;
+  U8_t          avl, lib;
+  int           status, nrecs, avli, libi;
+
+  IO_Init();
+#ifdef _CYGWIN_
+  IO_Init_Files ("NUL:", FALSE);
+#else
+  IO_Init_Files ("/dev/null", FALSE);
+#endif
+
+  dp_p = "./data/avlcomp";
+  dir_len = strlen (dp_p);
+  fn_p = IO_FileName_Get (Isam_File_Get (&Avd_DictCtrl_InfoFC_Get (SDictControl)));
+  strncpy (fn_p, dp_p, dir_len);
+  strncpy (fn_p + dir_len, AVI_DATAFILE_ISAMINFO, MX_FILENAME - (dir_len + 1));
+  Isam_Open (&Avd_DictCtrl_InfoFC_Get (SDictControl), ISAM_TYPE_AVLCOMP, ISAM_OPEN_INIT);
+  Avc_RecZero_VerNum_Put (Avd_DictCtrl_InfoZR_Get (SDictControl), AVI_VERSION_ISAMINFO);
+  Avc_RecZero_CntSz_Put (Avd_DictCtrl_InfoZR_Get (SDictControl), 0);
+  status=Isam_Write (&Avd_DictCtrl_InfoFC_Get (SDictControl), 0, &Avd_DictCtrl_InfoZR_Get (SDictControl), AVC_RECZERO_SZ);
+  Isam_Flush (&Avd_DictCtrl_InfoFC_Get (SDictControl));
+
+  fgets (line, 1023, stdin);
+  sscanf (line, "%s %d", junk, &nrecs);
+printf("kka:Number of records %d",nrecs);
+  for (i = 1; i <= nrecs; i++)
+  {
+      fgets(line,1023,stdin);
+      sscanf (line, "%d: %d %d %s", &j, &avli, &libi, sling);
+      avl=avli;
+      lib=libi;
+      fgets(line,1023,stdin);
+      while (line[strlen(line)-1]<' ' && strlen(line)>1) line[strlen(line)-1]=0;
+      strcpy (name,line+1);
+      fgets(line,1023,stdin);
+      while (line[strlen(line)-1]<' ' && strlen(line)>1) line[strlen(line)-1]=0;
+      strcpy (cat,line+1);
+      Avi_CmpInfo_Avail_Put (&avinfo, avl);
+      Avi_CmpInfo_Catalog_Put (&avinfo, cat);
+      Avi_CmpInfo_Lib_Put (&avinfo, lib);
+      Avi_CmpInfo_Name_Put (&avinfo, name);
+      Avi_CmpInfo_Sling_Put (&avinfo, sling);
+      Avi_CmpInfo_CatLen_Put (&avinfo, strlen(cat));
+      Avi_CmpInfo_NameLen_Put (&avinfo, strlen(name));
+      Avi_CmpInfo_SlgLen_Put (&avinfo, strlen(sling));
+      rec_len = AviCmpInfo_Extrude (&avinfo, buff);
+      status=Isam_Write (&Avd_DictCtrl_InfoFC_Get (SDictControl), i, buff, rec_len);
+      Isam_Flush (&Avd_DictCtrl_InfoFC_Get (SDictControl));
+
+      Avc_RecZero_CntSz_Put (Avd_DictCtrl_InfoZR_Get (SDictControl), i);
+      status=Isam_Write (&Avd_DictCtrl_InfoFC_Get (SDictControl), 0, &Avd_DictCtrl_InfoZR_Get (SDictControl), AVC_RECZERO_SZ);
+      Isam_Flush (&Avd_DictCtrl_InfoFC_Get (SDictControl));
+  }
+  Isam_Close (&Avd_DictCtrl_InfoFC_Get (SDictControl));
+}  
+/* End of main */

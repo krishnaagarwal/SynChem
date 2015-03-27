@@ -1,0 +1,31 @@
+Node field (accepts two or more (up to a maximum of seven) node numbers to be
+	tested for mutual equivalence within the context of this condition)
+
+ARE/ARE NOT Menu (select one)
+
+CONSTITUTIONALLY/STEREOCHEMICALLY EQUIVALENT Menu (select the appropriate constraint
+	for this condition)
+
+SUBGOAL/GOAL/DISCONNECTED Menu:
+	The DISCONNECTED option, while seldom used, provides the flexibility to
+	determine that two or more substituents are of identical structure, despite
+	the possibility that their respective neighbors in either pattern would
+	otherwise prevent their structural equivalence from being recognized; of
+	the patterns, the subgoal is the one more likely to be useful, since a
+	degree of symmetry in a reactant - while a source of complication for a
+	computer application - tends to be a simplifying factor in the view of
+	the chemist.
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur until
+	exit from the main posttransform test editor.  Note that any condition that
+	appears in the logic string of one or more tests may not be deleted (button
+	will be disabled) so long as any of those tests remain unmarked.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current condition.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

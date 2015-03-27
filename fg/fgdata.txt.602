@@ -1,0 +1,1427 @@
+1;Alcohol
+OC-1H
+2;Carbonyl
+O=C
+3;Carbon-Carbon Double Bond
+C=C
+4;Ether
+OC-1C
+5;Carboxylic Acid~1~46~47
+OH-1C=O-1C
+6;Carbon-Carbon Triple Bond
+C*C
+7;Carboxylic Ester~4~67
+OC-1C=O
+8;Halogen
+F
+(Cl)
+(Br)
+I
+9;Peroxide
+OO-1C
+10;Carbon-Nitrogen Single Bond
+NC
+11;Carbon-Nitrogen Double Bond
+N=C
+12;Carbon-Nitrogen Triple Bond
+N*C
+13;Nitrogen-Nitrogen Double or Triple Bond
+N=N
+N*N
+14;Aromatic Nitrogen;Pyridine
+N<C
+15;Carboxylic Amide
+NC=O
+16;Organosulfur
+SC
+S=C
+17;Nitrogen-Oxygen Bond (Single or Double)
+N=O
+NO
+18;Pyrylium;Thiapyrylium
+O<C<C<C<C<C</0
+S<C<C<C<C<C</0
+19;Aryne
+(.`)C<C(.`)
+20;Organomagnesium
+(Mg)C
+21;Organolithium
+(Li)C
+22;Organophosphorus
+PC
+23;Pyrazole;Imidazole;Triazole;Tetrazole;N-N Single Bond~124~125
+NNCCC/0
+N=NCCC/0
+NN=CCC/0
+NNC=CC/0
+N=NC=CC/0
+NN=CC=C/0
+NCNCC/0
+NC=NCC/0
+NCN=CC/0
+NCNC=C/0
+N=CN=CC/0
+NN=NC=C/0
+NC=NC=C/0
+NN=NCC/0
+NNN=CC/0
+NNNC=C/0
+N=NN=CC/0
+N=NNCC/0
+NC=NN=C/0
+N=CN=NC/0
+N=CNNC/0
+NC=NNC/0
+NCN=NC/0
+NN=NN=C/0
+N=NN=NC/0
+N=NNNC/0
+NN=NNC/0
+NNNCC/0
+NCNNC/0
+NNNNC/0
+NN
+NN=CC<C/0
+NC=NC<C/0
+24;Oxazole;Isoxazole;Thiazole;Isothiazole~124~125
+OC=NC=C/0
+OC=NCC/0
+OCN=CC/0
+OCNC=C/0
+OCNCC/0
+ON=CC=C/0
+ON=CCC/0
+ONC=CC/0
+ONCCC/0
+SC=NC=C/0
+SC=NCC/0
+SCN=CC/0
+SCNC=C/0
+SCNCC/0
+SN=CC=C/0
+SN=CCC/0
+SNC=CC/0
+SNCC=C/0
+SNCCC/0
+OC=NC<C/0
+ON=CC<C/0
+SC=NC<C/0
+SN=CC<C/0
+25;Furan;Pyrrole;Thiophene
+OC=CC=C/0
+OC=CCC/0
+OCC=CC/0
+OCCCC/0
+SC=CC=C/0
+SC=CCC/0
+SCC=CC/0
+SCCCC/0
+NC=CC=C/0
+N=CC=CC/0
+N=CCC=C/0
+NC=CCC/0
+N=CCCC/0
+NCC=CC/0
+NCCCC/0
+OC=CC<C/0
+SC=CC<C/0
+NC=CC<C/0
+26;Organosilicon
+(Si)C
+27;Special Hydrocarbons
+CC-1C-1C-1CH-1H-1H
+28;Size 3 Carbocycle
+CCC/0
+C=CC/0
+C<CC/0
+CC=C/0
+CC<C/0
+29;Size 4 Carbocycle
+CCCC/0
+C=CCC/0
+C=CC=C/0
+CCC=C/0
+C<CCC/0
+C<CC=C/0
+C<CC<C/0
+CCC<C/0
+30;Size 5 Carbocycle
+C=CCC=C/0
+C=CCCC/0
+CCCCC/0
+C<CCCC/0
+C<CCC=C/0
+C<CCC<C/0
+CC=CC=C/0
+CCCC=C/0
+CC<CC<C/0
+CC<CC=C/0
+CCCC<C/0
+CC=CCC/0
+CC=CC<C/0
+CC<CCC/0
+31;Size 6 Carbocycle
+C<CC=CCC/0
+C<CC<CCC/0
+C=CC=CCC/0
+C<CCC=CC/0
+C<CCC<CC/0
+C=CCC=CC/0
+C<CCCCC/0
+C=CCCCC/0
+CCCCCC/0
+CCC=CC=C/0
+CC=CCC=C/0
+CCCCC=C/0
+CCC<CC<C/0
+CCC<CC=C/0
+CC<CCC<C/0
+CC<CCC=C/0
+CCCCC<C/0
+CC<CCCC/0
+CC=CCC<C/0
+CC=CC<CC/0
+CC<CC<CC/0
+32;Size 7 Carbocycle
+CC=CC=CC=C/0
+CCCC=CC=C/0
+CCC=CCC=C/0
+CCCCCC=C/0
+CC<CC<CC<C/0
+CC<CC<CC=C/0
+CC<CC=CC<C/0
+CC<CC=CC=C/0
+CC=CC<CC=C/0
+CCCC<CC<C/0
+CCCC<CC=C/0
+CCC<CCC<C/0
+CCC<CCC=C/0
+CCCCCC<C/0
+CCCCCCC/0
+C=CC=CC=CC/0
+C=CC=CCCC/0
+C=CCC=CCC/0
+C=CCCCCC/0
+C<CC<CC<CC/0
+C<CC<CC=CC/0
+C<CC=CC<CC/0
+C<CC=CC=CC/0
+C=CC<CC=CC/0
+C<CC<CCCC/0
+C<CC=CCCC/0
+C<CCC<CCC/0
+C<CCC=CCC/0
+C<CCCCCC/0
+33;Size 8 Carbocycle
+CCC=CC=CC=C/0
+CC=CCC=CC=C/0
+CCCCC=CC=C/0
+CCCC=CCC=C/0
+CCC=CCCC=C/0
+CCCCCCC=C/0
+CCC<CC<CC<C/0
+CCC<CC<CC=C/0
+CCC<CC=CC<C/0
+CCC<CC=CC=C/0
+CCC=CC<CC=C/0
+CC<CCC<CC<C/0
+CC<CCC<CC=C/0
+CC=CCC<CC<C/0
+CC<CCC=CC=C/0
+CC=CCC<CC=C/0
+CCCCC<CC<C/0
+CCCCC<CC=C/0
+CCCC<CCC<C/0
+CCCC<CCC=C/0
+CCC<CCCC<C/0
+CCC<CCCC=C/0
+CCCCCCC<C/0
+CCCCCCCC/0
+C=CC=CC=CC=C/0
+C=CC=CC=CCC/0
+C=CC=CCC=CC/0
+C=CC=CCCCC/0
+C=CCC=CCCC/0
+C=CCCC=CCC/0
+C<CC<CC<CC=C/0
+C<CC<CC=CC=C/0
+C<CC=CC<CC=C/0
+C<CC=CC=CC=C/0
+C<CC<CC<CCC/0
+C<CC<CC=CCC/0
+C<CC=CC<CCC/0
+C<CC=CC=CCC/0
+C<CC<CCC<CC/0
+C<CC<CCC=CC/0
+C<CC=CCC<CC/0
+C<CC=CCC=CC/0
+C=CC=CCC<CC/0
+C<CC<CCCCC/0
+C<CC=CCCCC/0
+C<CCC<CCCC/0
+C<CCC=CCCC/0
+C<CCCC<CCC/0
+C<CCCC=CCC/0
+C=CCCCCCC/0
+C<CCCCCCC/0
+34;Specific Methylenes (Methyl, 1-Ethyl or Activated)
+CH-1H-1H-1C
+CH-1H-1H-1O
+CH-1H-1H-1N
+CH-1H-1H-1S
+CH-1H-1CH-1H-1H
+CH-1H-1C<C
+CH-1H-1C=C
+CH-1H-1C*C
+CH-1H-1N
+CH-1H-1O
+CH-1H-1S
+CH-1H-1C*N
+CH-1H-1C=O
+35;O-Esters of Nitrogen, Sulfur or Phosphorus Acids
+OC-1S
+OC-1P
+OC-1N
+37;Organotransition-Metal
+(Sc)
+(Ti)
+V
+(Cr)
+(Mn)
+(Fe)
+(Co)
+(Ni)
+(Cu)
+(Zn)
+Y
+(Zr)
+(Nb)
+(Mo)
+(Tc)
+(Ru)
+(Rh)
+(Pd)
+(Ag)
+(Cd)
+(La)
+(Ce)
+(Pr)
+(Nd)
+(Pm)
+(Sm)
+(Eu)
+(Gd)
+(Tb)
+(Dy)
+(Ho)
+(Er)
+(Tm)
+(Yb)
+(Lu)
+(Hf)
+(Ta)
+W
+(Re)
+(Os)
+(Ir)
+(Pt)
+(Au)
+(Hg)
+(Ac)
+(Th)
+(Pa)
+U
+(Np)
+(Pu)
+(Am)
+(Cm)
+(Bk)
+(Cf)
+(Es)
+(Fm)
+(Md)
+(No)
+(Lw)
+(.4)
+(.5)
+(.6)
+(.7)
+39;Carbene & Nitrene
+(:`)=C
+(:`)=N
+40;General Aromatic Ring
+C<C
+41;Phenolic Hydroxyl
+OH-1C<C
+42;Primary Alcohol
+OH-1CH-1H-1C
+43;Secondary Alcohol
+OH-1CH-1C-1C
+44;Tertiary Alcohol
+OH-1CC-1C-1C
+45;Vicinal Diol
+OH-1CCOH
+46;Allylic Alcohol
+OH-1CC=C
+47;Benzylic Alcohol
+OH-1CC<C
+48;Enol
+C=COH
+49;Beta,Gamma-Unsaturated Carbonyl with Alpha Proton
+O=CCH-1C=C
+50;Aldehyde
+O=CH-1C
+51;Ketone
+O=CC-1C
+52;Carbonyl with Alpha Proton
+O=CCH
+53;Alpha,Beta-Unsaturated Carbonyl
+O=CC=C
+54;Alpha Dicarbonyl
+O=CC=O
+55;Beta Dicarbonyl with Alpha Proton
+O=CCH-1C=O
+56;Alpha Ketol
+O=CCOH
+57;Beta Ketol with Alpha Proton
+O=CCH-1COH
+58;Ketene
+O=C=C
+59;1,5-Dicarbonyl
+O=CCCCC=O
+60;Non-Cumulated Alkene
+C=CH-2H
+C=CC-2H
+C=CH-2C
+C=CC-2C
+61;Cumulated Alkene
+C=C=C
+62;1,3-Diene
+C=CC=C
+63;1,4-Diene
+C=CCC=C
+64;1,3,5-Triene
+C=CC=CC=C
+65;Epoxide
+OCC/0
+66;Divinyl Ether/Linear Embedding of Furan
+OC=C-2C=C
+67;Allylic Ether
+OC-1CC=C
+68;Vinyl Ether
+OC-1C=C
+69;Acetal
+OC-1CH-1OC
+70;Ketal~69
+OC-1CC-1C-1OC
+71;Hemiacetal/Ketal
+OC-1COH
+72;Terminal Acetylene
+C*CH
+73;Acetylenic Ether
+OC-1C*C
+74;Orthoester
+OC-1COC-2OC
+75;Beta-Keto Ester
+O=COC-2CC=O
+76;Beta-Keto Acid
+O=COH-2CC=O
+77;Beta Dicarboxylic Acid
+O=COH-2CC=O-1OH
+78;Simple Carboxylic Ester
+O=CC-1OC
+79;Anhydride
+O=COC=O
+80;Carbonate
+O=COC-2OC
+81;Alpha Lactone
+O=COC/1
+82;Beta Lactone
+O=COCC/1
+83;Iminoester~67
+N=COC
+84;Beta-Halo Carbonyl with Alpha Proton
+FCCH-1C=O
+(Cl)CCH-1C=O
+(Br)CCH-1C=O
+ICCH-1C=O
+85;Acyl Halide~89~90~91
+FC=O
+(Cl)C=O
+(Br)C=O
+IC=O
+86;Alpha-Halo Olefin
+FC=C
+(Cl)C=C
+(Br)C=C
+IC=C
+87;Aromatic Halide
+FC<C
+(Cl)C<C
+(Br)C<C
+IC<C
+88;Alpha-Halo Carbonyl
+FCC=O
+(Cl)CC=O
+(Br)CC=O
+ICC=O
+89;Allylic Halide
+FCC=C
+(Cl)CC=C
+(Br)CC=C
+ICC=C
+90;Propargylic Halide
+FCC*C
+(Cl)CC*C
+(Br)CC*C
+ICC*C
+91;Benzylic Halide
+FCC<C
+(Cl)CC<C
+(Br)CC<C
+ICC<C
+92;Primary Halide
+FCC-1H-1H
+(Cl)CC-1H-1H
+(Br)CC-1H-1H
+ICC-1H-1H
+93;Secondary Halide
+FCC-1C-1H
+(Cl)CC-1C-1H
+(Br)CC-1C-1H
+ICC-1C-1H
+94;Tertiary Halide with Beta Proton
+FCC-1C-1CH
+(Cl)CC-1C-1CH
+(Br)CC-1C-1CH
+ICC-1C-1CH
+95;Haloformate
+FC=O-1O
+(Cl)C=O-1O
+(Br)C=O-1O
+IC=O-1O
+96;Hypohalites & N-Haloamines
+FOC
+(Cl)OC
+(Br)OC
+IOC
+FNC
+(Cl)NC
+(Br)NC
+INC
+97;Halohydrin
+FCCOH
+(Cl)CCOH
+(Br)CCOH
+ICCOH
+98;Geminal Dihalide
+FCF
+FC(Cl)
+FC(Br)
+FCI
+(Cl)CF
+(Cl)C(Cl)
+(Cl)C(Br)
+(Cl)CI
+(Br)CF
+(Br)C(Cl)
+(Br)C(Br)
+(Br)CI
+ICF
+IC(Cl)
+IC(Br)
+ICI
+99;Trihalomethyl
+FCF-1F
+FCF-1(Cl)
+FCF-1(Br)
+FCF-1I
+FC(Cl)-1(Cl)
+FC(Cl)-1(Br)
+FC(Cl)-1I
+FC(Br)-1(Br)
+FC(Br)-1I
+FCI-1I
+(Cl)CF-1F
+(Cl)CF-1(Cl)
+(Cl)CF-1(Br)
+(Cl)CF-1I
+(Cl)C(Cl)-1(Cl)
+(Cl)C(Cl)-1(Br)
+(Cl)C(Cl)-1I
+(Cl)C(Br)-1(Br)
+(Cl)C(Br)-1I
+(Cl)CI-1I
+(Br)CF-1F
+(Br)CF-1(Cl)
+(Br)CF-1(Br)
+(Br)CF-1I
+(Br)C(Cl)-1(Cl)
+(Br)C(Cl)-1(Br)
+(Br)C(Cl)-1I
+(Br)C(Br)-1(Br)
+(Br)C(Br)-1I
+(Br)CI-1I
+ICF-1F
+ICF-1(Cl)
+ICF-1(Br)
+ICF-1I
+IC(Cl)-1(Cl)
+IC(Cl)-1(Br)
+IC(Cl)-1I
+IC(Br)-1(Br)
+IC(Br)-1I
+ICI-1I
+100;Vinyl
+CCH-1=CH-1H
+101;Vicinal Disubstituted Olefin
+CCH-1=CH-1C
+102;Geminal Disubstituted Olefin
+CCC-1=CH-1H
+103;Tri-Substituted Olefin
+CCC-1=CH-1C
+104;Alpha-Halo Ethers & Amines
+FCOC
+(Cl)COC
+(Br)COC
+ICOC
+FCN
+(Cl)CN
+(Br)CN
+ICN
+105;Tetra-Substituted Olefin
+CCC-1=CC-1C
+106;Allylic or Benzylic Hydrogens
+CH-1C=C
+CH-1C*C
+CH-1C<C
+107;Active Dienophile
+C=CC=O-1O
+C=CC=O-1C
+C=CC=O-1H
+C=CC*N
+C=CN=O-1=O
+C=CS=O-1=O
+108;N-H Bond
+NH
+109;Nitro(so)alkene~115
+N=O-1C=C
+110;Benzene Ring
+C<C<C<C<C<C</0
+114;Aryl Diazonium Salt
+N*NC<C
+115;Enamine
+NC=C
+116;Isocyanate
+CN=C=O
+117;Hydrazone
+NN=C
+118;N-Nitroso
+NN=O
+119;Diazo
+C=N=N
+120;Nitrile
+N*CC
+121;Nitro
+N=O-1=O-1C
+122;Diazoketone
+N=N-1=CC=O
+123;Primary Amine
+NH-1H-1C
+124;Secondary Amine
+NC-1H-1C
+125;Tertiary Amine
+NC-1C-1C
+126;Oxime
+N=C-1OH
+127;Primary Amide~123
+NH-1H-1C=O
+128;Secondary Amide~124
+NH-1C-1C=O
+129;Tertiary Amide~125
+NC-1C-1C=O
+130;Quaternary Ammonium Salt~125
+NC-1C-1C-1C
+131;Allylic Alcohol with Alpha Sulfate
+OH-1CC=C-1OS=O-1=O-1OH
+132;Dialkyl Sulfate
+COS=O-1=O-1OC
+134;Sulfoxide~135
+S=O-1C-1C
+135;Thioether
+SC-1C
+136;Thiol
+SH-1C
+137;Sulfonic Acid~322~323
+SC-1=O-1=O-1OH
+138;Sulfonic Esters & Sulfonyl Halides~318~319~322~323
+S=O-1=O-1OC-2C
+S=O-1=O-1(Cl)-1C
+S=O-1=O-1F-1C
+S=O-1=O-1(Br)-1C
+S=O-1=O-1I-1C
+139;Sulfone~134~135
+S=O-1=O-1C-1C
+140;Catechol
+OH-1C<COH
+141P;Tetrahydropyranyl Ether
+OCH-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1O/1
+142P;Phenoxy
+COC<CH-1<CH-1<CH-1<CH-1<CH-1</2
+143;Benzylic Ether/Ester
+OCH-1H-1C<CH-1<CH-1<CH-1<CH-1<CH-1</4
+144;Benzylic Amine/Amide
+NCH-1H-1C<CH-1<CH-1<CH-1<CH-1<CH-1</4
+145P;Tosylate
+OS=O-1=O-1C<CH-1<CH-1<CCH-1H-1H-2<CH-1<CH-1</4
+146P;Tosylamide
+NS=O-1=O-1C<CH-1<CH-1<CCH-1H-1H-2<CH-1<CH-1</4
+147P;Benzoate
+OC=O-1C<CH-1<CH-1<CH-1<CH-1<CH-1</3
+148P;Benzamide
+NC=O-1C<CH-1<CH-1<CH-1<CH-1<CH-1</3
+149P;Carbobenzyloxy Ester
+OC=O-1OCH-1H-1C<CH-1<CH-1<CH-1<CH-1<CH-1</7
+150P;Carbobenzyloxy Amide
+NC=O-1OCH-1H-1C<CH-1<CH-1<CH-1<CH-1<CH-1</7
+151P;Morpholino
+CNCH-1H-1CH-1H-1OCH-1H-1CH-1H-1/1
+152P;Piperidino
+CNCH-1H-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1/1
+153P;Pyrrolidino
+CNCH-1H-1CH-1H-1CH-1H-1CH-1H-1/1
+154P;2,4-Dinitrophenyl Amine/Amide
+NC<CH-1<CH-1<CN=O-1=O-2<CH-1<CN=O-1=O-2</1
+155P;Succinimido
+CNC=O-1CH-1H-1CH-1H-1C=O-1/1
+156P;Phthalimido
+CNC=O-1C<CH-1<CH-1<CH-1<CH-1<C</4-1C=O-1/1
+157P;Ethylene Ketal
+COCH-1H-1CH-1H-1O/0
+158P;Ethylene Glycol Ether/Ester
+COCH-1H-1CH-1H-1O
+159P;1,3 Dithiane
+CSCH-1H-1CH-1H-1CH-1H-1S/0
+160P;Ethylene Thioketal
+CSCH-1H-1CH-1H-1S/0
+161P;Trichloroethyl Ether/Ester
+COCH-1H-1C(Cl)-1(Cl)-1(Cl)
+162P;Methoxymethyl Ether/Ester
+OCH-1H-1OCH-1H-1H
+163P;Trifluoroacetate
+OC=O-1CF-1F-1F
+164P;Trifluoroacetamide
+NC=O-1CF-1F-1F
+165P;Trichloroacetate
+OC=O-1C(Cl)-1(Cl)-1(Cl)
+166P;Trichloroacetamide
+NC=O-1C(Cl)-1(Cl)-1(Cl)
+167P;Tert-Butoxycarbonyl Ester
+OC=O-1OCCH-1H-1H-2CH-1H-1H-2CH-1H-1H
+168P;Tert-Butoxycarbonyl Amide
+NC=O-1OCCH-1H-1H-2CH-1H-1H-2CH-1H-1H
+169P;Trifluoromethanesulfonate
+OS=O-1=O-1CF-1F-1F
+170P;Trifluoromethanesulfonamide
+NS=O-1=O-1CF-1F-1F
+171P;Succinic Ester/Acid
+OC=O-1CH-1H-1CH-1H-1C=O
+172P;Succinic Amide
+NC=O-1CH-1H-1CH-1H-1C=O
+173P;Glutaric Ester/Acid
+OC=O-1CH-1H-1CH-1H-1CH-1H-1C=O
+174P;Oxime Methyl Ether
+C=NOCH-1H-1H
+177P;Benzyl Thioether/Thioester
+SCH-1H-1C<CH-1<CH-1<CH-1<CH-1<CH-1</4
+178;Para-Nitrobenzyl Ether/Ester
+OCH-1H-1C<CH-1<CH-1<CN=O-1=O-2<CH-1<CH-1</4
+179;Para-Nitrobenzyl Amine/Amide
+NCH-1H-1C<CH-1<CH-1<CN=O-1=O-2<CH-1<CH-1</4
+180P;Para-Nitrobenzyl Thioether/Thioester
+SCH-1H-1C<CH-1<CH-1<CN=O-1=O-2<CH-1<CH-1</4
+181P;O-Phenyl
+OC<CH-1<CH-1<CH-1<CH-1<CH-1</1
+182P;N-Phenyl
+NC<CH-1<CH-1<CH-1<CH-1<CH-1</1
+183P;S-Phenyl
+SC<CH-1<CH-1<CH-1<CH-1<CH-1</1
+184P;Para-Nitrophenyl Ether/Ester
+COC<CH-1<CH-1<CN=O-1=O-2<CH-1<CH-1</2
+185P;Para-Nitrophenyl Amine/Amide
+C>NC<CH-1<CH-1<CN=O-1=O-2<CH-1<CH-1</2
+186P;Para-Nitrophenyl Thioether/Thioester
+CSC<CH-1<CH-1<CN=O-1=O-2<CH-1<CH-1</2
+187P;Glutaric Amide
+NC=O-1CH-1H-1CH-1H-1CH-1H-1C=O
+188P;Adipic Ester/Acid
+OC=O-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1C=O
+189P;N-Pyridyl
+CN<CH-1<CH-1<CH-1<CH-1<CH-1</1
+190P;Trimethylsilyl Ether
+O(Si)CH-1H-1H-2CH-1H-1H-2CH-1H-1H
+191P;Trimethylsilyl Amine
+N(Si)CH-1H-1H-2CH-1H-1H-2CH-1H-1H
+192P;2,4,6-Trinitrophenyl Ether/Ester
+COC<CN=O-1=O-2<CH-1<CN=O-1=O-2<CH-1<CN=O-1=O-2</2
+193P;Glycyl Ester/Acid
+OC=O-1CH-1H-1NH
+194P;Glycyl Amide
+NC=O-1CH-1H-1NH
+195P;Alanyl Ester/Acid
+OC=O-1CH-1CH-1H-1H-2NH
+196P;Alanyl Amide
+NC=O-1CH-1CH-1H-1H-2NH
+197P;Valyl Ester/Acid
+OC=O-1CH-1CH-1CH-1H-1H-2CH-1H-1H-3NH
+198P;Valyl Amide
+NC=O-1CH-1CH-1CH-1H-1H-2CH-1H-1H-3NH
+199P;Leucyl Ester/Acid
+OC=O-1CH-1CH-1H-1CH-1CH-1H-1H-2CH-1H-1H-4NH
+200P;Leucyl Amide
+NC=O-1CH-1CH-1H-1CH-1CH-1H-1H-2CH-1H-1H-4NH
+201P;Isoleucyl Ester/Acid
+OC=O-1CH-1CH-1CH-1H-1CH-1H-1H-3CH-1H-1H-3NH
+202P;Isoleucyl Amide
+NC=O-1CH-1CH-1CH-1H-1CH-1H-1H-3CH-1H-1H-3NH
+203P;Phenylalanyl Ester/Acid
+OC=O-1CH-1CH-1H-1C<CH-1<CH-1<CH-1<CH-1<CH-1</8+3NH
+204P;Phenylalanyl Amide
+NC=O-1CH-1CH-1H-1C<CH-1<CH-1<CH-1<CH-1<CH-1</8+3NH
+205P;Tyrosyl Ester/Acid
+OC=O-1CH-1CH-1H-1C<CH-1<CH-1<CO-1<CH-1<CH-1</8+3NH
+206P;Tyrosyl Amide
+NC=O-1CH-1CH-1H-1C<CH-1<CH-1<CO-1<CH-1<CH-1</8+3NH
+207P;Seryl Ester/Acid
+OC=O-1CH-1CH-1H-1O-2NH
+208P;Seryl Amide
+NC=O-1CH-1CH-1H-1O-2NH
+209P;Threonyl Ester/Acid
+OC=O-1CH-1CH-1O-1CH-1H-1H-3NH
+210P;Threonyl Amide
+NC=O-1CH-1CH-1O-1CH-1H-1H-3NH
+211P;Cysteyl Ester/Acid
+OC=O-1CH-1CH-1H-1S-2NH
+212P;Cysteyl Amide
+NC=O-1CH-1CH-1H-1S-2NH
+213P;Methionyl Ester/Acid
+OC=O-1CH-1CH-1H-1CH-1H-1SCH-1H-1H-5NH
+214P;Methionyl Amide
+NC=O-1CH-1CH-1H-1CH-1H-1SCH-1H-1H-5NH
+215P;Ornithyl Ester/Acid
+OC=O-1CH-1CH-1H-1CH-1H-1CH-1H-1N-4NH
+216P;Ornithyl Amide
+NC=O-1CH-1CH-1H-1CH-1H-1CH-1H-1N-4NH
+217P;Arginyl Ester/Acid
+OC=O-1CH-1CH-1H-1CH-1H-1CH-1H-1NC=N-1N-6NH
+218P;Arginyl Amide
+NC=O-1CH-1CH-1H-1CH-1H-1CH-1H-1NC=N-1N-6NH
+219P;Lysyl Ester/Acid
+OC=O-1CH-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1N-5NH
+220P;Lysyl Amide
+NC=O-1CH-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1N-5NH
+221P;Aspartyl Ester/Acid
+OC=O-1CH-1CH-1H-1C=O-1O-3NH
+222P;Aspartyl Amide
+NC=O-1CH-1CH-1H-1C=O-1O-3NH
+223P;Asparagyl Ester/Acid
+OC=O-1CH-1CH-1H-1C=O-1N-3NH
+224P;Asparagyl Amide
+NC=O-1CH-1CH-1H-1C=O-1N-3NH
+225P;Glutamyl Ester/Acid
+OC=O-1CH-1CH-1H-1CH-1H-1C=O-1O-4NH
+226P;Glutamyl Amide
+NC=O-1CH-1CH-1H-1CH-1H-1C=O-1O-4NH
+227P;Glutamyl Ester/Acid
+OC=O-1CH-1CH-1H-1CH-1H-1C=O-1N-4NH
+228P;Glutamyl Amide
+NC=O-1CH-1CH-1H-1CH-1H-1C=O-1N-4NH
+229P;Prolyl Ester/Acid
+OC=O-1CH-1CH-1H-1CH-1H-1CH-1H-1N/3
+230P;Prolyl Amide
+NC=O-1CH-1CH-1H-1CH-1H-1CH-1H-1N/3
+231P;Hydroxyprolyl Ester/Acid
+OC=O-1CH-1CH-1H-1CH-1O-1CH-1H-1N/3
+232P;Hydroxyprolyl Amide
+NC=O-1CH-1CH-1H-1CH-1O-1CH-1H-1N/3
+233P;Tryptophanyl Ester/Acid
+OC=O-1CH-1NH-2CH-1H-1C=CH-1NC<CH-1<CH-1<CH-1<CH-1<C/10-1</14
+234P;Tryptophanyl Amide
+NC=O-1CH-1NH-2CH-1H-1C=CH-1NC<CH-1<CH-1<CH-1<CH-1<C/10-1</14
+235P;Histidyl Ester/Acid
+OC=O-1CH-1NH-2CH-1H-1C=CH-1N=CH-1N/10
+236P;Histidyl Amide
+NC=O-1CH-1NH-2CH-1H-1C=CH-1N=CH-1N/10
+237P;Glucosyl Ether/Ester
+OCH-1CH-1O-1CH-1O-1CH-1O-1CH-1CH-1H-1O-2O/1
+238P;Fructosyl Ether/Ester
+OCOCH-1CH-1H-1O-2CH-1O-1CH-1O-1/1CH-1H-1O
+239P;Ribosyl Ether/Ester
+OCH-1CH-1O-1CH-1O-1CH-1CH-1H-1O-2O/1
+240P;Adipic Amide
+NC=O-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1C=O
+241P;Pimelic Ester/Acid
+OC=O-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1C=O
+242P;Pimelic Amide
+NC=O-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1C=O
+243P;Suberic Ester/Acid
+OC=O-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1C=O
+244P;Suberic Amide
+NC=O-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1CH-1H-1C=O
+245P;N-Imidazoyl
+CNCH-1=NCH-1=CH-1/1
+246;Alpha-Fluoro Alcohol
+OH-1CF
+247;Alpha-Chloro Alcohol
+OH-1C(Cl)
+248;Alpha-Bromo Alcohol
+OH-1C(Br)
+249;Alpha-Iodo Alcohol
+OH-1CI
+250;Geminal Diol
+OH-1COH
+251;Aminol
+OH-1CNH
+252;Alpha-Hydroxy Epox
+OH-1COC/2
+253;Alpha-Acyloxy Alcohol
+OH-1COC=O
+254;Alpha-Sulfonoxy Alcohol
+OH-1COS=O-1=O
+255;Alpha-Nitroxy Alcohol
+OH-1CON=O-1=O
+256;Alpha-Hydroxy Thioether
+OH-1CS
+257;Alpha-Fluoro Amine
+NH-1CF
+258;Alpha-Chloro Amine
+NH-1C(Cl)
+259;Alpha-Bromo Amine
+NH-1C(Br)
+260;Alpha-Iodo Amine
+NH-1CI
+262;Alpha-Hydroxy Aziridine
+OH-1CNC/2
+263;Alpha-Amino Epoxide
+NH-1COC/2
+264;Alpha-Acyloxy Amine
+NH-1COC=O
+265;Alpha-Sulfonoxy Amine
+NH-1COS=O-1=O
+266;Alpha-Nitroxy Amine
+NH-1CON=O-1=O
+267;Alpha-Amino Aziridine
+NH-1CNC/2
+268;Alpha-Fluoro Hydrosulfide
+SH-1CF
+269;Alpha-Chloro Hydrosulfide
+SH-1C(Cl)
+270;Alpha-Bromo Hydrosulfide
+SH-1C(Br)
+271;Alpha-Iodo Hydrosulfide
+SH-1CI
+272;Alpha-Hydroxy Hydrosulfide
+SH-1COH
+273;Alpha-Mercapto Epoxide
+SH-1COC/2
+274;Alpha-Acyloxy Hydrosulfide
+SH-1COC=O
+275;Alpha-Sulfonoxy Hydrosulfide
+SH-1COS=O-1=O
+276P;Para-Nitrobenzenesulfonate
+COS=O-1=O-1C<CH-1<CH-1<CN=O-1=O-2<CH-1<CH-1</5
+277P;Para-Nitrobenzenesulfonamide
+C>NS=O-1=O-1C<CH-1<CH-1<CN=O-1=O-2<CH-1<CH-1</5
+278P;Acetate
+OC=O-1CH-1H-1H
+279P;Acetamide
+NC=O-1CH-1H-1H
+280;O-Methyl
+OCH-1H-1H
+281;N-Methyl
+NCH-1H-1H
+282;O-Ethyl
+OCH-1H-1CH-1H-1H
+283;N-Ethyl
+NCH-1H-1CH-1H-1H
+284;O-Isopropyl
+OCH-1CH-1H-1H-2CH-1H-1H
+285;N-Isopropyl
+NCH-1CH-1H-1H-2CH-1H-1H
+286;O-Propyl
+OCH-1H-1CH-1H-1CH-1H-1H
+287;N-Propyl
+NCH-1H-1CH-1H-1CH-1H-1H
+288;O-N-Butyl
+OCH-1H-1CH-1H-1CH-1H-1CH-1H-1H
+289;N-N-Butyl
+NCH-1H-1CH-1H-1CH-1H-1CH-1H-1H
+290;O-Sec-Butyl
+OCH-1CH-1H-1H-2CH-1H-1CH-1H-1H
+291;N-Sec-Butyl
+NCH-1CH-1H-1H-2CH-1H-1CH-1H-1H
+292;O-Iso-Butyl
+OCH-1H-1CH-1CH-1H-1H-2CH-1H-1H
+293;N-Iso-Butyl
+NCH-1H-1CH-1CH-1H-1H-2CH-1H-1H
+294;O-Tert-Butyl
+OCCH-1H-1H-2CH-1H-1H-2CH-1H-1H
+295;N-Tert-Butyl
+NCCH-1H-1H-2CH-1H-1H-2CH-1H-1H
+296P;Piperonyl
+CC<CH-1<COCH-1H-1OC</4-1<CH-1<CH-1</1
+297P;Veratryl
+CC<CH-1<COCH-1H-1H-3<COCH-1H-1H-3<CH-1<CH-1</1
+298P;6-Chloropiperonyl
+CC<CH-1<COCH-1H-1OC</4-1<CH-1<C(Cl)-1</1
+299;Methyl
+CH-1H-1H
+300;Ethyl
+CH-1H-1H-1CH-1H
+301;Disulfide
+SC-1SC
+302;Tri- or Polysulfide
+SC-1SS
+303;Thioacid
+SH-1C=O-1C
+304;Thiolester
+SC-1C=O-1C
+305;Thionester
+S=CC-1OC
+306;Thioanhydride
+SC=O-1C-2C=O-1C
+307;Dithioacid
+SH-1C=S-1C
+308;Dithioester
+SC-1C=S-1C
+309;Thioamide
+S=CC-1N
+310;Thiocyanate
+SC-1C*N
+311;Isothiocyanate
+S=C=NC
+312;Enethiol
+SH-1C=C
+313;Gamma Thiolactone
+SCCCC=O-1/0
+SC=CCC=O-1/0
+SCC=CC=O-1/0
+314;Delta Thiolactone
+SCCCCC=O-1/0
+315;Episulfide
+SCC/0
+316;Mercaptal/Mercaptole
+SC-1CSC
+317;Linear Embedding of Thiophene
+SC=C-2C=C
+318;Sulfenyl Halide
+SC-1(Cl)
+SC-1(Br)
+SC-1I
+SC-1F
+319;Sulfinyl Halide~318
+SC-1=O-1(Cl)
+SC-1=O-1(Br)
+SC-1=O-1I
+SC-1=O-1F
+320;Sulfenamide
+SC-1N
+321;Sulfinamide~320
+SC-1N-1=O
+322;Sulfenic Acid/Ester
+SC-1O
+323;Sulfinic Acid/Ester~322
+SC-1=O-1O
+324;Linear Embedding of Thiazole
+SC=N-2C=C
+325;Linear Embedding of Isothiazole
+SN=C-2C=C
+326;Thianaphthene
+SC=CC<C/0-1<C<C<C<C</3
+327;Sulfonium Salt~135
+SC-1C-1C
+328;Alkylidenesulfurane~135
+SC-1C-1=C
+329;Thione
+S=CC
+350;Aziridine
+NCC/0
+351;Divinylamine/Linear Embedding of Pyrrole~124~125
+NC=C-2C=C
+352;Imide
+NC=O-2C=O
+353;Amidine
+NC=N
+354;Linear Embedding of Imidazole
+NC=N-2C=C
+355;Diaziridine
+NNC/0
+356;Aminal
+NCC-1N
+357;Beta Lactam
+NC=O-1CC/0
+358;Gamma Lactam
+NC=O-1CCC/0
+NC=O-1C=CC/0
+NC=O-1CC=C/0
+359;Delta Lactam
+NC=O-1CCCC/0
+360;Indole~124~125
+NC=CC<C/0-1<C<C<C<C</3
+361;Quinoline
+N<C<C<C<C<C</0-1<C<C<C<C</4
+362;Isoquinoline
+N<C<C<C<C<C</0-2<C<C<C<C</3
+363;Isonitrile
+N*C-1C
+364;Carbodiimide
+NC-1=C=NC
+365;Amidol~251
+OH-1CNC=O
+366;Enamide~115
+NC=C-2C=O
+367;Nitrate Ester~368
+ON=O-1=O0C
+368;Nitrite Ester
+ON=O0C
+369;Alpha-Acylamido Acid with Alpha & Beta Proton
+NC=O-2CH-1CH-2C=O-1OH
+370;Alpha-Nitro Alcohol
+N=O-1=O-1COH
+371;Arylhydroxylamine
+NOH0C<C
+372;Arylhydroxylamine Sulfate
+NOS=O-1=O-1OH0C<C
+373;Nitryloxy
+ON=O-1=O
+374;Alpha-Amino Acid
+NH-1CC=O-1OH
+375;Alpha-Amino Sulfonic Acid
+NH-1CS=O-1=O-1OH
+400;Linear Embedding of Oxazole
+OC=N-2C=C
+401;Linear Embedding of Isoxazole
+ON=C-2C=C
+402;Benzofuran~68
+OC=CC<C/0-1<C<C<C<C</3
+403;Chroman
+OCCCC<C/0-1<C<C<C<C</4
+404;Coumarin
+OC=O-1C=CC<C/0-1<C<C<C<C</5
+405;Cyanate
+OC-1C*N
+406;Methylenedioxybenzene~69~70
+OCOC<C/0-1<C<C<C<C</3
+407;Aryloxy
+OC<C<C<C<C<C</1
+450;Phosphine
+PC-1H-1H
+PC-1C-1H
+PC-1C-1C
+451;Phosphonium Salt
+PC-1C-1C-1C
+452;Alkylidenephosphorane
+PC-1C-1C-1=C
+453;Phosphate Ester~454
+P=O-1OC-2O-1O
+454;Phosphite Ester
+POC-2O-1O
+455;Phosphonate Ester~456
+P=O-1C-1OC-2O
+456;Phosphinate Ester
+PC-1OC-2O
+457;Phosphorus-Sulfur Double Bond
+P=S
+458;Phosphorus-Oxygen Double Bond
+P=O
+475;Selenol
+(Se)H-1C
+476;Gamma Selenolactone
+(Se)C=O-1CCC/0
+(Se)C=O-1C=CC/0
+(Se)C=O-1CC=C/0
+477;Delta Selenolactone
+(Se)C=O-1CCCC/0
+478;Selenophene
+(Se)C=CC=C/0
+479;Selenide
+(Se)C-1C
+480;Diselenide
+(Se)C-1(Se)C
+481;Organolead
+(Pb)C
+482;Organomercury
+(Hg)C
+483;Organothallium
+(Tl)C
+484;Organocadmium
+(Cd)C
+485;Organozinc
+(Zn)C
+490;Silane
+(Si)C-1C-1C-1C
+491;Silyl Halide
+(Si)C-1(Cl)
+(Si)C-1(Br)
+(Si)C-1I
+(Si)C-1F
+492;Silyl Hydride
+(Si)C-1H
+493;Siloxane
+(Si)C-1O(Si)C
+494;Silazane
+(Si)C-1N(Si)C
+500;Linear Embedding of Pyrazole
+NN=C-2C=C
+501;Methylenelactone
+OC=O-1C=CH-1H-2CC/0
+OC=O-1C=CH-1H-2CCC/0
+502;Glucuronide
+OCH-1CH-1OH-2COH-2H-1CH-1OH-2CC=O-1OH-3/0+1O
+OCH-1CH-1OH-2COH-2H-1CH-1OH-2CC=O-1OH-3/0+1N
+OCH-1CH-1OH-2COH-2H-1CH-1OH-2CC=O-1OH-3/0+1S
+503;Hydrogen Sulfate Ester
+OS=O-1=O-1OH0C
+504;Glutathion Conjugate
+SCCC=O-1NH-1CC=O-1OH+2NH-1C=O-1CCCNH-1H-2C=O-1OH
+505;Hippuric Acid
+O=COH-2CH-1H-1NH-1C=O-1C<C
+506;Gamma Carboxyketone with Alpha Proton
+O=CC-1CH-1CC=O-1OH
+507;Alpha,Beta-Unsaturated Aldehyde/Ketone with Gamma Proton
+O=CH-1C=CCH
+O=CC-1C=CCH
+508;Alpha Ketol with Beta Proton
+O=CCOH-2CH
+509;Alpha Ketoacid
+O=CC=O-1OH
+510;Enol Sulfate of Alpha,Beta-Unsaturated Carbonyl
+SOCC-1=CC=C-5=O-1=O-1OH
+SOCH-1=CC=C-5=O-1=O-1OH
+511;Enol Sulfate of Aldehyde/Ketone
+SOCC-1=C-3=O-1=O-1OH
+SOCH-1=C-3=O-1=O-1OH
+549;Electronically Unstable Cyclopentadienone
+O=CC=CC=C/1
+600;Ethylxanthate
+S=COCH-1H-1CH-1H-1H1S
+698;Aliphatic Aldehyde
+O=CH-1CH
+O=CH-1CC
+699;Aromatic Aldehyde
+O=CH-1C<C
+700;Intramolecular Hydrogen Bond
+HOC<CC=O
+HOC<CN=O
+HON=CC=O
+HOC=CC=O
+800;Anthracenoid Hydrocarbon
+C<C<C-1<CH-1<C<C-1<C
+C<C<C-1<CC-1<C<C-1<C
+801;Phenanthrenoid Hydrocarbon
+C<C<C-1<CH-1<CH-1<C<C-1<C
+C<C<C-1<CC-1<CH-1<C<C-1<C
+C<C<C-1<CC-1<CC-1<C<C-1<C
+850;Beta-Hydroxyalkyl Sulfate
+OH-1CCOS=O-1=O-1OH
+851;Beta-Hydroxyalkyl Nitrate
+OH-1CCON=O-1=O
+852;Acidic Hydroxyl Delta to Oxirane
+OCC/0-1COS=O-1=O-1OH
+OCC/0-1CCS=O-1=O-1OH
+OCC/0-1CC=O-1OH
+OCC/0-1COP=O-1O-1OH
+OCC/0-1CCP=O-1O-1OH
+853;Allylic Sulfate with Delta Proton
+S=O-1=O-1O-1OCC=CCH
+861;Hydroxylamine with 0-Substituent
+NH-1H-1OC
+862;Hydroxylamine with N-Mono-Substituent
+NC-1H-1OH
+863;Hydroxylamine with N-Di-Substituent
+NC-1C-1OH
+864;Hydroxylamine with N,N,O-Substituents
+NC-1C-1OC
+865;Organofluorides
+FC
+866;Organochlorides
+(Cl)C
+867;Organobromides
+(Br)C
+868;Organoiodides
+IC
+869;Polyaromatic Hydrocarbons (Pah)
+C<C<C-1<C<C<C-1<C<C<C-1<C
+C<C<C-1<C<C<C-1<C<C-1<C
+C<C<C-1<C<C-1<C<C-1<C
+C<C<C-1<C<C-1<C<C<C-1<C
+C<C<C<C-1<C-2<C
+870;Hydrogen Sulfate or Sulfonate
+S=O-1=O-1OH
+871;Hydrogen Phosphate or Phosphonate
+P=O-1O-1OH
+872;Pyridine Ring
+N<C<C<C<C<C</0
+873;Sulfamate;Sulfonamide~320~321
+S=O-1=O-1NH
+874;Phosphamate;Phosphonamide
+P=O-1O-1NH
+875;Vinylic Chloride & Bromide
+(Cl)C=CH-1H
+(Br)C=CH-1H
+876;Terminal-Methylene Michael Receptors
+N*CC=CH-1H
+O=CC=CH-1H
+N=CC=CH-1H
+S=O-1C=CH-1H
+N=O-1C=CH-1H
+P=O-1C=CH-1H
+880;Tautomerizable Cyclohexadienone Derivative
+O=CC=CCH-1C=C/1
+O=CC=CC=CCH-1/1
+O=CC<CCH-1C<C/1
+O=CC<CC<CCH-1/1
+O=CC<CCH-1C=C/1
+O=CC<CC=CCH-1/1
+O=CC=CC<CCH-1/1
+N=CC=CCH-1C=C/1
+N=CC=CC=CCH-1/1
+N=CC<CCH-1C<C/1
+N=CC<CC<CCH-1/1
+N=CC<CCH-1C=C/1
+N=CC<CC=CCH-1/1
+N=CC=CC<CCH-1/1
+S=CC=CCH-1C=C/1
+S=CC=CC=CCH-1/1
+S=CC<CCH-1C<C/1
+S=CC<CC<CCH-1/1
+S=CC<CCH-1C=C/1
+S=CC<CC=CCH-1/1
+S=CC=CC<CCH-1/1
+(Se)=CC=CCH-1C=C/1
+(Se)=CC=CC=CCH-1/1
+(Se)=CC<CCH-1C<C/1
+(Se)=CC<CC<CCH-1/1
+(Se)=CC<CCH-1C=C/1
+(Se)=CC<CC=CCH-1/1
+(Se)=CC=CC<CCH-1/1
+881;Spontaneously Aromatizing Cyclohexadiene
+OCC=CCH-1C=C/1
+OCC=CC=CCH-1/1
+OCC<CCH-1C<C/1
+OCC<CC<CCH-1/1
+OCC<CCH-1C=C/1
+OCC<CC=CCH-1/1
+OCC=CC<CCH-1/1
+FCC=CCH-1C=C/1
+FCC=CC=CCH-1/1
+FCC<CCH-1C<C/1
+FCC<CC<CCH-1/1
+FCC<CCH-1C=C/1
+FCC<CC=CCH-1/1
+FCC=CC<CCH-1/1
+(Cl)CC=CCH-1C=C/1
+(Cl)CC=CC=CCH-1/1
+(Cl)CC<CCH-1C<C/1
+(Cl)CC<CC<CCH-1/1
+(Cl)CC<CCH-1C=C/1
+(Cl)CC<CC=CCH-1/1
+(Cl)CC=CC<CCH-1/1
+(Br)CC=CCH-1C=C/1
+(Br)CC=CC=CCH-1/1
+(Br)CC<CCH-1C<C/1
+(Br)CC<CC<CCH-1/1
+(Br)CC<CCH-1C=C/1
+(Br)CC<CC=CCH-1/1
+(Br)CC=CC<CCH-1/1
+ICC=CCH-1C=C/1
+ICC=CC=CCH-1/1
+ICC<CCH-1C<C/1
+ICC<CC<CCH-1/1
+ICC<CCH-1C=C/1
+ICC<CC=CCH-1/1
+ICC=CC<CCH-1/1
+NCC=CCH-1C=C/1
+NCC=CC=CCH-1/1
+NCC<CCH-1C<C/1
+NCC<CC<CCH-1/1
+NCC<CCH-1C=C/1
+NCC<CC=CCH-1/1
+NCC=CC<CCH-1/1
+SCC=CCH-1C=C/1
+SCC=CC=CCH-1/1
+SCC<CCH-1C<C/1
+SCC<CC<CCH-1/1
+SCC<CCH-1C=C/1
+SCC<CC=CCH-1/1
+SCC=CC<CCH-1/1
+(Se)CC=CCH-1C=C/1
+(Se)CC=CC=CCH-1/1
+(Se)CC<CCH-1C<C/1
+(Se)CC<CC<CCH-1/1
+(Se)CC<CCH-1C=C/1
+(Se)CC<CC=CCH-1/1
+(Se)CC=CC<CCH-1/1
+882;Tautomerizable Alkylidenecyclohexadiene
+C=CC=CCH-1C=C/1
+C=CC=CC=CCH-1/1
+C=CC<CCH-1C<C/1
+C=CC<CC<CCH-1/1
+C=CC<CCH-1C=C/1
+C=CC<CC=CCH-1/1
+C=CC=CC<CCH-1/1
+890;Imine with alpha proton
+N=CCH
+949;Tetraarylcyclopentadienone~549
+O=CC=CC=C/1+2C<C+3C<C+4C<C+5C<C
+950;Pyridinium;Quinolinium
+NC-1<C
+951;Quinolizinium
+N<C-1<C-1<C
+960;Acetyl
+O=CCH-1H-1H
+961;Methyl Ketone
+O=CC-1CH-1H-1H
+980;Alkylarylamine
+NH-1CC-2C<C
+981;Dialkylarylamine
+NCC-2CC-2C<C
+982;Alkyldiarylamine
+NCC-2C<C-2C<C
+983;Vinylogous amide
+NC=CC=O
+984;Vinylogous ester
+OC-1C=CC=O
+987;2-Halopyridine/pyrazine/pyrimidine
+FC<N
+(Cl)C<N
+(Br)C<N
+IC<N
+988;4-Halopyridine
+FC<C<C<N
+(CL)C<C<C<N
+(BR)C<C<C<N
+IC<C<C<N
+989;Arylamino
+NH-1C<C<C<C<C<C</2
+NC-1C<C<C<C<C<C</2
+990;Urea
+NC=O-1N
+991;Monoarylamine
+NH-1H-1C<C
+992;Diarylamine
+NH-1C<C-2C<C
+993;Triarylamine
+NC<C-2C<C-2C<C
+994;Monoalkylamine
+NH-1H-1CC
+995;Dialkylamine
+NH-1CC-2CC
+996;Trialkylamine
+NCC-2CC-2CC
+997;Azide
+NC-1=N=N
+998;Dithiocarbamate
+NC=S-1SC
+999;Urethane
+NC=O-1OC

@@ -1,0 +1,385 @@
+/******************************************************************************
+*
+*  Copyright (C) 1991-1996, Synchem Group at SUNY-Stony Brook
+*
+*  Module Name:                     SLING2XTR.C
+*
+*    This module contains the routines for converting from Slings to XTRs and
+*    vice-versa.  This is done in order to simplify linking.
+*
+*  Routines:
+*
+*    Sling_CanonicalName2Xtr
+*    Sling2Xtr
+*    Sling2Xtr_PlusHydrogen
+*    Xtr2Sling
+*    SNextCarbon
+*
+*  Creation Date:
+*
+*    01-Jan-1991
+*
+*  Authors:
+*
+*    Tito Autrey (rewritten based on others PL/I code)
+*
+*  Modification History, reverse chronological
+*
+* Date       Author     Modification Description
+*------------------------------------------------------------------------------
+* dd-mmm-yy  Fred       xxx
+* 28-Aug-95  Cheung     In Sling_CanonicalName2Xtr, copy of input sling instead
+*                       of the input sling are stored in the name structure.
+* 07-Sep-01  Miller     Fixed memory leaks in Sling_CanonicalName2Xtr().
+******************************************************************************/
+
+#include "synchem.h"
+#include "debug.h"
+#include "synio.h"
+
+#ifndef _H_ATOMSYM_
+#include "atomsym.h"
+#endif
+
+#ifndef _H_TSD_
+#include "tsd.h"
+#endif
+
+#ifndef _H_SLING_
+#include "sling.h"
+#endif
+
+#ifndef _H_XTR_
+#include "xtr.h"
+#endif
+
+#ifndef _H_TSD2XTR_
+#include "tsd2xtr.h"
+#endif
+
+#ifndef _H_SLING2XTR_
+#include "sling2xtr.h"
+#endif
+
+/* Static Prototypes */
+
+static U16_t   SNextCarbon     (Xtr_t *, U16_t *);
+
+
+/****************************************************************************
+*
+*  Function Name:                 Sling_CanonicalName2Xtr
+*
+*    This function converts a name into an XTR.  The name may be a canonical
+*    name, a constitutional name or simply a canonical Sling.
+*
+*    The format for a canonical name is :
+*    - canonical sling|ce brothers$parity bit string|se brothers
+*
+*  Used to be:
+*
+*    nmxtr:
+*
+*  Implicit Inputs:
+*
+*    N/A
+*
+*  Implicit Outputs:
+*
+*    N/A
+*
+*  Return Values:
+*
+*    N/A
+*
+*  Side Effects:
+*
+*    N/A
+*
+******************************************************************************/
+Xtr_t *Sling_CanonicalName2Xtr
+  (
+  Sling_t       sling                      /* Canonical name, *must* be! */
+  )
+{
+  Xtr_t        *xtr_p;                     /* Xtr from canonical name */
+  U16_t         index;                     /* String processing */
+  U16_t         j;                         /* Counter */
+  U16_t         len;                       /* Counter */
+  U16_t         next, last;                /* Atom indices for carbon search */
+  U8_t          stereo_tmp;                /* For swapping stereo components */
+  String_t      can_name;                  /* String format */
+  Sling_t       new_sling;                 /* Copy of possible subsling */
+
+  DEBUG (R_SLING, DB_SLINGCANNAME2XTR, TL_PARAMS, (outbuf,
+    "Entering Sling_CanonicalName2Xtr, sling not shown"));
+
+  /* Check for CE brothers string, if found, truncate Sling to there and
+     do conversion.
+  */
+
+  can_name = Sling2String (sling);
+  index = String_Index_c (can_name, CE_SEP);
+  if (index != (U16_t) INFINITY)
+    {
+    String_Truncate (can_name, String_Length_Get (can_name) - index);
+    }
+
+  new_sling = String2Sling (can_name);
+  String_Destroy (can_name);
+  xtr_p = Sling2Xtr_PlusHydrogen (new_sling);
+  Sling_Destroy (new_sling); /* former memory leak! */
+  if (xtr_p == NULL)
+    {
+    DEBUG (R_SLING, DB_SLINGCANNAME2XTR, TL_PARAMS, (outbuf,
+      "Leaving Sling_CanonicalName2Xtr, Xtr = %p", xtr_p));
+
+    return xtr_p;
+    }
+
+  Xtr_Name_Put (xtr_p, Name_Create (Xtr_NumAtoms_Get (xtr_p), 
+	Sling_Copy (sling)));
+
+  if (index == (U16_t)INFINITY)
+    {
+    DEBUG (R_SLING, DB_SLINGCANNAME2XTR, TL_PARAMS, (outbuf,
+      "Leaving Sling_CanonicalName2Xtr, Xtr = %p", xtr_p));
+
+    return xtr_p;
+    }
+
+  /* If there were CE brothers, then look next for parity string and if it
+     exists, use it to modify the stereochemistry of the Xtr_t.
+  */
+
+  can_name = Sling2String (sling);
+  index = String_Index_c (can_name, PARITY_SEP);
+  if (index == (U16_t)INFINITY)
+    {
+    String_Destroy (can_name); /* former memory leak! */
+    DEBUG (R_SLING, DB_SLINGCANNAME2XTR, TL_PARAMS, (outbuf,
+      "Leaving Sling_CanonicalName2Xtr, Xtr = %p", xtr_p));
+
+    return xtr_p;
+    }
+
+  len = PL1_Index ((char *)&String_Value_Get (can_name)[index + 1],
+    (U16_t)String_Length_Get (can_name) - (index + 1), SE_SEP, 1);
+  if (len == (U16_t)INFINITY)
+    len = String_Length_Get (can_name);
+  else
+    len += index + 1;
+
+  /* Need to start last at -1 so that first addition overflows to 0.
+     We are simply reversing the stereo aspect of the first two atoms.
+  */
+
+  for (j = index + 1, last = -1; j < len; j++)
+    {
+    next = SNextCarbon (xtr_p, &last);
+    if (String_Value_Get (can_name)[j] == '0')
+      {
+      stereo_tmp = Xtr_Attr_NeighborStereo_Get (xtr_p, next, 0);
+      Xtr_Attr_NeighborStereo_Put (xtr_p, next, 0,
+	Xtr_Attr_NeighborStereo_Get (xtr_p, next, 1));
+      Xtr_Attr_NeighborStereo_Put (xtr_p, next, 1, stereo_tmp);
+      }
+    }
+
+  String_Destroy (can_name); /* former memory leak! */
+  DEBUG (R_SLING, DB_SLINGCANNAME2XTR, TL_PARAMS, (outbuf,
+    "Leaving Sling_CanonicalName2Xtr, Xtr = %p", xtr_p));
+
+  return xtr_p;
+}
+
+/****************************************************************************
+*
+*  Function Name:                 Sling2Xtr
+*
+*    This function converts a Sling into an XTR.
+*
+*  Used to be:
+*
+*    slngxtr:
+*
+*  Implicit Inputs:
+*
+*    N/A
+*
+*  Implicit Outputs:
+*
+*    N/A
+*
+*  Return Values:
+*
+*    Address of XTR format of molecule
+*
+*  Side Effects:
+*
+*    N/A
+*
+******************************************************************************/
+Xtr_t *Sling2Xtr
+  (
+  Sling_t       sling                      /* Sling to convert */
+  )
+{
+  Tsd_t        *tsd_p;                     /* Intermediate */
+  Xtr_t        *xtr_p;                     /* Result */
+
+  DEBUG (R_SLING, DB_SLING2XTR, TL_PARAMS, (outbuf,
+    "Entering Sling2Xtr, Sling not shown"));
+
+  tsd_p = Sling2Tsd (sling);
+  xtr_p = Tsd2Xtr (tsd_p);
+  Tsd_Destroy (tsd_p);
+
+  DEBUG (R_SLING, DB_SLING2XTR, TL_PARAMS, (outbuf,
+    "Leaving Sling2Xtr, xtr = %p", xtr_p));
+
+   return xtr_p;
+}
+
+/****************************************************************************
+*
+*  Function Name:                 Sling2Xtr_PlusHydrogen
+*
+*    This function converts a Sling to an XTR and makes it fully hydrogenated.
+*
+*  Used to be:
+*
+*    hslnxtr:, h$slnxtr:
+*
+*  Implicit Inputs:
+*
+*    N/A
+*
+*  Implicit Outputs:
+*
+*    N/A
+*
+*  Return Values:
+*
+*    XTR address from conversion
+*
+*  Side Effects:
+*
+*    N/A
+*
+******************************************************************************/
+Xtr_t *Sling2Xtr_PlusHydrogen
+  (
+  Sling_t       sling                       /* Sling to convert */
+  )
+{
+  Tsd_t        *tsd_p;                      /* Intermediate */
+  Xtr_t        *xtr_p;                      /* Result */
+
+  DEBUG (R_SLING, DB_SLING2XTRPLHY, TL_PARAMS, (outbuf,
+    "Entering Sling2Xtr_PlusHydrogen, sling not shown"));
+printf("KKA1:In Sling2Xtr%s\n",sling);
+  tsd_p = Sling2Tsd_PlusHydrogen (sling);
+printf("KKA2:tsd_p=%p\n",tsd_p);
+  xtr_p = Tsd2Xtr (tsd_p);
+printf("KKA3:xtr_p=%p\n",xtr_p);
+  Tsd_Destroy (tsd_p);
+
+  DEBUG (R_SLING, DB_SLING2XTRPLHY, TL_PARAMS, (outbuf,"Leaving Sling2Xtr_PlusHydrogen"));
+
+  return xtr_p;
+}
+
+/****************************************************************************
+*
+*  Function Name:                 Xtr2Sling
+*
+*    This function converts an XTR into a Sling.
+*
+*  Used to be:
+*
+*    xtrslng:
+*
+*  Implicit Inputs:
+*
+*    N/A
+*
+*  Implicit Outputs:
+*
+*    N/A
+*
+*  Return Values:
+*
+*    Sling format of molecule
+*
+*  Side Effects:
+*
+*    N/A
+*
+******************************************************************************/
+Sling_t Xtr2Sling
+  (
+  Xtr_t        *xtr_p                      /* Xtr to convert */
+  )
+{
+  Tsd_t        *tsd_p;                     /* Intermediate */
+  Sling_t       sling;                     /* Result */
+
+  DEBUG (R_XTR, DB_XTR2SLING, TL_PARAMS, (outbuf,
+    "Entering Xtr2Sling, Xtr = %p", xtr_p));
+
+  tsd_p = Xtr2Tsd (xtr_p);
+  sling = Tsd2Sling (tsd_p);
+  Tsd_Destroy (tsd_p);
+
+  DEBUG (R_XTR, DB_XTR2SLING, TL_PARAMS, (outbuf,
+    "Leaving Xtr2Sling, sling not shown"));
+
+  return sling;
+}
+
+/****************************************************************************
+*
+*  Function Name:                 SNextCarbon
+*
+*    This function returns the atom index of the next carbon atom and it
+*    updates the last one found to what it just found.
+*
+*  Used to be:
+*
+*    next_carbon:
+*
+*  Implicit Inputs:
+*
+*    N/A
+*
+*  Implicit Outputs:
+*
+*    N/A
+*
+*  Return Values:
+*
+*    N/A
+*
+*  Side Effects:
+*
+*    N/A
+*
+******************************************************************************/
+static U16_t SNextCarbon
+  (
+  Xtr_t        *xtr_p,                     /* Molecule to search */
+  U16_t        *last_p                     /* Last atom id searched */
+  )
+{
+  U16_t         i;                         /* Counter */
+
+  for (i = *last_p + 1; i < Xtr_NumAtoms_Get (xtr_p) 
+      && Xtr_Attr_Atomid_Get (xtr_p, i) != CARBON; i++)
+    /* Empty loop body */ ;
+
+  *last_p = i;
+  return i;
+}
+/* End of SNextCarbon */
+/* End of Sling2Xtr.c */

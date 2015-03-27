@@ -1,0 +1,35 @@
+Node field:
+	Accepts from one up to a maximum of seven node numbers whose contributions
+	are to be included.  Note that the maximum of seven applies to the total
+	from this list and the list of comparison nodes, if any.
+
+IS/IS NOT Menu (select one)
+
+Comparison Operator Menu (select one)
+
+CONSTANT/SUM Menu:
+	If "CONSTANT" is selected, a value menu will follow; otherwise a field for
+	entry of one or more comparison nodes will follow.
+Note: When using a constant value, it is recommended that several representative
+	test structures be introduced in the validation process in order to
+	determine an optimal value for the constant.
+
+Constant Value Menu (select the value that best describes the electronic effects
+	that should apply to this condition)
+Comparison Node field (select one or more nodes for comparison with nodes entered
+	above, subject to the overall maximum of seven nodes for the condition)
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur
+	until exit from the main posttransform test editor.  Note that any
+	condition that appears in the logic string of one or more tests may not
+	be deleted (button will be disabled) so long as any of those tests remain
+	unmarked.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current condition.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

@@ -1,0 +1,5 @@
+SYNCHEMPC+gmiller
+Thu Nov 18 04:33:40 1999
+test of Grignard on epoxide
+grigepoxtest
+CC-1C-1C-1CCOH-2H-1C<C<C<C<C<C</9-1CCH-1OH-2CH-1C/13-2CC-1H-1C-8CH-1OH-2CCC-1C-1C

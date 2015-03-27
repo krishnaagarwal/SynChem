@@ -1,0 +1,5 @@
+SYNCHEMPC+gmiller
+Wed Sep 13 02:42:29 2000
+test of ozonolysis for MAO/MPS
+ozonetest
+CCC=O-1CCCC=O-7CCC=O-1C

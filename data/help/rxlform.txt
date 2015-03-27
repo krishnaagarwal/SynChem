@@ -1,0 +1,53 @@
+Library list:
+	Selects all libraries or a single library.  Also contains Exit button to close
+	Reaction Library Editor.
+
+Chapter list:
+	Selects all chapters or a single chapter (syntheme).
+
+Schema list:
+	Displays all schemata that satisfy the constraints selected from the library and
+	chapter lists.  Clicking a schema will cause the data and the transform for that
+	schema to appear in the respective windows.
+
+Schema Detail button:
+	Opens a new window which displays and permits editing of all user-modifiable data
+	contained in the currently selected schema.
+
+Additional Schema Operations, etc. button:
+	Pulldown/tearoff menu (to tear off, click "perforation" between menu and button)
+	containing the following options:
+	 1) Add Schema (opens a Schema Detail window with user-modifiable data needing to
+	    be entered)
+	 2) Disable Schema (temporarily inactivates currently selected schema)
+	 3) Delete Schema (permanently removes currently selected schema from library)
+	 4) Forward Search for Schema:
+		a) from top: find first occurrence of user-entered string in schema
+		   names
+		b) below current position: find first occurrence of string contained
+		   in names of schemata that follow the current selection
+		c) Continue Search Forward: find next occurrence of same string used
+		   in previous search
+	 5) Backward Search for Schema:
+		a) from bottom: find last occurrence of user-entered string in schema
+		   names
+		b) above current position: find last occurrence of string contained
+		   in names of schemata that precede the current selection
+		c) Continue Search Backward: find previous occurrence of same string
+		   used in previous search
+	 6) Isthere (transform pattern embedding search of all libraries): not yet
+	    implemented
+	 7) Change Password (allows current user to change own password)
+	 8) Maintenance Utilities (restricted access): not yet implemented
+	 9) Add New User (restricted access): create new user/password combination
+	10) Delete User (restricted access): remove user account from system
+	11) Change User Clearance Level (restricted access): adjust clearance for
+	    various reaction library tasks
+	12) List Users (level and/or password only with adequate clearance): allows
+	    administrator(s) to review complete account information; others may only
+	    see usernames
+	13) Close This Menu (closes tearoff version of menu)
+
+Reaction Text (lists schema name, reaction parameters, history, references, and comments)
+
+Goal and Subgoal TSD's (unmapped drawings of transform patterns)

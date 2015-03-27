@@ -1,0 +1,22 @@
+The NUMBER OF STEPS IN DISPLAYED SYNTHESIS comprises all reaction steps
+that were selected and marked to be saved in a path file, including
+those in prepended co-reactant branches.
+
+The value reported for CONFIDENCE is the lowest estimated individual
+reaction confidence encountered in traversing all of the pathways in
+the display.  The rationale for this assessment is the presumption that
+one can have no more confidence in the soundness of the complete synthesis
+proposal than can be ascribed to the least reliable reaction step.  
+
+AVERAGE VALUE OF EASE PER STEP is a very rough heuristic estimate which,
+together with the number of reaction steps in the synthesis, can provide
+a measure for comparing the relative desirability of different solutions
+for the same target compound in the same search space.  Beyond serving in
+this comparative capacity, it has little intrinsic significance.
+
+The PROJECTED YIELD ALONG the PRINCIPAL PATHWAY ignores the degradation
+in yield along any co-reactant synthesis branches prepended to the
+principal pathway.  In effect, the yield estimate assumes that the
+starting material and co-reactants along the principal pathway are
+either available compounds or are easily synthesized.  Should this value
+fall below five percent (5%), it will simply be represented as "LOW".

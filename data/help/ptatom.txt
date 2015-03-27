@@ -1,0 +1,22 @@
+Distance Field (normally 0, but may be modified to accomodate special cases)
+
+NODE field (accepts a node number obtainable by reference to the numbered transform
+	patterns in the main posttransform display)
+
+Presence Menu (select "IS" or "IS NOT")
+
+Atomic Symbol Field (enter appropriate value)
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur until
+	exit from the main posttransform test editor.  Note that any condition that
+	appears in the logic string of one or more tests may not be deleted (button
+	will be disabled) so long as any of those tests remain unmarked.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current condition.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

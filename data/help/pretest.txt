@@ -1,0 +1,24 @@
+Selection List:
+	1) To select a template (can't-have-any/Cn and must-have-any/Mn only), click
+	   on the desired template at the appropriate symbol.  All attributes of the
+	   template will become highlighted and display only the selected symbol,
+	   except for attributes that are either considered to be illegal structures
+	   or already found in the list for a conflicting test type.
+	2) To select an individual attribute, click on the appropriate test symbol
+	   (Cn: can't-have-any; Mn: must-have-any; Ml: must-have-all).
+	3) To remove an attribute from a test list, click anywhere on the line where
+	   it appears.
+
+Reset button (clears all highlighted items to represent an empty test list)
+
+Restore button (returns the list to its state upon entry into the editor)
+
+Edit Templates button (brings up a new window, in which templates may be created and
+	modified)
+
+View Structures (opens a window containing one or more drawings of each attribute)
+
+Exit; Update Buffer button (closes editor window and modifies schema pretransform list
+	accordingly)
+
+Cancel button (closes editor window and leaves schema pretransform list unmodified)

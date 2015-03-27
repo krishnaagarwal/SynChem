@@ -1,0 +1,95 @@
+This introductory help screen currently address only the Path menu and
+the predictive display of nodes whose only solutions derive from paths
+which are circular.
+______________________________________________________________________
+
+Path:
+-----
+The right mouse button toggles the selected node between marked and
+unmarked.  If it is used to select a node from the horizontal list
+of ancestor nodes, the PST display will update with that node at
+the top display level before its mark state is toggled.
+
+The middle mouse button may only be used on a node that appears in
+the displayed portion (top, middle, or bottom) of the PST.  If the
+node is currently marked, it and all its marked descendant paths
+will be unmarked.  If on the other hand, it is currently unmarked,
+it and all its unmarked ancestors will be marked.  This affords a
+convenient means of propagation to mark the entire subpath context
+of a node or clear an entire descendant subpath with minimal effort.
+
+Path->Read*
+  This option presents a menu of path files, from which the path of
+  interest may be selected.  (The list is filtered to include only
+  relevant files, i.e., those which match the appropriate pattern,
+  "<pfile_directory>/<run_id>.*path".  This pattern will match both
+  "legacy" files having no qualifying description and those named
+  as "<run_id>.<desc>.path".)
+
+  The selected path will be marked in the PST display.
+
+Path->Write*
+  This option presents a menu of existing path files, from which a
+  given path (relevant to the current run), if any, may be selected.
+  However, unless the filename is modified so as not to duplicate
+  that of an existing path file, writing will not be permitted on
+  the first attempt.  For the sake of clutter reduction, unmarked
+  (empty) paths will not be written.  (Naming should follow the
+  convention described under "Path->Read," i.e., matching the pattern
+  "<run_id>.<desc>.path".)
+
+  The path file to be written will reflect the current node markings.
+  Unless the path to be saved includes the target compound, the file
+  will not be written in a PathTrc-friendly format (see Path->View).
+  Also, at least one node of a leaf subgoal (i.e., one below which
+  no further subgoals exist, such as one whose conjuncts are all
+  available) must be marked, or that subgoal will not appear in the
+  PathTrc display.
+
+  Files not recognized as PathTrc-friendly should be read in and
+  overwritten.  (Caution: Any isolated paths will be lost in this
+  process.  To retain these in the legacy format, the target compound
+  should be unmarked when writing, and a separate file should be
+  written in PathTrc-friendly format.)
+
+Path->View
+  This option presents a menu of path files, from which the path of
+  interest may be selected.  (As with the other Path options, the
+  selection list is filtered by run id.)
+
+  The selected path will be displayed in a synthetic rendition (if
+  it was written in a PathTrc-friendly format).  The legacy format
+  will produce unpredictable results.  (A workaround for this, if
+  one is feasible, has not yet been implemented.)
+______________________________________________________________________
+
+Circularity Prediction:
+----------- -----------
+In displaying the current view of the PST, an attempt is made to
+indicate in red those solved nodes that lead only to nonproductive
+circular pathways.  Normally, all such nodes in the status file are
+detected and highlighted.  The procedure for finding these nodes is,
+however, inherently combinatorial, and in the case where the search
+space is exceptionally broad and deep, the penalty in terms of time
+required to update the display can become excessive.
+
+To preclude unacceptable delays, a warning will appear whenever the
+circularity detection search exceeds an arbitrary depth (currently
+set at 30).  One can almost always avoid an undetected circularity
+trap by choosing to follow the higher merit (leftmost) pathways in
+the PST.  Note that one would not wish to remove circular nodes from
+the synthesis search space as they are detected because continuation
+of a search by expanding upon an existing status file could always
+upgrade a previously circular pathway into a bonafide solution.
+______________________________________________________________________
+
+* Because the Path->Read and ->Write options, as enhanced, involve an
+  already complex interaction between two program modules, they rely
+  on the intermediacy of a temporary file (uniquely named with a
+  time-stamped session code), in lieu of further convoluting these
+  interactions.  On UNIX systems, these files are written as
+  "/tmp/temp.pth.<session_code>", while PC-based Interix versions
+  write to the current path (normally "C:\temp.pth.<session_code>"
+  in default of any superseding environment setting).  These are
+  routinely deleted under normal circumstances, but an abnormal exit
+  may occasionally leave one behind.

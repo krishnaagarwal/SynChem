@@ -1,0 +1,4 @@
+#!/bin/bash 
+
+./synchem -f /home/synchem/data/submit/ceph.submit
+

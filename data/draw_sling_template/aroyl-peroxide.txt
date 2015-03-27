@@ -1,0 +1,5 @@
+SYNCHEMPC+gmiller
+Wed Feb  9 16:14:34 2000
+test of peroxide schemata
+aroyl-peroxide
+CC<C<C<C<C<C</1-1C=O-1OOC=O-1C<C<C<C<C<C</13

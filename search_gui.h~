@@ -1,0 +1,42 @@
+#ifndef _H_SEARCH_GUI_
+#define _H_SEARCH_GUI_ 1
+/******************************************************************************
+*
+*  Copyright (C) 1996 Synchem Group at SUNY-Stony Brook
+*
+*  Module Name:                     SYN_SEARCH.H
+*
+*
+*  Creation Date:
+*
+*    01-Jan-1991
+*
+*  Authors:
+*
+*    Daren Krebsbach
+*
+*  Modification History, reverse chronological
+*
+* Date       Author     Modification Description
+*------------------------------------------------------------------------------
+* 27-Sep-96  Krebsbach  Encapsulated the search into a separate function,
+*
+******************************************************************************/
+
+#ifndef _H_RCB_
+#include "rcb.h"
+#endif
+
+/*** Literal Values ***/
+
+#define    GSS_CYCLE_BUFLEN     32
+
+/*** Data Structures ***/
+
+/*** Routine Prototypes ***/
+
+void      Synchem_Search   (Compound_t *, Rcb_t *, RunStats_t *, 
+            Widget, Widget);
+
+#endif
+/*  End of SYN_SEARCH.H  */

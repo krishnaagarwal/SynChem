@@ -1,0 +1,38 @@
+Node Fields (accept a pair of variable atom node numbers whose external connection
+	is to be determined)
+
+EXISTS/DOES NOT EXIST/IS/IS NOT Menu (select EXISTS or DOES NOT EXIST to test for
+	simple connectivity of any length, in which case all subsequent menus and
+	fields will disappear; otherwise, select IS or IS NOT)
+Note: Selecting IS or IS NOT will cause the name of the condition to change from
+	[simple] CONN[ectivity] to R[i]NGS[i]Z[e].  This is merely reflective of
+	the fact that the most common use of the condition is in defining cyclic
+	structures.  It is not intended to restrict it to that use.
+
+Comparison Operator Menu (select one)
+
+total/path Menu:
+	If "a total of" is selected, a bond-length count field will follow; otherwise
+	a pair of fields for entry of the comparison nodes will follow, and the name
+	of the condition will change from R[i]NGS[i]Z[e] to R[i]NGC[om]P[arison].
+
+Bond Length Count Field (enter the number that, when added to the internal bond count
+	between the nodes, if any, will total the appropriate ring size, or will
+	otherwise correctly describe the connection between two separate goal pattern
+	pieces)
+Comparison Node Fields (select a pair of nodes whose connection length is to serve as
+	a comparison reference for the path between the pair of nodes entered above)
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur until
+	exit from the main posttransform test editor.  Note that any condition that
+	appears in the logic string of one or more tests may not be deleted (button
+	will be disabled) so long as any of those tests remain unmarked.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current condition.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

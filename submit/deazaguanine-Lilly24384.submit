@@ -1,0 +1,40 @@
+!  SYNCHEM job submission file.
+!  User:  synchem      Date:  Tue Feb 19 16:51:41 2002
+!
+CompoundName          deazaguanine-Lilly24384
+Comment   InnoCentive #24384
+TargetCompound   CC=CH-1NH-1C=C/1-1C=O-1NH-1C=N/6-2NH-1H-10CC<C<C<C<C<C</18-3C=O-1OC
+MaxCycles             1000
+MaxRuntime            120
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  25
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            /home/synchem/data/avlcomp
+FunctionalGroupDir         /home/synchem/data/fg
+TemplateDir                /home/synchem/data/template
+ReactionLibDir             /home/synchem/data/rxnlib
+PathDir                    /home/synchem/data/pfile
+StatusDir                  /home/synchem/data/status
+SubmitDir                  /home/synchem/data/submit
+TraceDir                   /home/synchem/data/trace
+CoverDir                   /home/synchem/data/cover
+ForceSelectDir             /home/synchem/data/select
+CoverFile             deazaguanine-Lilly24384
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       deazaguanine-Lilly24384

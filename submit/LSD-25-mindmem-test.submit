@@ -1,0 +1,41 @@
+!  SYNCHEM job submission file.
+!  User:  gmiller      Date:  Fri Sep  7 13:14:37 2001
+!
+CompoundName          LSD-25-mindmem-test
+Comment   This synthesis is not really there - it's a hallucination!
+
+TargetCompound   CH-1C=O-1NCC-2CC-4CH-1=CCH-1NC-1C/0-3CCC<CNH-1C=/18-1H-3<C<C<C<C</19-1/11
+MaxCycles             1
+MaxRuntime            120
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  5
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            /cygdrive/d/SYNCHEM/data/avlcomp
+FunctionalGroupDir         /cygdrive/d/SYNCHEM/data/fg
+TemplateDir                /cygdrive/d/SYNCHEM/data/template
+ReactionLibDir             /cygdrive/d/SYNCHEM/data/rxnlib
+PathDir                    /cygdrive/d/SYNCHEM/data/pfile
+StatusDir                  /cygdrive/d/SYNCHEM/data/status
+SubmitDir                  /cygdrive/d/SYNCHEM/data/submit
+TraceDir                   /cygdrive/d/SYNCHEM/data/trace
+CoverDir                   /cygdrive/d/SYNCHEM/data/cover
+ForceSelectDir             /cygdrive/d/SYNCHEM/data/select
+CoverFile             LSD-25-mindmem-test
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       LSD-25-mindmem-test

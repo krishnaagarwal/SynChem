@@ -1,0 +1,3 @@
+#!/bin/bash
+bash ./compile gui/source/$1.c
+bash ./archive libsyngui.a $1.o

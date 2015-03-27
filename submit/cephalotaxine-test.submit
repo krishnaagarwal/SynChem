@@ -1,0 +1,42 @@
+!  SYNCHEM job submission file.
+!  User:  synchem      Date:  Sun Feb 17 18:12:46 2002
+!
+CompoundName          cephalotaxine-test
+Comment   Check of configuration after replacement of motherboard
+
+
+TargetCompound   CNCCC<C<COCOC<C<C</4-1CCOH-2H-1COC-2=C/0CCC/1-4/13~H-3H-7</6
+MaxCycles             1
+MaxRuntime            12000
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  25
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     True
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            /home/synchem/new/data/avlcomp
+FunctionalGroupDir         /home/synchem/new/data/fg
+TemplateDir                /home/synchem/new/data/template
+ReactionLibDir             /home/synchem/new/data/rxnlib
+PathDir                    /home/synchem/new/data/pfile
+StatusDir                  /home/synchem/new/data/status
+SubmitDir                  /home/synchem/new/data/submit
+TraceDir                   /home/synchem/new/data/trace
+CoverDir                   /home/synchem/new/data/cover
+ForceSelectDir             /home/synchem/new/data/select
+CoverFile             cephalotaxine-test
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       cephalotaxine-test

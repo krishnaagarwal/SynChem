@@ -1,0 +1,146 @@
+Dump of RCB
+  Directories:
+    Available Compounds:   ./data/avlcomp
+    Functional Groups:     ./data/fg
+    Reaction KB:           ./data/rxnlib
+    Paths:                 ./data/pfile
+    Status:                ./data/status
+    Submission:            ./data/submit
+    Template:              ./data/template
+    Trace:                 ./data/trace
+    Force Selection:       ./data/select
+    Search Space Cover:    ./data/cover
+  User name:      kka
+  Target name:    AugmentinA
+  Target sling:   CSCNC=O-1CH-1NH-1C=O-1CNH-1H-2H-1C<C<C<COH-2<C<C</17-10/2~H-4CC=O-1OH-3H-1/0C-1C
+  Comment:        test of subsrch
+
+  Date of run:    Wed Oct  8 09:29:17 2008
+  Max cycles:       100       Max runtime:      120 minutes
+  Restart:        disabled   Background:       disabled
+  Tracing level:  1
+  Effort Dist:    enabled       NTCL:           5
+  Run type:  Sequential
+End cycle #1
+End cycle #2
+End cycle #3
+End cycle #4
+End cycle #5
+End cycle #6
+End cycle #7
+End cycle #8
+End cycle #9
+End cycle #10
+End cycle #11
+End cycle #12
+End cycle #13
+End cycle #14
+End cycle #15
+End cycle #16
+End cycle #17
+End cycle #18
+End cycle #19
+End cycle #20
+End cycle #21
+End cycle #22
+End cycle #23
+End cycle #24
+End cycle #25
+End cycle #26
+End cycle #27
+End cycle #28
+End cycle #29
+End cycle #30
+End cycle #31
+End cycle #32
+End cycle #33
+End cycle #34
+End cycle #35
+End cycle #36
+End cycle #37
+End cycle #38
+End cycle #39
+End cycle #40
+End cycle #41
+End cycle #42
+End cycle #43
+End cycle #44
+End cycle #45
+End cycle #46
+End cycle #47
+End cycle #48
+End cycle #49
+End cycle #50
+End cycle #51
+End cycle #52
+End cycle #53
+End cycle #54
+End cycle #55
+End cycle #56
+End cycle #57
+End cycle #58
+End cycle #59
+End cycle #60
+End cycle #61
+End cycle #62
+End cycle #63
+End cycle #64
+End cycle #65
+End cycle #66
+End cycle #67
+End cycle #68
+End cycle #69
+End cycle #70
+End cycle #71
+End cycle #72
+End cycle #73
+End cycle #74
+End cycle #75
+End cycle #76
+End cycle #77
+End cycle #78
+End cycle #79
+End cycle #80
+End cycle #81
+End cycle #82
+End cycle #83
+End cycle #84
+End cycle #85
+End cycle #86
+End cycle #87
+End cycle #88
+End cycle #89
+End cycle #90
+End cycle #91
+End cycle #92
+End cycle #93
+End cycle #94
+End cycle #95
+End cycle #96
+End cycle #97
+End cycle #98
+End cycle #99
+End cycle #100
+
+Dump of Run Status
+  Cycles completed:             100
+  Unique compounds generated:   723
+  Total compounds generated:    1039
+  Total subgoals generated:     825
+
+  Status file was saved
+  Trace file was saved
+
+  Cummulative times:
+    Initialization:          0.8043
+    Select next:             0.0624
+    Expansion:              19.8122
+    Update:                  0.0141
+    Cycle time:             19.8995
+
+    Communication:           0.0000
+    Wait:                    0.0000
+    Tuple wait:              0.0000
+
+  Exit Condition:  Maximum cycles exceeded.
+

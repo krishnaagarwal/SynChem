@@ -1,0 +1,24 @@
+EVERY/NOT EVERY Menu (select one)
+
+HYDROGENS-BEARING NODE/NODE Menu:
+	For most better-known examples, HYDROGEN-BEARING NODE will be specified;
+	however, the alternative is provided in recognition that substituted positions
+	(sulfonated sites, for example) are sometimes known to undergo substitution as
+	well.
+
+Node Field (enter the node number of a carbon atom whose equivalence to competing
+	nodes is to be determined)
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur until
+	exit from the main posttransform test editor.  Note that any condition that
+	appears in the logic string of one or more tests may not be deleted (button
+	will be disabled) so long as any of those tests remain unmarked.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current condition.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

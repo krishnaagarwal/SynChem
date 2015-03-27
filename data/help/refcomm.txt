@@ -1,0 +1,21 @@
+Reference/Comment Window ("<REF>" or "<COMM>" to left of window shows which type is
+	currently being displayed.  The editable content of the reference or comment
+	is displayed in the window.)
+
+Previous button (Displays previous reference or comment.  Beeps if already at
+	beginning of list.)
+
+Next button (Displays next reference or comment.  Beeps if already at end of list.)
+
+Delete Current button (Deletes the reference or comment currently displayed in the
+	window.)
+
+New Reference button,
+New Comment button:
+	Clears reference/comment window to allow new text to be entered.
+
+Exit and Save button (closes editor window and modifies reference and comment list
+	as specified)
+
+Cancel button (closes editor window and leaves schema reference and comment list
+	unmodified)

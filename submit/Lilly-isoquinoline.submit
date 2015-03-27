@@ -1,0 +1,40 @@
+!  SYNCHEM job submission file.
+!  User:  synchem      Date:  Wed Jan 16 14:01:03 2002
+!
+CompoundName          Lilly-isoquinoline
+Comment   Innocentive 55195
+TargetCompound   COC=O-1NH-1C<N<C<C<C<C</6-1<C<C<C<C</10-7C=O-1OH-10C-1C-1C
+MaxCycles             1000
+MaxRuntime            120
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  25
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            /home/synchem/data/avlcomp
+FunctionalGroupDir         /home/synchem/data/fg
+TemplateDir                /home/synchem/data/template
+ReactionLibDir             /home/synchem/data/rxnlib
+PathDir                    /home/synchem/data/pfile
+StatusDir                  /home/synchem/data/status
+SubmitDir                  /home/synchem/data/submit
+TraceDir                   /home/synchem/data/trace
+CoverDir                   /home/synchem/data/cover
+ForceSelectDir             /home/synchem/data/select
+CoverFile             Lilly-isoquinoline
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       Lilly-isoquinoline

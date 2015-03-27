@@ -1,0 +1,97 @@
+Dump of RCB
+  Directories:
+    Available Compounds:   ./data/avlcomp
+    Functional Groups:     ./data/fg
+    Reaction KB:           ./data/rxnlib
+    Paths:                 ./data/pfile
+    Status:                ./data/status
+    Submission:            ./data/submit
+    Template:              ./data/template
+    Trace:                 ./data/trace
+    Force Selection:       ./data/select
+    Search Space Cover:    ./data/cover
+  User name:      kka
+  Target name:    c10
+  Target sling:   CCCCC-4CCCCC
+  Comment:        
+  Date of run:    Wed Nov 19 09:50:02 2008
+  Max cycles:        50       Max runtime:      120 minutes
+  Restart:        disabled   Background:       disabled
+  Tracing level:  1
+  Effort Dist:    enabled       NTCL:           25
+  Run type:  Sequential
+End cycle #1
+End cycle #2
+End cycle #3
+End cycle #4
+End cycle #5
+End cycle #6
+End cycle #7
+End cycle #8
+End cycle #9
+End cycle #10
+End cycle #11
+End cycle #12
+End cycle #13
+End cycle #14
+End cycle #15
+End cycle #16
+End cycle #17
+End cycle #18
+End cycle #19
+End cycle #20
+End cycle #21
+End cycle #22
+End cycle #23
+End cycle #24
+End cycle #25
+End cycle #26
+End cycle #27
+End cycle #28
+End cycle #29
+End cycle #30
+End cycle #31
+End cycle #32
+End cycle #33
+End cycle #34
+End cycle #35
+End cycle #36
+End cycle #37
+End cycle #38
+End cycle #39
+End cycle #40
+End cycle #41
+End cycle #42
+End cycle #43
+End cycle #44
+End cycle #45
+End cycle #46
+End cycle #47
+End cycle #48
+End cycle #49
+End cycle #50
+
+Dump of Run Status
+  Cycles completed:             50
+  Cycles to first solution:     1
+  Time to first solution:       0.000000 seconds
+  Unique compounds generated:   255
+  Total compounds generated:    397
+  Total subgoals generated:     278
+
+  Status file was saved
+  Trace file was saved
+
+  Cummulative times:
+    Initialization:          2.9712
+    Select next:             0.0220
+    Expansion:               3.4607
+    Update:                  0.0109
+    Cycle time:              3.4989
+
+    Communication:           0.0000
+    Wait:                    0.0000
+    Tuple wait:              0.0000
+
+  Exit Condition:  Maximum cycles exceeded.
+

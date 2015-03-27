@@ -1,0 +1,5 @@
+SYNCHEMPC+gmiller
+Thu Aug  3 15:27:02 2000
+test of 1/10/69 addition of amines to aledhydes or ketones followed by reduction
+AugmentinA
+CSCNC=O-1CH-1NH-1C=O-1CNH-1H-2H-1C<C<C<C<C<C</17-10/2~H-4CC=O-1OH-3H-1/0C-1C

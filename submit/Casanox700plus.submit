@@ -1,0 +1,41 @@
+!  SYNCHEM job submission file.
+!  User:  synchem      Date:  Thu May 30 16:47:17 2002
+!
+CompoundName          Casanox700plus
+Comment   Swan dive
+
+TargetCompound   CC<C<C<C<C<COH-2</1-2C-2CNC=O-1NC=O-1NC=O-1/11-2CC<C<C<C<COH-2<C</21-1C-3CC-1C-1C-4C-6CC<C<C<C<COH-2<C</36-1C-3CC-1C-1C-4C-9C-4C-1C-1C
+MaxCycles             10000
+MaxRuntime            1200
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  25
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            /home/synchem/new/data/avlcomp
+FunctionalGroupDir         /home/synchem/new/data/fg
+TemplateDir                /home/synchem/new/data/template
+ReactionLibDir             /home/synchem/new/data/rxnlib
+PathDir                    /home/synchem/new/data/pfile
+StatusDir                  /home/synchem/new/data/status
+SubmitDir                  /home/synchem/new/data/submit
+TraceDir                   /home/synchem/new/data/trace
+CoverDir                   /home/synchem/new/data/cover
+ForceSelectDir             /home/synchem/new/data/select
+CoverFile             Casanox700plus
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       Casanox700plus

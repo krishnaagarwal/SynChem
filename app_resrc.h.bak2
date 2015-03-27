@@ -1,0 +1,1097 @@
+#ifndef _H_APP_RESRC_
+#define _H_APP_RESRC_  1
+/******************************************************************************
+*
+*  Copyright (C) 1995-1996, Synchem Group at SUNY-Stony Brook, Daren Krebsbach
+*
+*  Module Name:                     APP_RESRC.H
+*
+*    This header contains the constants and data structures shared
+*    by the different modules of GUI for SYNCHEM.
+*
+*  Routines:
+*
+*    xxx
+*
+*  Creation Date:
+*
+*    14-Apr-1995
+*
+*  Authors:
+*
+*    Daren Krebsbach
+*
+*  Modification History, reverse chronological
+*
+* Date       Author     Modification Description
+*------------------------------------------------------------------------------
+* dd-mmm-yy  Lolita     xxx
+*
+******************************************************************************/
+
+#include <X11/cursorfont.h>
+#include <Xm/Xm.h>
+
+/*****************************************************/
+/** The following is necessary for minimal coding   **/
+/** of logic necessary to capture calls to          **/
+/** XtManageChild and XtUnmanageChild.  Intrinsics  **/
+/** was thoughtlessly designed without regard for   **/
+/** the need to compensate for unintelligent window **/
+/** managers that stack windows in a non-intuitive  **/
+/** fashion, giving a kludgy look to complex Motif  **/
+/** applications.                                   **/
+/**                                                 **/
+/** The first thing we have to do is make sure that **/
+/** Intrinsic.h is included PRIOR to sv_files.h, so **/
+/** as not to confuse the compiler by trying to re- **/
+/** redefine the macros that follow!                **/
+
+#include <X11/Intrinsic.h>
+#define MAPPED_STATE(s) s==IsUnmapped?"not mapped":s==IsUnviewable?"not viewable":s==IsViewable?"viewable":"?"
+
+/*****************************************************/
+/** Now define the macros, but NOT for app_resrc.c! **/
+
+#ifndef APPRESCR_GLOBALS
+#define XtManageChild(w)   SynAppR_Manage_Windows ((w), TRUE)
+#define XtUnmanageChild(w) SynAppR_Manage_Windows ((w), FALSE)
+#endif
+
+/*** Literal Values ***/
+
+/*****************************************************/
+/**  The Default Directory Names                    **/
+
+
+/*****************************************************/
+/**  The Printer and Bitmap Defaults                **/
+
+#define SAR_REMOTEDISLAY_DFLT    ""
+
+#ifdef  _IRIX64_OS_
+#define SAR_PRINT_COMMAND        "/usr/bin/X11/xdpr -device ps -P"
+#define SAR_PRINTER_DFLT         "274"
+#define SAR_PRINT_WINDOW_ID      " -id "
+#define SAR_PRINT_OPTIONS        " -compact -portrait"
+#define SAR_PRINT_TAIL           " -header "
+#define SAR_PRINT_DISPLAY        " -display "
+
+#else
+#ifdef  _IRIX62_OS_
+#define SAR_PRINT_COMMAND        "/usr/bin/X11/xdpr -device ps -P"
+#define SAR_PRINTER_DFLT         "hg1v025s"
+#define SAR_PRINT_WINDOW_ID      " -id "
+#define SAR_PRINT_OPTIONS        " -compact -portrait"
+#define SAR_PRINT_TAIL           " -header "
+#define SAR_PRINT_DISPLAY        " -display "
+
+#else
+#ifdef _WIN32
+#define SAR_PRINT_COMMAND        "/users/synchem/bin/XtoPS"
+#define SAR_PRINT_WINDOW_ID      " -id "
+#define SAR_PRINT_OPTIONS        " +border +frame "
+#define SAR_PRINT_TAIL           " - | lpr -P"
+#define SAR_PRINTER_DFLT         "ps1435"
+#define SAR_PRINT_DISPLAY        " -display "
+
+#else
+#ifdef _CYGWIN_
+#define SAR_PRINT_COMMAND        "/users/synchem/bin/XtoPS"
+#define SAR_PRINT_WINDOW_ID      " -id "
+#define SAR_PRINT_OPTIONS        " +border +frame "
+#define SAR_PRINT_TAIL           " - | lpr -P"
+#define SAR_PRINTER_DFLT         "ps1435"
+#define SAR_PRINT_DISPLAY        " -display "
+
+#else
+#define SAR_PRINT_COMMAND        "/users/synchem/bin/XtoPS"
+#define SAR_PRINT_WINDOW_ID      " -id "
+#define SAR_PRINT_OPTIONS        " +border +frame "
+#define SAR_PRINT_TAIL           " - | lpr -P"
+#define SAR_PRINTER_DFLT         "ps1435"
+#define SAR_PRINT_DISPLAY        " -display "
+#endif
+#endif
+#endif
+#endif
+
+#define SAR_DIR_BITMAPS(rest)    concat (concat (glob_main_dir, "/gui/bitmaps"), (rest))
+
+/*****************************************************/
+/**  The Color Names and Indices                    **/
+
+#define SAR_CLR_MAXNUM        28
+#define SAR_CLRI_DEFAULT      0
+#define SAR_CLRI_BLACK        1
+#define SAR_CLRI_BLUE         2
+#define SAR_CLRI_GOLD         3
+#define SAR_CLRI_GRAY         4
+#define SAR_CLRI_GREEN        5
+#define SAR_CLRI_RED          6
+#define SAR_CLRI_VIOLET       7
+#define SAR_CLRI_WHITE        8
+
+#define SAR_CLRI_AVL_VD       9   /* Available compound visited directly */
+#define SAR_CLRI_AVL_VE       10  /* Available compound visited elsewhere */
+#define SAR_CLRI_DEV_VD       11  /* Developed compound */
+#define SAR_CLRI_DEV_VE       12  /* Developed compound */
+#define SAR_CLRI_SOL_VD       13  /* Solved compound */
+#define SAR_CLRI_SOL_VE       14  /* Solved compound */
+#define SAR_CLRI_UND_VD       15  /* Undeveloped compound */
+#define SAR_CLRI_UND_VE       16  /* Undeveloped compound */
+#define SAR_CLRI_UNS_VD       17  /* Unsolvable compound */
+#define SAR_CLRI_UNS_VE       18  /* Unsolvable compound */
+#define SAR_CLRI_FOCUSBTM     19  /* Focus box color */
+#define SAR_CLRI_FOCUSMID     20  /* Focus box color */
+#define SAR_CLRI_FOCUSPTH     21  /* Focus box color */
+#define SAR_CLRI_MENUBG       22  /* Main menu background */
+#define SAR_CLRI_PSTDABG      23  /* Path drawing area background */
+#define SAR_CLRI_PTHDABG      24  /* Path drawing area background */
+#define SAR_CLRI_SURPDABG     25  /* Surr Parent drawing area background */
+#define SAR_CLRI_MARK         26  /* Marked elsewhere color */
+#define SAR_CLRI_CYCLENUM     27  /* Cycle num elsewhere color */
+
+#define SAR_CLRI_FOCUSTOP     SAR_CLRI_GOLD  /* Focus box color */
+#define SAR_CLRI_STK_VD       SAR_CLRI_UNS_VD
+#define SAR_CLRI_STK_VE       SAR_CLRI_UNS_VE
+
+
+#define SAR_CLRN_DEFAULT      "LightSlateGray"
+#define SAR_CLRN_BLACK        "black"
+#define SAR_CLRN_BLUE         "CornflowerBlue"
+#define SAR_CLRN_GOLD         "gold"
+#define SAR_CLRN_GRAY         "LightGray"
+#define SAR_CLRN_GREEN        "green"
+#define SAR_CLRN_RED          "red"
+#define SAR_CLRN_VIOLET       "violet"
+#define SAR_CLRN_WHITE        "white"
+
+#define SAR_CLRN_AVL_VD       "MediumBlue"
+#define SAR_CLRN_AVL_VE       "LightSkyBlue"
+#define SAR_CLRN_DEV_VD       "SaddleBrown"
+#define SAR_CLRN_DEV_VE       "peru"
+#define SAR_CLRN_SOL_VD       "green3"
+#define SAR_CLRN_SOL_VE       "PaleGreen"
+#define SAR_CLRN_UND_VD       "magenta3"
+#define SAR_CLRN_UND_VE       "orchid1"
+#define SAR_CLRN_UNS_VD       "OrangeRed"
+#define SAR_CLRN_UNS_VE       "MistyRose"
+#define SAR_CLRN_FOCUSBTM     "coral"
+#define SAR_CLRN_FOCUSMID     "orange"
+#define SAR_CLRN_FOCUSPTH     "yellow"
+#define SAR_CLRN_MENUBG       "MistyRose"
+#define SAR_CLRN_PSTDABG      "azure"
+#define SAR_CLRN_PTHDABG      "lavender"
+#define SAR_CLRN_SURPDABG     "LightCyan"
+#define SAR_CLRN_MARK         "LightSteelBlue"
+#define SAR_CLRN_CYCLENUM     "RosyBrown"
+
+/*****************************************************/
+/**  The Cursors                                    **/
+
+#define SAR_CRSR_MAXNUM       15
+#define SAR_CRSRI_DFLT        0
+#define SAR_CRSRI_CMPIVW      1
+#define SAR_CRSRI_PSTVW       2
+#define SAR_CRSRI_PTHVW       3
+#define SAR_CRSRI_RXNPVW      4
+#define SAR_CRSRI_RXNVW       5
+#define SAR_CRSRI_WAIT_W      6
+#define SAR_CRSRI_CIRCLE      7
+#define SAR_CRSRI_CROSS       8
+#define SAR_CRSRI_PLUS        9
+#define SAR_CRSRI_TCROSS      10
+#define SAR_CRSRI_UMBRLA      11
+#define SAR_CRSRI_ERASE       12
+#define SAR_CRSRI_WRITE       13
+#define SAR_CRSRI_TARGET      1
+
+#define SAR_CRSRN_DFLT        XC_arrow
+#define SAR_CRSRN_CMPIVW      XC_target
+#define SAR_CRSRN_PSTVW       XC_dotbox
+#define SAR_CRSRN_PTHVW       XC_dot
+#define SAR_CRSRN_RXNPVW      XC_crosshair
+#define SAR_CRSRN_RXNVW       XC_spider
+#define SAR_CRSRN_WAIT_W      XC_watch
+#define SAR_CRSRN_CIRCLE      XC_circle
+#define SAR_CRSRN_CROSS       XC_cross
+#define SAR_CRSRN_PLUS        XC_plus
+#define SAR_CRSRN_TCROSS      XC_tcross
+#define SAR_CRSRN_UMBRLA      XC_umbrella
+#define SAR_CRSRN_ERASE       XC_pirate
+#define SAR_CRSRN_WRITE       XC_pencil
+
+/*****************************************************/
+/**  The Font Names and Tags                        **/
+
+#define SAR_FONTLIST_MAXNUM        16
+
+#define SAR_FONTSTRCTS_MAXNUM      3
+#define SAR_FONTSTRCTS_LRG         0
+#define SAR_FONTSTRCTS_NRML        1
+#define SAR_FONTSTRCTS_SML         2
+
+#define SAR_FONTNAME_FDFLT_LRG\
+  "-*-helvetica-bold-r-normal-*-14-*-*-*-*-*-iso8859-1"
+#define SAR_FONTNAME_FDFLT_NML\
+  "-*-helvetica-bold-r-normal-*-12-*-*-*-*-*-iso8859-1"
+#define SAR_FONTNAME_FDFLT_SML\
+  "-*-helvetica-bold-r-normal-*-10-*-*-*-*-*-iso8859-1"
+#define SAR_FONTNAME_FDFLT_MIN\
+  "-*-helvetica-bold-r-normal-*-8-*-*-*-*-*-iso8859-1"
+/*#define SAR_FONTNAME_FDFLT_LRG\
+  "-*-clean-medium-r-normal-*-14-*-*-*-*-70-iso8859-1"
+#define SAR_FONTNAME_FDFLT_NML\
+  "-*-clean-medium-r-normal-*-12-*-*-*-*-60-iso8859-1"
+#define SAR_FONTNAME_FDFLT_SML\
+  "-*-clean-medium-r-normal-*-10-*-*-*-*-50-iso8859-1"
+#define SAR_FONTNAME_FDFLT_MIN\
+  "-*-clean-medium-r-normal-*-6-*-*-*-*-40-iso8859-1"*/
+#define SAR_FONTNAME_ATOM_LRG\
+  "-*-helvetica-medium-r-normal-*-14-*-75-75-*-*-iso8859-1"
+#define SAR_FONTNAME_ATOM_NML\
+  "-*-helvetica-medium-r-normal-*-12-*-75-75-*-*-iso8859-1"
+#define SAR_FONTNAME_ATOM_SML\
+  "-*-helvetica-medium-r-normal-*-10-*-75-75-*-*-iso8859-1"
+#define SAR_FONTNAME_ATOM_MIN\
+  "-*-helvetica-medium-r-normal-*-8-*-75-75-*-*-iso8859-1"
+#define SAR_FONTNAME_PSTLBL_NML\
+  "-*-helvetica-medium-r-normal-*-18-*-75-75-*-*-iso8859-1"
+#define SAR_FONTNAME_PSTLBL_SML\
+  "-*-helvetica-bold-r-normal-*-14-*-75-75-*-*-iso8859-1"
+/*#define SAR_FONTNAME_PSTLBL_MIN\
+  "-*-helvetica-bold-r-normal-*-8-100-100-*-*-*-iso8859-1"*/
+#define SAR_FONTNAME_PSTLBL_MIN\
+  "-*-helvetica-bold-r-normal-*-8-*-*-*-*-*-iso8859-1"
+#define SAR_FONTNAME_RXNNAM_NML\
+  "-*-times-bold-r-normal-*-18-*-75-75-*-*-iso8859-1"
+#define SAR_FONTNAME_RXNNAM_SML\
+  "-*-times-bold-r-normal-*-10-*-75-75-*-*-iso8859-1"
+#define SAR_FONTNAME_RXNLBL_NML\
+  "-*-helvetica-medium-r-normal-*-14-*-*-*-*-*-iso8859-1"
+/*#define SAR_FONTNAME_RXNLBL_NML\
+  "-*-helvetica-medium-r-narrow-*-14-*-*-*-*-*-iso8859-1"*/
+#define SAR_FONTNAME_RXNLBL_SML\
+  "-*-helvetica-medium-r-normal-*-10-*-*-*-*-*-iso8859-1"
+/*#define SAR_FONTNAME_RXNLBL_SML\
+  "-*-helvetica-medium-r-narrow-*-10-*-*-*-*-*-iso8859-1"*/
+
+#define SAR_FONTTAG_FIXED_LRG     "fixlrg"
+#define SAR_FONTTAG_FIXED_NML     "fixnml"
+#define SAR_FONTTAG_FIXED_SML     "fixsml"
+#define SAR_FONTTAG_FIXED_MIN     "fixmin"
+#define SAR_FONTTAG_ATM_LRG       "atmlrg"
+#define SAR_FONTTAG_ATM_NML       "atmnml"
+#define SAR_FONTTAG_ATM_SML       "atmsml"
+#define SAR_FONTTAG_MAP_LRG       SAR_FONTTAG_ATM_NML
+#define SAR_FONTTAG_MAP_NML       SAR_FONTTAG_ATM_SML
+#define SAR_FONTTAG_MAP_SML       "mapsml"
+#define SAR_FONTTAG_PSTCYC_NML    SAR_FONTTAG_MAP_SML
+#define SAR_FONTTAG_PSTCYC_SML    SAR_FONTTAG_FIXED_MIN
+#define SAR_FONTTAG_PSTLBL_NML    "pstlnml"
+#define SAR_FONTTAG_PSTLBL_SML    "pstlsml"
+#define SAR_FONTTAG_PSTNSG_NML    SAR_FONTTAG_PSTLBL_SML
+#define SAR_FONTTAG_PSTNSG_SML    SAR_FONTTAG_PTHLBL_SML
+#define SAR_FONTTAG_PTHLBL_NML    SAR_FONTTAG_PSTLBL_SML
+#define SAR_FONTTAG_PTHLBL_SML    "pthlsml"
+#define SAR_FONTTAG_RXNLBL_NML    "rxnlblnml"
+#define SAR_FONTTAG_RXNLBL_SML    "rxnlblsml"
+#define SAR_FONTTAG_RXNMRT_NML    SAR_FONTTAG_ATM_SML
+#define SAR_FONTTAG_RXNMRT_SML    SAR_FONTTAG_MAP_SML
+#define SAR_FONTTAG_RXNNAM_NML    SAR_FONTTAG_ATM_LRG
+#define SAR_FONTTAG_RXNNAM_SML    SAR_FONTTAG_ATM_SML
+#define SAR_FONTTAG_RXNVAL_NML    SAR_FONTTAG_ATM_LRG
+#define SAR_FONTTAG_RXNVAL_SML    SAR_FONTTAG_ATM_SML
+
+/*****************************************************/
+/**  The Pixmap FileNames, Motif Names and Indices  **/
+
+#define SAR_PIXMAP_MAXNUM        8
+#define SAR_PIXMAP_FLASK         0
+#define SAR_PIXMAP_STPLHOR       1
+#define SAR_PIXMAP_STPLNEG       2
+#define SAR_PIXMAP_STPLPOS       3
+#define SAR_PIXMAP_STPLVER       4
+#define SAR_PIXMAP_SNGARW        5
+#define SAR_PIXMAP_DBLARW        6
+#define SAR_PIXMAP_PLUS          7
+
+#define SAR_PIXMAP_FILL25        8
+#define SAR_PIXMAP_FILL50        9
+#define SAR_PIXMAP_FILL75        10
+
+#define SAR_PIXMAP_FNAME_FLASK     "/flask"
+#define SAR_STIPPLE_FNAME_HORIZ    "/horiz"
+#define SAR_STIPPLE_FNAME_NEG      "/neg_slope"
+#define SAR_STIPPLE_FNAME_POS      "/pos_slope"
+#define SAR_STIPPLE_FNAME_VERT     "/verticle"
+
+#define SAR_PIXMAP_FNAME_SGLARW    "/rxn_sglarw"
+#define SAR_PIXMAP_FNAME_DBLARW    "/rxn_dblarw"
+#define SAR_PIXMAP_FNAME_PLUS      "/rxn_plus"
+#define SAR_ICON_FNAME_SYNVIEW     "/synview.icon"
+
+/*  Maybe used in the future instead of light colors for visited elsewhere
+    compound nodes.
+*/
+#define SAR_STIPPLE_NAME_FILL25  "25_foreground"
+#define SAR_STIPPLE_NAME_FILL50  "50_foreground"
+#define SAR_STIPPLE_NAME_FILL75  "75_foreground"
+
+/*  Maybe used in the future instead of stipple files  */
+#define SAR_STIPPLE_NAME_XMHORZ  "horizontal"
+#define SAR_STIPPLE_NAME_XMVERT  "vertical"
+#define SAR_STIPPLE_NAME_XMSLEFT "slant_left"
+#define SAR_STIPPLE_NAME_XMSRGHT "slant_right"
+
+
+
+/*   
+
+     Typical Dimensions    width   height
+      SWS - Workstation    1280  x  1024
+      SPC - PC - high      1024  x   768
+      SMI - PC - norm       800  x   600
+      SMI - PC - low        640  x   480
+      SMI - Mini            500  x   600
+*/
+
+/*  Scale primarily according to height of monitor:  
+      Use workstation values for resolutions over 900.
+      Use PC values for resolutions between 700 and 900.
+      Use miniviewer values for resolutions under 700.
+    User supplies preferred width for main window.
+*/
+
+#define SAR_APPSIZE_NONE     0x00
+#define SAR_APPSIZE_DFLT_WD  0x01
+#define SAR_APPSIZE_MINI_WD  0x02
+#define SAR_APPSIZE_HALF_WD  0x04
+#define SAR_APPSIZE_FULL_WD  0x08
+#define SAR_APPSIZE_WS_HT    0x10
+#define SAR_APPSIZE_MINI_HT  0x20
+#define SAR_APPSIZE_PC_HT    0x40
+
+#define SAR_PC_MAX_HT        900
+#define SAR_PC_MIN_HT        700
+#define SAR_PC_MAX_WD        1000
+#define SAR_PC_MIN_WD        800
+
+/*  General Dimensions  */
+#define SWS_MOL_MARG         16
+#define SWS_MOL_SCALE        0.66
+#define SWS_BOND_DBL_OFF     2.81
+#define SWS_BOND_TPL_OFF     2.95
+#define SWS_LBL_PB_HT        20
+#define SWS_TXT_HT           26
+#define SWS_FM_FR_MARG       4
+#define SWS_LBL_PB_MARG      2
+#define SWS_LARGE_SEP        8
+#define SWS_SMALL_SEP        4
+
+/*  Application Dimensions  */
+#define SWS_APPSHELL_OFFX    15
+#define SWS_APPSHELL_OFFY    30
+
+/*  PST View Dimensions  */
+#define SWS_PVW_BB_XHT       30
+#define SWS_PVW_DA_XHT       2
+#define SWS_PST_BARS_HT      10
+#define SWS_PST_CYC_HT       8
+#define SWS_PST_LBL_MARG     2
+#define SWS_PST_LINES_HT     100
+#define SWS_PST_MARG_HT      10
+#define SWS_PST_SYM_DIM      15
+#define SWS_PST_SYM_MID      7
+#define SWS_PST_SYM_SEP_HT   3
+#define SWS_PST_SYM_SEP_WD   7
+#define SWS_PST_FBOX_OFF     2
+#define SWS_PST_SBOX_OFF     3
+#define SWS_PTH_BARS_HT      8
+#define SWS_PTH_CYC_HT       10
+#define SWS_PTH_LNUM_HT      15
+#define SWS_PTH_MARG_HT      5
+
+#define SWS_RXN_NAME_HT      30
+#define SWS_RXN_VAL_HT       20
+
+#define SWS_SBT_EXIT_WD      215
+#define SWS_SBT_PANEL_WD     150
+
+/*  General Dimensions  */
+#define SPC_MOL_MARG         12
+#define SPC_MOL_SCALE        0.48
+#define SPC_BOND_DBL_OFF     2.43
+#define SPC_BOND_TPL_OFF     2.79
+#define SPC_LBL_PB_HT        16
+#define SPC_TXT_HT           22
+#define SPC_FM_FR_MARG       2
+#define SPC_LBL_PB_MARG      2
+#define SPC_LARGE_SEP        4
+#define SPC_SMALL_SEP        2
+
+/*  Application Dimensions  */
+#define SPC_APPSHELL_OFFX    15
+#define SPC_APPSHELL_OFFY    30
+
+/*  PST View Dimensions  */
+#define SPC_PVW_BB_XHT       27
+#define SPC_PVW_DA_XHT       6
+#define SPC_PST_BARS_HT      8
+#define SPC_PST_CYC_HT       6
+#define SPC_PST_LBL_MARG     2
+#define SPC_PST_LINES_HT     65
+#define SPC_PST_MARG_HT      7
+#define SPC_PST_SYM_DIM      13
+#define SPC_PST_SYM_MID      6
+#define SPC_PST_SYM_SEP_HT   5
+#define SPC_PST_SYM_SEP_WD   5
+#define SPC_PST_FBOX_OFF     2
+#define SPC_PST_SBOX_OFF     3
+#define SPC_PTH_BARS_HT      8
+#define SPC_PTH_CYC_HT       8
+#define SPC_PTH_LNUM_HT      10
+#define SPC_PTH_MARG_HT      3
+
+#define SPC_RXN_NAME_HT      20
+#define SPC_RXN_VAL_HT       14
+
+#define SPC_SBT_EXIT_WD      150
+#define SPC_SBT_PANEL_WD     100
+
+/*  Mini-synchem specific dimensions  */
+#define SMI_APPSIZE_HT       600
+#define SMI_APPSIZE_WD       500
+
+/*  General Dimensions  */
+#define SMI_MOL_MARG         4
+#define SMI_MOL_SCALE        0.41
+#define SMI_BOND_DBL_OFF     2.09
+#define SMI_BOND_TPL_OFF     2.47
+#define SMI_LBL_PB_HT        16
+#define SMI_TXT_HT           22
+#define SMI_FM_FR_MARG       2
+#define SMI_LBL_PB_MARG      2
+#define SMI_LARGE_SEP        4
+#define SMI_SMALL_SEP        2
+
+/*  Application Dimensions  */
+#define SMI_APPSHELL_OFFX    15
+#define SMI_APPSHELL_OFFY    25
+
+/*  PST View Dimensions  */
+#define SMI_PVW_BB_XHT       27
+#define SMI_PVW_DA_XHT       5
+#define SMI_PST_BARS_HT      6
+#define SMI_PST_CYC_HT       4
+#define SMI_PST_LBL_MARG     2
+#define SMI_PST_LINES_HT     50
+#define SMI_PST_MARG_HT      5
+#define SMI_PST_SYM_DIM      11
+#define SMI_PST_SYM_MID      5
+#define SMI_PST_SYM_SEP_HT   3
+#define SMI_PST_SYM_SEP_WD   5
+#define SMI_PST_FBOX_OFF     2
+#define SMI_PST_SBOX_OFF     3
+#define SMI_PTH_BARS_HT      6
+#define SMI_PTH_CYC_HT       6
+#define SMI_PTH_LNUM_HT      6
+#define SMI_PTH_MARG_HT      4
+
+#define SMI_RXN_NAME_HT      20
+#define SMI_RXN_VAL_HT       14
+
+#define SMI_SBT_EXIT_WD      150
+#define SMI_SBT_PANEL_WD     100
+
+/*** Data Structures ***/
+
+/*  Dimensions, etc., that need to be scaled for different sizes of 
+    screens (including fudge factors).  
+*/
+typedef struct application_dims_s
+  {
+  char         *dftatm_tag;
+  char         *dftmap_tag;
+  char         *pstcyc_tag;
+  char         *pstlbl_tag;
+  char         *pstnsg_tag;
+  char         *pthlbl_tag;
+  char         *rxnlbl_tag;
+  char         *rxnmrt_tag;
+  char         *rxnnam_tag;
+  char         *rxnval_tag;
+  float         mol_scale;
+  float         dblbond_off;
+  float         tplbond_off;
+  Dimension     app_height;
+  Dimension     app_width;
+  Dimension     lbl_pb_ht;                     /*  General dimensions  */
+  Dimension     txt_ht;
+  Dimension     fm_fr_marg;
+  Dimension     lbl_pb_marg;
+  Dimension     mol_marg;
+  Dimension     fm_large_sep;
+  Dimension     fm_small_sep;
+  Dimension     pst_bar_ht;                    /*  Tree and Path  */
+  Dimension     pst_cyc_ht;
+  Dimension     pst_fbox_off;
+  Dimension     pst_lbl_marg;                  /*  Fudge Factor  */
+  Dimension     pst_lines_ht;
+  Dimension     pst_lvl_bdry_btm;
+  Dimension     pst_lvl_bdry_off;
+  Dimension     pst_lvl_bdry_top;
+  Dimension     pst_lvl_totht;
+  Dimension     pst_marg_ht;
+  Dimension     pst_sbox_off;
+  Dimension     pst_sym_dim;
+  Dimension     pst_sym_mid;
+  Dimension     pst_sym_sep_ht;
+  Dimension     pst_sym_sep_wd;
+  Dimension     pst_sym_totwd;
+  Dimension     pth_bar_ht;
+  Dimension     pth_cyc_ht;
+  Dimension     pth_lnum_ht;
+  Dimension     pth_marg_ht;
+  Dimension     pvw_bb_xht;                    /*  Fudge Factors  */
+  Dimension     pvw_da_xht;
+  Dimension     rxn_name_ht;                   /*  Dialog specific  */
+  Dimension     rxn_val_ht;
+  int           atm_max_h;                     /* Max height of atom fig */
+  int           atm_max_w;                     /* Max width of atom fig */
+  int           sbt_exit_wd;
+  int           sbt_panel_wd;
+  Position      zzz;
+  U8_t          app_size;
+  } AppDim_t;
+
+/** Field Access Macros for AppDim_t **/
+
+/* Macro Prototypes
+
+  Dimension  AppDim__Get    (AppDim_t);
+  void       AppDim__Put    (AppDim_t, Dimension);
+  int        AppDim__Get    (AppDim_t);
+  void       AppDim__Put    (AppDim_t, int);
+  Position   AppDim__Get    (AppDim_t);
+  void       AppDim__Put    (AppDim_t, Position);
+
+  U8_t       AppDim_AppSize_Get      (AppDim_t);
+  void       AppDim_AppSize_Put      (AppDim_t, U8_t);
+  Dimension  AppDim_AppHeight_Get    (AppDim_t);
+  void       AppDim_AppHeight_Put    (AppDim_t, Dimension);
+  Dimension  AppDim_AppWidth_Get     (AppDim_t);
+  void       AppDim_AppWidth_Put     (AppDim_t, Dimension);
+  char      *AppDim_AtmDftTag_Get    (AppDim_t);
+  void       AppDim_AtmDftTag_Put    (AppDim_t, char *);
+  int        AppDim_AtmMaxH_Get      (AppDim_t);
+  void       AppDim_AtmMaxH_Put      (AppDim_t, int);
+  int        AppDim_AtmMaxW_Get      (AppDim_t);
+  void       AppDim_AtmMaxW_Put      (AppDim_t, int);
+  float      AppDim_BndDblOff_Get    (AppDim_t);
+  void       AppDim_BndDblOff_Put    (AppDim_t, float);
+  float      AppDim_BndTplOff_Get    (AppDim_t);
+  void       AppDim_BndTplOff_Put    (AppDim_t, float);
+  Dimension  AppDim_HtLblPB_Get      (AppDim_t);
+  void       AppDim_HtLblPB_Put      (AppDim_t, Dimension);
+  Dimension  AppDim_HtTxt_Get        (AppDim_t);
+  void       AppDim_HtTxt_Put        (AppDim_t, Dimension);
+  char      *AppDim_MapDftTag_Get    (AppDim_t);
+  void       AppDim_MapDftTag_Put    (AppDim_t, char *);
+  Dimension  AppDim_MargFmFr_Get     (AppDim_t);
+  void       AppDim_MargFmFr_Put     (AppDim_t, Dimension);
+  Dimension  AppDim_MargLblPB_Get    (AppDim_t);
+  void       AppDim_MargLblPB_Put    (AppDim_t, Dimension);
+  Dimension  AppDim_MargMol_Get      (AppDim_t);
+  void       AppDim_MargMol_Put      (AppDim_t, Dimension);
+  float      AppDim_MolScale_Get     (AppDim_t);
+  void       AppDim_MolScale_Put     (AppDim_t, float);
+  Dimension  AppDim_PstBarHt_Get     (AppDim_t);
+  void       AppDim_PstBarHt_Put     (AppDim_t, Dimension);
+  Dimension  AppDim_PstCycHt_Get     (AppDim_t);
+  void       AppDim_PstCycHt_Put     (AppDim_t, Dimension);
+  char      *AppDim_PstCycTag_Get    (AppDim_t);
+  void       AppDim_PstCycTag_Put    (AppDim_t, char *);
+  Dimension  AppDim_PstFBoxOff_Get   (AppDim_t);
+  void       AppDim_PstFBoxOff_Put   (AppDim_t, Dimension);
+  Dimension  AppDim_PstLblMarg_Get   (AppDim_t);
+  void       AppDim_PstLblMarg_Put   (AppDim_t, Dimension);
+  char      *AppDim_PstLblTag_Get    (AppDim_t);
+  void       AppDim_PstLblTag_Put    (AppDim_t, char *);
+  Dimension  AppDim_PstLinesHt_Get   (AppDim_t);
+  void       AppDim_PstLinesHt_Put   (AppDim_t, Dimension);
+  Dimension  AppDim_PstLvlBdrBtm_Get (AppDim_t);
+  void       AppDim_PstLvlBdrBtm_Put (AppDim_t, Dimension);
+  Dimension  AppDim_PstLvlBdrOff_Get (AppDim_t);
+  void       AppDim_PstLvlBdrOff_Put (AppDim_t, Dimension);
+  Dimension  AppDim_PstLvlBdrTop_Get (AppDim_t);
+  void       AppDim_PstLvlBdrTop_Put (AppDim_t, Dimension);
+  Dimension  AppDim_PstLvlTotHt_Get  (AppDim_t);
+  void       AppDim_PstLvlTotHt_Put  (AppDim_t, Dimension);
+  Dimension  AppDim_PstMargHt_Get    (AppDim_t);
+  void       AppDim_PstMargHt_Put    (AppDim_t, Dimension);
+  char      *AppDim_PstNSGTag_Get    (AppDim_t);
+  void       AppDim_PstNSGTag_Put    (AppDim_t, char *);
+  Dimension  AppDim_PstSBoxOff_Get   (AppDim_t);
+  void       AppDim_PstSBoxOff_Put   (AppDim_t, Dimension);
+  Dimension  AppDim_PstSymDim_Get    (AppDim_t);
+  void       AppDim_PstSymDim_Put    (AppDim_t, Dimension);
+  Dimension  AppDim_PstSymMid_Get    (AppDim_t);
+  void       AppDim_PstSymMid_Put    (AppDim_t, Dimension);
+  Dimension  AppDim_PstSymSepHt_Get  (AppDim_t);
+  void       AppDim_PstSymSepHt_Put  (AppDim_t, Dimension);
+  Dimension  AppDim_PstSymSepWd_Get  (AppDim_t);
+  void       AppDim_PstSymSepWd_Put  (AppDim_t, Dimension);
+  Dimension  AppDim_PstSymTotWd_Get  (AppDim_t);
+  void       AppDim_PstSymTotWd_Put  (AppDim_t, Dimension);
+  Dimension  AppDim_PthBarHt_Get     (AppDim_t);
+  void       AppDim_PthBarHt_Put     (AppDim_t, Dimension);
+  Dimension  AppDim_PthCycHt_Get     (AppDim_t);
+  void       AppDim_PthCycHt_Put     (AppDim_t, Dimension);
+  char      *AppDim_PthLblTag_Get    (AppDim_t);
+  void       AppDim_PthLblTag_Put    (AppDim_t, char *);
+  Dimension  AppDim_PthLNumHt_Get    (AppDim_t);
+  void       AppDim_PthLNumHt_Put    (AppDim_t, Dimension);
+  Dimension  AppDim_PthMargHt_Get    (AppDim_t);
+  void       AppDim_PthMargHt_Put    (AppDim_t, Dimension);
+  char      *AppDim_RxnLblTag_Get    (AppDim_t);
+  void       AppDim_RxnLblTag_Put    (AppDim_t, char *);
+  char      *AppDim_RxnMrtTag_Get    (AppDim_t);
+  void       AppDim_RxnMrtTag_Put    (AppDim_t, char *);
+  Dimension  AppDim_RxnNameHt_Get    (AppDim_t);
+  void       AppDim_RxnNameHt_Put    (AppDim_t, Dimension);
+  char      *AppDim_RxnNamTag_Get    (AppDim_t);
+  void       AppDim_RxnNamTag_Put    (AppDim_t, char *);
+  Dimension  AppDim_RxnValHt_Get     (AppDim_t);
+  void       AppDim_RxnValHt_Put     (AppDim_t, Dimension);
+  char      *AppDim_RxnValTag_Get    (AppDim_t);
+  void       AppDim_RxnValTag_Put    (AppDim_t, char *);
+  int        AppDim_SbtExitWd_Get    (AppDim_t);
+  void       AppDim_SbtExitWd_Put    (AppDim_t, int);
+  int        AppDim_SbtPanel_Wd_Get  (AppDim_t);
+  void       AppDim_SbtPanel_Wd_Put  (AppDim_t, int);
+  Dimension  AppDim_SepLarge_Get     (AppDim_t);
+  void       AppDim_SepLarge_Put     (AppDim_t, Dimension);
+  Dimension  AppDim_SepSmall_Get     (AppDim_t);
+  void       AppDim_SepSmall_Put     (AppDim_t, Dimension);
+  Dimension  AppDim_XHtPvwBB_Get     (AppDim_t);
+  void       AppDim_XHtPvwBB_Put     (AppDim_t, Dimension);
+  Dimension  AppDim_XHtPvwDA_Get     (AppDim_t);
+  void       AppDim_XHtPvwDA_Put     (AppDim_t, Dimension);
+*/
+
+#define AppDim_SbtPanel_Wd_Put(ad, value)\
+  (ad)->sbt_panel_wd = (value)
+#define AppDim_AppSize_Get(ad)\
+  (ad)->app_size
+#define AppDim_AppSize_Put(ad, value)\
+  (ad)->app_size = (value)
+#define AppDim_AppHeight_Get(ad)\
+  (ad)->app_height
+#define AppDim_AppHeight_Put(ad, value)\
+  (ad)->app_height = (value)
+#define AppDim_AppWidth_Get(ad)\
+  (ad)->app_width
+#define AppDim_AppWidth_Put(ad, value)\
+  (ad)->app_width = (value)
+#define AppDim_AtmDftTag_Get(ad)\
+  (ad)->dftatm_tag
+#define AppDim_AtmDftTag_Put(ad, value)\
+  (ad)->dftatm_tag = (value)
+#define AppDim_AtmMaxH_Get(ad)\
+  (ad)->atm_max_h
+#define AppDim_AtmMaxH_Put(ad, value)\
+  (ad)->atm_max_h = (value)
+#define AppDim_AtmMaxW_Get(ad)\
+  (ad)->atm_max_w
+#define AppDim_AtmMaxW_Put(ad, value)\
+  (ad)->atm_max_w = (value)
+#define AppDim_BndDblOff_Get(ad)\
+  (ad)->dblbond_off
+#define AppDim_BndDblOff_Put(ad, value)\
+  (ad)->dblbond_off = (value)
+#define AppDim_BndTplOff_Get(ad)\
+  (ad)->tplbond_off
+#define AppDim_BndTplOff_Put(ad, value)\
+  (ad)->tplbond_off = (value)
+#define AppDim_HtLblPB_Get(ad)\
+  (ad)->lbl_pb_ht
+#define AppDim_HtLblPB_Put(ad, value)\
+  (ad)->lbl_pb_ht = (value)
+#define AppDim_HtTxt_Get(ad)\
+  (ad)->txt_ht
+#define AppDim_HtTxt_Put(ad, value)\
+  (ad)->txt_ht = (value)
+#define AppDim_MapDftTag_Get(ad)\
+  (ad)->dftmap_tag
+#define AppDim_MapDftTag_Put(ad, value)\
+  (ad)->dftmap_tag = (value)
+#define AppDim_MargFmFr_Get(ad)\
+  (ad)->fm_fr_marg
+#define AppDim_MargFmFr_Put(ad, value)\
+  (ad)->fm_fr_marg = (value)
+#define AppDim_MargLblPB_Get(ad)\
+  (ad)->lbl_pb_marg
+#define AppDim_MargLblPB_Put(ad, value)\
+  (ad)->lbl_pb_marg = (value)
+#define AppDim_MargMol_Get(ad)\
+  (ad)->mol_marg
+#define AppDim_MargMol_Put(ad, value)\
+  (ad)->mol_marg = (value)
+#define AppDim_MolScale_Get(ad)\
+  (ad)->mol_scale
+#define AppDim_MolScale_Put(ad, value)\
+  (ad)->mol_scale = (value)
+#define AppDim_PstBarHt_Get(ad)\
+  (ad)->pst_bar_ht
+#define AppDim_PstBarHt_Put(ad, value)\
+  (ad)->pst_bar_ht = (value)
+#define AppDim_PstCycHt_Get(ad)\
+  (ad)->pst_cyc_ht
+#define AppDim_PstCycHt_Put(ad, value)\
+  (ad)->pst_cyc_ht = (value)
+#define AppDim_PstCycTag_Get(ad)\
+  (ad)->pstcyc_tag
+#define AppDim_PstCycTag_Put(ad, value)\
+  (ad)->pstcyc_tag = (value)
+#define AppDim_PstFBoxOff_Get(ad)\
+  (ad)->pst_fbox_off
+#define AppDim_PstFBoxOff_Put(ad, value)\
+  (ad)->pst_fbox_off = (value)
+#define AppDim_PstLblMarg_Get(ad)\
+  (ad)->pst_lbl_marg
+#define AppDim_PstLblMarg_Put(ad, value)\
+  (ad)->pst_lbl_marg = (value)
+#define AppDim_PstLblTag_Get(ad)\
+  (ad)->pstlbl_tag
+#define AppDim_PstLblTag_Put(ad, value)\
+  (ad)->pstlbl_tag = (value)
+#define AppDim_PstLinesHt_Get(ad)\
+  (ad)->pst_lines_ht
+#define AppDim_PstLinesHt_Put(ad, value)\
+  (ad)->pst_lines_ht = (value)
+#define AppDim_PstLvlBdrBtm_Get(ad)\
+  (ad)->pst_lvl_bdry_btm
+#define AppDim_PstLvlBdrBtm_Put(ad, value)\
+  (ad)->pst_lvl_bdry_btm = (value)
+#define AppDim_PstLvlBdrOff_Get(ad)\
+  (ad)->pst_lvl_bdry_off
+#define AppDim_PstLvlBdrOff_Put(ad, value)\
+  (ad)->pst_lvl_bdry_off = (value)
+#define AppDim_PstLvlBdrTop_Get(ad)\
+  (ad)->pst_lvl_bdry_top
+#define AppDim_PstLvlBdrTop_Put(ad, value)\
+  (ad)->pst_lvl_bdry_top = (value)
+#define AppDim_PstLvlTotHt_Get(ad)\
+  (ad)->pst_lvl_totht
+#define AppDim_PstLvlTotHt_Put(ad, value)\
+  (ad)->pst_lvl_totht = (value)
+#define AppDim_PstMargHt_Get(ad)\
+  (ad)->pst_marg_ht
+#define AppDim_PstMargHt_Put(ad, value)\
+  (ad)->pst_marg_ht = (value)
+#define AppDim_PstNSGTag_Get(ad)\
+  (ad)->pstnsg_tag
+#define AppDim_PstNSGTag_Put(ad, value)\
+  (ad)->pstnsg_tag = (value)
+#define AppDim_PstSBoxOff_Get(ad)\
+  (ad)->pst_sbox_off
+#define AppDim_PstSBoxOff_Put(ad, value)\
+  (ad)->pst_sbox_off = (value)
+#define AppDim_PstSymDim_Get(ad)\
+  (ad)->pst_sym_dim
+#define AppDim_PstSymDim_Put(ad, value)\
+  (ad)->pst_sym_dim = (value)
+#define AppDim_PstSymMid_Get(ad)\
+  (ad)->pst_sym_mid
+#define AppDim_PstSymMid_Put(ad, value)\
+  (ad)->pst_sym_mid = (value)
+#define AppDim_PstSymSepHt_Get(ad)\
+  (ad)->pst_sym_sep_ht
+#define AppDim_PstSymSepHt_Put(ad, value)\
+  (ad)->pst_sym_sep_ht = (value)
+#define AppDim_PstSymSepWd_Get(ad)\
+  (ad)->pst_sym_sep_wd
+#define AppDim_PstSymSepWd_Put(ad, value)\
+  (ad)->pst_sym_sep_wd = (value)
+#define AppDim_PstSymTotWd_Get(ad)\
+  (ad)->pst_sym_totwd
+#define AppDim_PstSymTotWd_Put(ad, value)\
+  (ad)->pst_sym_totwd = (value)
+#define AppDim_PthBarHt_Get(ad)\
+  (ad)->pth_bar_ht
+#define AppDim_PthBarHt_Put(ad, value)\
+  (ad)->pth_bar_ht = (value)
+#define AppDim_PthCycHt_Get(ad)\
+  (ad)->pth_cyc_ht
+#define AppDim_PthCycHt_Put(ad, value)\
+  (ad)->pth_cyc_ht = (value)
+#define AppDim_PthLblTag_Get(ad)\
+  (ad)->pthlbl_tag
+#define AppDim_PthLblTag_Put(ad, value)\
+  (ad)->pthlbl_tag = (value)
+#define AppDim_PthLNumHt_Get(ad)\
+  (ad)->pth_lnum_ht
+#define AppDim_PthLNumHt_Put(ad, value)\
+  (ad)->pth_lnum_ht = (value)
+#define AppDim_PthMargHt_Get(ad)\
+  (ad)->pth_marg_ht
+#define AppDim_PthMargHt_Put(ad, value)\
+  (ad)->pth_marg_ht = (value)
+#define AppDim_RxnLblTag_Get(ad)\
+  (ad)->rxnlbl_tag
+#define AppDim_RxnLblTag_Put(ad, value)\
+  (ad)->rxnlbl_tag = (value)
+#define AppDim_RxnMrtTag_Get(ad)\
+  (ad)->rxnmrt_tag
+#define AppDim_RxnMrtTag_Put(ad, value)\
+  (ad)->rxnmrt_tag = (value)
+#define AppDim_RxnNameHt_Get(ad)\
+  (ad)->rxn_name_ht
+#define AppDim_RxnNameHt_Put(ad, value)\
+  (ad)->rxn_name_ht = (value)
+#define AppDim_RxnNamTag_Get(ad)\
+  (ad)->rxnnam_tag
+#define AppDim_RxnNamTag_Put(ad, value)\
+  (ad)->rxnnam_tag = (value)
+#define AppDim_RxnValHt_Get(ad)\
+  (ad)->rxn_val_ht
+#define AppDim_RxnValHt_Put(ad, value)\
+  (ad)->rxn_val_ht = (value)
+#define AppDim_RxnValTag_Get(ad)\
+  (ad)->rxnval_tag
+#define AppDim_RxnValTag_Put(ad, value)\
+  (ad)->rxnval_tag = (value)
+#define AppDim_SbtExitWd_Get(ad)\
+  (ad)->sbt_exit_wd
+#define AppDim_SbtExitWd_Put(ad, value)\
+  (ad)->sbt_exit_wd = (value)
+#define AppDim_SbtPanel_Wd_Get(ad)\
+  (ad)->sbt_panel_wd
+#define AppDim_SepLarge_Get(ad)\
+  (ad)->fm_large_sep
+#define AppDim_SepLarge_Put(ad, value)\
+  (ad)->fm_large_sep = (value)
+#define AppDim_SepSmall_Get(ad)\
+  (ad)->fm_small_sep
+#define AppDim_SepSmall_Put(ad, value)\
+  (ad)->fm_small_sep = (value)
+#define AppDim_XHtPvwBB_Get(ad)\
+  (ad)->pvw_bb_xht
+#define AppDim_XHtPvwBB_Put(ad, value)\
+  (ad)->pvw_bb_xht = (value)
+#define AppDim_XHtPvwDA_Get(ad)\
+  (ad)->pvw_da_xht
+#define AppDim_XHtPvwDA_Put(ad, value)\
+  (ad)->pvw_da_xht = (value)
+
+
+/*  Commonly used attributes of the screen.  */
+typedef struct screen_attrib_s
+  {
+  Display      *t_display;
+  Screen       *t_screen;
+  int           sclass;
+  int           depth;
+  int           height;
+  int           width;
+  Window        root_win;
+  Window        t_window;
+  } ScreenAttr_t;
+
+/** Field Access Macros for ScreenAttr_t **/
+
+/* Macro Prototypes
+
+  int        Screen_Class_Get    (ScreenAttr_t *);
+  void       Screen_Class_Put    (ScreenAttr_t *, int);
+  int        Screen_Depth_Get    (ScreenAttr_t *);
+  void       Screen_Depth_Put    (ScreenAttr_t *, int);
+  int        Screen_Height_Get   (ScreenAttr_t *);
+  void       Screen_Height_Put   (ScreenAttr_t *, int);
+  int        Screen_Width_Get    (ScreenAttr_t *);
+  void       Screen_Width_Put    (ScreenAttr_t *, int);
+  Display   *Screen_TDisplay_Get (ScreenAttr_t *);
+  void       Screen_TDisplay_Put (ScreenAttr_t *, Display *);
+  Screen    *Screen_TScreen_Get  (ScreenAttr_t *);
+  void       Screen_TScreen_Put  (ScreenAttr_t *, Screen *);
+  Window     Screen_TWindow_Get  (ScreenAttr_t *);
+  void       Screen_TWindow_Put  (ScreenAttr_t *, Window);
+  Window     Screen_RootWin_Get  (ScreenAttr_t *);
+  void       Screen_RootWin_Put  (ScreenAttr_t *, Window);
+*/
+
+#define Screen_Class_Get(sap)\
+  (sap)->sclass
+#define Screen_Class_Put(sap, value)\
+  (sap)->sclass = (value)
+#define Screen_Depth_Get(sap)\
+  (sap)->depth
+#define Screen_Depth_Put(sap, value)\
+  (sap)->depth = (value)
+#define Screen_Display_Get(sap)\
+  (sap)->t_display
+#define Screen_Display_Put(sap, value)\
+  (sap)->t_display = (value)
+#define Screen_Height_Get(sap)\
+  (sap)->height
+#define Screen_Height_Put(sap, value)\
+  (sap)->height = (value)
+#define Screen_Width_Get(sap)\
+  (sap)->width
+#define Screen_Width_Put(sap, value)\
+  (sap)->width = (value)
+#define Screen_TDisplay_Get(sap)\
+  (sap)->t_display
+#define Screen_TDisplay_Put(sap, value)\
+  (sap)->t_display = (value)
+#define Screen_TScreen_Get(sap)\
+  (sap)->t_screen
+#define Screen_TScreen_Put(sap, value)\
+  (sap)->t_screen = (value)
+#define Screen_RootWin_Get(sap)\
+  (sap)->root_win
+#define Screen_RootWin_Put(sap, value)\
+  (sap)->root_win = (value)
+#define Screen_TWindow_Get(sap)\
+  (sap)->t_window
+#define Screen_TWindow_Put(sap, value)\
+  (sap)->t_window = (value)
+
+/*  Commonly shared application resources.  */
+typedef struct syn_app_rsrcs_s 
+  {
+  ScreenAttr_t  screen;                         /* Screen Attritbutes */
+  Colormap      colormap;                       /* Colormap */
+  Cursor        cursors[SAR_CRSR_MAXNUM];       /* Cursors */
+  GC            mol_gc;                         /* Molecule draw gc */
+  Pixmap        pixs[SAR_PIXMAP_MAXNUM];        /* Pixmaps */
+  unsigned int  pixhts[SAR_PIXMAP_MAXNUM];      /* Height of pixmap */
+  unsigned int  pixwds[SAR_PIXMAP_MAXNUM];      /* Width of pixmap */
+  XColor        colors[SAR_CLR_MAXNUM];         /* Colors */
+  XFontStruct  *fonts[SAR_FONTSTRCTS_MAXNUM];   /* Font structures */
+  XmFontList    font_list;                      /* Font list */
+  char         *printer;
+  char         *remote_display;
+  } SynAppResrc_t;
+#define SAR_APPRSRC_SIZE (sizeof (SynAppResrc_t))
+
+/** Field Access Macros for SynAppResrc_t **/
+
+/* Macro Prototypes
+
+  Colormap      SynAppR_Colormap_Get  (SynAppResrc_t *);
+  void          SynAppR_Colormap_Put  (SynAppResrc_t *, Colormap);
+  XColor       *SynAppR_Colors_Get    (SynAppResrc_t *);
+  Cursor       *SynAppR_Cursors_Get   (SynAppResrc_t *);
+  XmFontList    SynAppR_FontList_Get  (SynAppResrc_t *);
+  void          SynAppR_FontList_Put  (SynAppResrc_t *, XmFontList);
+  XFontStruct **SynAppR_Fonts_Get     (SynAppResrc_t *);
+  GC            SynAppR_MolGC_Get     (SynAppResrc_t *);
+  void          SynAppR_MolGC_Put     (SynAppResrc_t *, GC);
+  Pixel         SynAppR_IthClrPx_Get  (SynAppResrc_t *, U8_t);
+  XColor        SynAppR_IthColor_Get  (SynAppResrc_t *, U8_t);
+  void          SynAppR_IthColor_Put  (SynAppResrc_t *, U8_t, XColor);
+  Cursor        SynAppR_IthCursor_Get (SynAppResrc_t *, U8_t);
+  void          SynAppR_IthCursor_Put (SynAppResrc_t *, U8_t, Cursor);
+  XFontStruct  *SynAppR_IthFont_Get   (SynAppResrc_t *, U8_t);
+  void          SynAppR_IthFont_Put   (SynAppResrc_t *, U8_t, XFontStruct *);
+  Pixmap        SynAppR_IthPMap_Get   (SynAppResrc_t *, U8_t);
+  void          SynAppR_IthPMap_Put   (SynAppResrc_t *, U8_t, Pixmap);
+  unsigned int  SynAppR_IthPMapH_Get  (SynAppResrc_t *, U8_t);
+  void          SynAppR_IthPMapH_Put  (SynAppResrc_t *, U8_t, unsigned int);
+  unsigned int  SynAppR_IthPMapW_Get  (SynAppResrc_t *, U8_t);
+  void          SynAppR_IthPMapW_Put  (SynAppResrc_t *, U8_t, unsigned int);
+  Pixmap       *SynAppR_PixMaps_Get   (SynAppResrc_t *);
+  unsigned int *SynAppR_PMapHts_Get   (SynAppResrc_t *);
+  unsigned int *SynAppR_PMapWds_Get   (SynAppResrc_t *);
+  char         *SynAppR_Printer_Get   (SynAppResrc_t *);
+  void          SynAppR_Printer_Put   (SynAppResrc_t *, char *);
+  char         *SynAppR_RemoteDisp_Get (SynAppResrc_t *);
+  void          SynAppR_RemoteDisp_Put (SynAppResrc_t *, char *);
+  ScreenAttr_t *SynAppR_ScrnAtrb_Get  (SynAppResrc_t *);
+*/
+
+#define SynAppR_Colormap_Get(sar)\
+  (sar)->colormap
+#define SynAppR_Colormap_Put(sar, value)\
+  (sar)->colormap = (value)
+#define SynAppR_Colors_Get(sar)\
+  (sar)->colors
+#define SynAppR_Cursors_Get(sar)\
+  (sar)->cursors
+#define SynAppR_FontList_Get(sar)\
+  (sar)->font_list
+#define SynAppR_FontList_Put(sar, value)\
+  (sar)->font_list = (value)
+#define SynAppR_Fonts_Get(sar)\
+  (sar)->fonts
+#define SynAppR_IthClrPx_Get(sar, ic)\
+  (sar)->colors[ic].pixel
+#define SynAppR_IthColor_Get(sar, ic)\
+  (sar)->colors[ic]
+#define SynAppR_IthColor_Put(sar, ic, value)\
+  (sar)->colors[ic] = (value)
+#define SynAppR_IthCursor_Get(sar, ic)\
+  (sar)->cursors[ic]
+#define SynAppR_IthCursor_Put(sar, ic, value)\
+  (sar)->cursors[ic] = (value)
+#define SynAppR_IthFont_Get(sar, ift)\
+  (sar)->fonts[ift]
+#define SynAppR_IthFont_Put(sar, ift, value)\
+  (sar)->fonts[ift] = (value)
+#define SynAppR_IthPMap_Get(sar, ip)\
+  (sar)->pixs[ip]
+#define SynAppR_IthPMap_Put(sar, ip, value)\
+  (sar)->pixs[ip] = (value)
+#define SynAppR_IthPMapH_Get(sar, ip)\
+  (sar)->pixhts[ip]
+#define SynAppR_IthPMapH_Put(sar, ip, value)\
+  (sar)->pixhts[ip] = (value)
+#define SynAppR_IthPMapW_Get(sar, ip)\
+  (sar)->pixwds[ip]
+#define SynAppR_IthPMapW_Put(sar, ip, value)\
+  (sar)->pixwds[ip] = (value)
+#define SynAppR_MolGC_Get(sar)\
+  (sar)->mol_gc
+#define SynAppR_MolGC_Put(sar, value)\
+  (sar)->mol_gc = (value)
+#define SynAppR_PixMaps_Get(sar)\
+  (sar)->pixs
+#define SynAppR_PMapHts_Get(sar)\
+  (sar)->pixhts
+#define SynAppR_PMapWds_Get(sar)\
+  (sar)->pixwds
+#define SynAppR_Printer_Get(sar)\
+  (sar)->printer
+#define SynAppR_Printer_Put(sar, value)\
+  (sar)->printer = (value)
+#define SynAppR_RemoteDisp_Get(sar)\
+  (sar)->remote_display
+#define SynAppR_RemoteDisp_Put(sar, value)\
+  (sar)->remote_display = (value)
+#define SynAppR_ScrnAtrb_Get(sar)\
+  &((sar)->screen)
+
+
+/*** Global Variables ***/
+
+#ifdef APPRESCR_GLOBALS
+  SynAppResrc_t          GSynAppR;
+  AppDim_t               GAppDim;
+#else
+  extern  SynAppResrc_t  GSynAppR;
+  extern  AppDim_t       GAppDim;
+#endif
+
+/*** Routine Prototypes ***/
+
+void AppDim_Init       (U8_t);
+void SynAppR_PostInit  (Widget);
+void SynAppR_PreInit   (Widget, U8_t);
+void SynAppR_Destroy   (void);
+void SynAppR_Manage_Windows (Widget, Boolean_t);
+
+#endif
+/*  End of APP_RESRC.H  */

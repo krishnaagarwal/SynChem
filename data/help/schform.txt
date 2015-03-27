@@ -1,0 +1,75 @@
+Data Fields:
+	Schema Data (displays schema name, reaction parameters, history, references, and
+	comments)
+
+	Pretransform Test List (displays as must-have-any, must-have-all, and can't-have-any
+	the complete templates, where applicable, and individual functional groups
+	that fall under each category for this schema)
+
+	Transform Pattern Drawing (displays in synthetic order, but with a retrosynthetic
+	arrow, the subgoal and goal pattern pieces and goal roots)
+
+Schema Name entry panel:
+	Enter name for a new schema or edit the name of an existing schema by placing
+	"I-bar" cursor at appropriate position in text box and typing additions or
+	changes.
+
+Validate Schema button:
+	For safety, validation is prevented until the schema buffer has been written to
+	the reaction library.  Validation is required whenever a schema has been newly
+	created or modified, in order to remove the incomplete flag that prevents a
+	schema from being applied in synthesis searches.  Several test molecules should
+	be used for an adequate verification of pattern matches and both pretransform
+	and posttransform tests.
+
+Edit Pretransform Tests button:
+	Allows functional attributes to be added (individually or via template) or
+	removed from the can't-have-any, must-have-any, and must-have-all lists.
+
+Posttransform Tests button:
+	Displays conditions, tests, and the goal and subgoal TSD's to allow addition,
+	modification, and deletion.
+
+H on C button:
+	Determines whether to display or make implicit the hydrogens attached to carbon
+	in the transform drawing.  (At the moment, "asymmetric only" is equivalent to
+	"none," because the asymmetry flag appears to be missing from all transform
+	patterns.  The other option is "all.")
+
+Ease, Yield, Confidence button:
+	Offers both direct and stepwise (question-driven) methods for entering starting
+	values for these reaction merit components.
+
+Flags button:
+	Allows toggling of protection, lookahead, and disabled flags for the schema.
+
+Type, Molecularity button:
+	Allows specification of the way multiple-match is handled for the schema, as
+	well as the maximum number of unique subgoal molecules to be accepted for an
+	application.
+
+Comments/References button:
+	Allows documentation of a schema through addition, modification, or deletion of
+	comments and literature references.
+
+Edit Transform button:
+	Opens a graphical interface for drawing the relationships of atoms between the
+	goal and subgoal patterns, specifying roots and synthemes, and modifying that
+	information.
+
+Save Buffer to File and Continue button:
+	Writes the current version of the schema buffer to the reaction library without
+	exiting from the schema editor.  (This is especially useful just before
+	validation.)
+
+Exit and Save button,
+Exit, Save, and Close button:
+	Writes the schema buffer to the reaction library and returns to the reaction
+	library editor.  Unless the schema is closed, editing it again will continue
+	with the same reaction library record, instead of allocating a new one to
+	supersede it.
+
+Quit; Cancel Unsaved Modifications button:
+	Returns to reaction library editor.  All previously saved modifications are
+	preserved.  Any made since the last save will appear in a prompt to verify the
+	intent to discard them.

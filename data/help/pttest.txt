@@ -1,0 +1,52 @@
+Logic String (preceded by "If"):
+	1) The test premise consists of logical combinations of conditions, earlier
+	   tests, and/or (rarely) the NOP state (no tests passed so far).
+	2) The operators recognized within the logic string include AND, OR, EQ, NEQ,
+	   and the unary NOT.  (NEQ equates to the exclusive or; EQ equates to the
+	   exclusive nor.  They are seldom used and are included mainly to complete
+	   the set of operators.)
+	3) Parenthesizing is encouraged wherever it helps to clarify the order of
+	   evaluation.  Any balanced combination of parentheses, brackets, and braces
+	   is acceptable.
+
+Result Menu (preceded by "then"):
+	Select FAIL or PASS.  (PASS AND STOP is vestigial, but is retained for legacy
+	tests that use it.  It indicates that no more tests should be evaluated.
+	However, its use tends to complicate the addition of new tests and may cause
+	unexpected behavior.)
+
+Ease Adjustment (preceded by "adjusting ease"),
+Yield Adjustment (prededed by ", yield"),
+Confidence Adjustment (preceded by ", and confidence"):
+	These fields are not visible when the selected test result is FAIL, because
+	failure automatically sets all three to zero.  The adjustments are signed
+	numbers, because they may be either increments or decrements.  Their values
+	should be appropriately scaled to the respective initial values defined for
+	the schema.  (Regardless of the cumulative effects of adjustments, the final
+	values will be truncated if below 0 or above 100.)
+
+Reason:
+	A concise explanation of the reasoning behind the test should be given.  One
+	commonly used reason for failure when certain variable nodes do not map to
+	one of a set of specific atoms is "Schema does not apply in this case," i.e.,
+	the presence of a heteroatom in a given location may alter the chemistry from
+	what was intended.  (The default reason may be used while hitchhiking through
+	the galaxy! :-) )
+
+Chemist (assigned automatically from login ID - not a user-modifiable field)
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur until
+	exit from the main posttransform test editor.  Note that any test appearing
+	in the logic string of a subsequent test may not be deleted (button will be
+	disabled) so long as the latter test remains unmarked.  By the same token,
+	a marked test may not be unmarked if it refers to conditions or tests that
+	remain marked for deletion.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current test.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

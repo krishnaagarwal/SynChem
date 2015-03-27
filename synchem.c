@@ -1,0 +1,356 @@
+/******************************************************************************
+*
+*  Copyright (C) 1991-1996, Synchem Group at SUNY-Stony Brook
+*
+*  Module Name:              SYNCHEM.C
+*
+*    This module is the main executive for the SYNCHEM synthesis search.
+*    It calls all the sub-systems in the correct order to accomplish the
+*    search or inform the user why it could not find a synthesis.
+*
+*    Certain functionality is not supported at the moment:
+*    - Strategy selection.  Used to have Strategic Bonds, Look Ahead,
+*      Auto Protect.  Now only get Effort Distribution.
+*    - Batch mode.  Runs only interactively.
+*    - Choice on stereo-chemistry.  You never get it.
+*    - Choice on multiple match.  You always get it.
+*
+*    Certain functionality has been modified from the original version
+*    and will (hopefully) never be supported:
+*    - Multiple reaction libraries.  Can do a pre-process merge.
+*    - Multiple available compounds libraries.  Can do a pre-process merge.
+*    - Prevent schemas/chapters.  See multiple reaction libraries.
+*
+*  Creation Date:
+*
+*       01-Nov-1990
+*
+*  Authors:
+*
+*    Daren Krebsbach
+*    Shu Cheung
+*    Tito Autrey (rewritten based on others PL/I code)
+*
+*  Modification History, reverse chronological
+*
+* Date       Author     Modifcation Description
+*------------------------------------------------------------------------------
+* 14-Oct-96  Krebsbach  No longer store Trace filename in GTraceFile
+* 27-Sep-96  Krebsbach  1)  Encapsulated the search into a separate function,
+*                       2)  store run context in new structure RunStats_t,
+*                       3)  and allow run parameters to be specified in a file.
+* 27-Sep-95  Cheung     Modified the program and made it executable.
+*
+******************************************************************************/
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+#include "synchem.h"
+#include "debug.h"
+#include "synio.h"
+
+#ifndef _H_ARRAY_
+#include "array.h"
+#endif
+
+#ifndef _H_UTL_
+#include "utl.h"
+#endif
+
+#ifndef _H_TIMER_
+#include "timer.h"
+#endif
+
+#ifndef _H_SLING_
+#include "sling.h"
+#endif
+
+#ifndef _H_XTR_
+#include "xtr.h"
+#endif
+
+#ifndef _H_SLING2XTR_
+#include "sling2xtr.h"
+#endif
+
+#ifndef _H_PST_
+#include "pst.h"
+#endif
+
+#ifndef _H_AVLDICT_
+#include "avldict.h"
+#endif
+
+#ifndef _H_AVLINFO_
+#include "avlinfo.h"
+#endif
+
+#ifndef _H_AVLCOMP_
+#include "avlcomp.h"
+#endif
+
+#ifndef _H_REACTION_
+#include "reaction.h"
+#endif
+
+#ifndef _H_STATUS_
+#include "status.h"
+#endif
+
+#ifndef _H_STRATEGY_
+#include "strategy.h"
+#endif
+
+#ifndef _H_SEARCH_COVER_
+#include "search_cover.h"
+#endif
+
+#ifndef _H_RCB_
+#include "rcb.h"
+#endif
+
+#ifndef _H_SYN_SEARCH_
+#include "synsearch.h"
+#endif
+
+#ifndef _H_EXTERN_
+#define _GLOBAL_DEF_
+#include "extern.h"
+#undef _GLOBAL_DEF_
+#endif
+
+
+/****************************************************************************
+*
+*  Function Name:                 main
+*
+*    This is the SYNCHEM executive.  It starts, runs, and cleans up the
+*    whole search.
+*
+*  Implicit Inputs:
+*
+*    N/A
+*
+*  Implicit Outputs:
+*
+*    N/A
+*
+*  Return Values:
+*
+*    N/A
+*
+*  Side Effects:
+*
+*    Produces a synthesis in the trace file
+*    May call IO_Exit_Error
+*
+******************************************************************************/
+int main
+  (
+  int   argc,    /* The number of arguments on the command line */
+  char  **argv   /* Address of array of addresses of argument strings
+		    which are null-terminated */
+  )
+{
+  Compound_t    *cur_compound_p;             /* Goal compound */
+  char          *submitfile;                /* Submission file name */
+  Time_t         start_time;
+  char          *tracefile;
+
+  start_time = Syn_Time_Get (FALSE);
+
+  /*  See if a submission file name was given on the command line.  */
+  if (argc >= 3)
+    {
+    if (strcmp (*(argv + 1), "-f") == 0)
+      submitfile = *(argv + 2);
+    else
+      submitfile = NULL;
+    }
+  else
+    submitfile = NULL;
+
+  /* Initialization:  
+
+     - DEBUG
+     - SYNIO
+     - Tracing and debugging variables
+     - Run control parameters from submission file and/or status file
+
+  */
+
+  Debug_Init ();
+  Trace_Init ();
+  IO_Init ();
+
+  Rcb_Init (&GGoalRcb, FALSE);
+  Rcb_Load (&GGoalRcb, submitfile, TRUE);
+
+  if (Rcb_Flags_Restart_Get (&GGoalRcb) == TRUE)
+    {
+    /*  Reload submission file after reading the status file
+	to reflect changes to the stored run parameters.  Save
+	the username and date.
+    */
+    String_t           status_file;
+    String_t           username;
+    Time_t             date;
+
+    status_file = String_Copy (FileCB_FileStr_Get (
+      Rcb_IthFileCB_Get (&GGoalRcb, FCB_IND_STAT)));
+    username = String_Copy (Rcb_User_Get (&GGoalRcb));
+    date = Rcb_Date_Get (&GGoalRcb);
+    Rcb_Destroy (&GGoalRcb);
+    Status_File_Read ((char *) String_Value_Get (status_file), &GGoalRcb,
+      &GRunStats);
+    Rcb_Load (&GGoalRcb, submitfile, FALSE);
+    Rcb_Date_Put (&GGoalRcb, date);
+/*    String_Destroy (Rcb_User_Get (&GGoalRcb));  */
+    Rcb_User_Put (&GGoalRcb, username);
+    String_Destroy (status_file);
+    }
+  else
+    {
+    RunStats_Init (&GRunStats);
+    Strategy_Init (Rcb_Strategy_Get (&GGoalRcb), Rcb_NTCL_Get (&GGoalRcb));
+    }
+
+  Rcb_Dump (&GGoalRcb, &GStdOut);
+
+  /*****  Initialization done.  Start the environment setup. *******/
+
+  /* Environment setup should eventually include the following:
+     - Opening the trace file
+     - Opening the available compound library
+     - Opening the reaction library
+     - Setting up the functional group database
+  
+     Use /dev/null if the trace file is not to be saved.
+  */
+
+  if (Rcb_Flags_SaveTrace_Get (&GGoalRcb))
+    {
+    tracefile = (char *) String_Value_Get (FileCB_FileStr_Get (
+      Rcb_IthFileCB_Get (&GGoalRcb, FCB_IND_TRCE)));
+    if (Rcb_ChemistryTrace_Get (&GGoalRcb) < TL_RUNSTATS)
+      Rcb_ChemistryTrace_Put (&GGoalRcb, TL_RUNSTATS);
+    }
+  else
+    {
+#ifdef _WINNT_OS_
+#ifdef _WIN32
+    tracefile = "/dev/null";
+#else
+    tracefile = "NUL:";
+#endif
+#else
+#ifdef _CYGWIN_
+    tracefile = "NUL:";
+#else
+    tracefile = "/dev/null";
+#endif
+#endif
+    Rcb_ChemistryTrace_Put (&GGoalRcb, TL_NONE);
+    }
+
+  GTrace[DB_CHEMISTRY].options = Rcb_ChemistryTrace_Get (&GGoalRcb);
+  IO_Init_Files (tracefile, Rcb_Flags_Restart_Get (&GGoalRcb));
+  RunStats_Flags_TraceSaved_Put (&GRunStats, TRUE);
+
+  AvcLib_Init ((char *) String_Value_Get (FileCB_DirStr_Get ( 
+      Rcb_IthFileCB_Get (&GGoalRcb, FCB_IND_AVLC))), AVC_INIT_EXISTS);
+  React_Init (String_Value_Get (FileCB_DirStr_Get ( 
+      Rcb_IthFileCB_Get (&GGoalRcb, FCB_IND_RXNS))));
+  FuncGroups_Init (String_Value_Get (FileCB_DirStr_Get ( 
+      Rcb_IthFileCB_Get (&GGoalRcb, FCB_IND_FNGP))));
+
+  if (Rcb_Flags_SaveTrace_Get (&GGoalRcb))
+    Rcb_Dump (&GGoalRcb, &GTraceFile);
+
+
+  /*  If this is a new run, initialize the problem solving tree
+      (must be done after the functional groups are initialized).
+  */
+  if (Rcb_Flags_Restart_Get (&GGoalRcb) == FALSE 
+      && Rcb_Flags_Continue_Get (&GGoalRcb) == FALSE)
+    {
+    Sling_t        target_sling;               /* Goal sling */
+    SymTab_t      *symtab_p;                   /* Goal symbol table */
+    Xtr_t         *xtr_p;                      /* Goal XTR */
+
+    /* Form the canonical Sling_t and Xtr_t for the goal compound and 
+       add the hydrogen atoms.
+       - Do not _Destroy target_sling, it is preserved in the RCB
+       - Make sure it gets into the symbol table too
+       - Load the goal compound into the PST (initialize PST and symbol table)
+    */
+    target_sling = Rcb_Goal_Get (&GGoalRcb);
+
+    TRACE (R_NONE, DB_MAIN, TL_SELECT, (outbuf,
+       "Goal sling : %s", Sling_Name_Get (target_sling)));
+printf("Goal sling : %s", Sling_Name_Get (target_sling));
+    xtr_p = Sling2Xtr_PlusHydrogen (target_sling);
+    Xtr_Attr_ResonantBonds_Set (xtr_p);
+    Xtr_Name_Set (xtr_p, NULL);
+    target_sling = Name_Sling_Get (xtr_p, 
+       Rcb_Flags_StereoChemistry_Get (&GGoalRcb) == TRUE ? FALSE : TRUE);   
+
+    Xtr_Destroy (xtr_p);
+    xtr_p = Sling_CanonicalName2Xtr (target_sling);
+    cur_compound_p = Pst_Root_Set (xtr_p, target_sling);
+    symtab_p = PstComp_SymbolTable_Get (cur_compound_p);
+    SymTab_Merit_Initial_Put (symtab_p, SymTab_Merit_Main_Get (symtab_p));
+    Xtr_Destroy (xtr_p);
+
+    /*  Search coverage can only be performed on a new run.  */
+    if (Rcb_Flags_SearchCoverDev_Get (&GGoalRcb) 
+	  || Rcb_Flags_SearchCoverSlv_Get (&GGoalRcb))
+      SearchCoverTable_Load ((char *) String_Value_Get (FileCB_FileStr_Get ( 
+	  Rcb_IthFileCB_Get (&GGoalRcb, FCB_IND_COVR))), 
+	  Rcb_CoverPrct_Get (&GGoalRcb));
+    }
+
+  else
+    {
+    cur_compound_p = PstSubg_Son_Get (PstCB_Root_Get (
+      Pst_ControlHandle_Get ()));
+    PstCB_MainTarget_Put (Pst_ControlHandle_Get (),
+      SymTab_Sling_Get (PstComp_SymbolTable_Get (cur_compound_p)));
+    }
+
+  Time_Add (&start_time, Syn_Time_Get (TRUE));
+  Timer_Init_Put (RunStats_CumTimes_Get (&GRunStats), start_time, SET);
+
+  /* ****>   the synthesis search begins here   <*****/
+  NonGUI_Synchem_Search (cur_compound_p, &GGoalRcb, &GRunStats);
+
+  Destroy_SAtable_Attr_Xtr ();
+
+  /*  Save the status file.  */
+  if (Rcb_Flags_SaveStatus_Get (&GGoalRcb))
+    {
+    RunStats_Flags_StatusSaved_Put (&GRunStats, TRUE);
+    Status_File_Write ((char *)String_Value_Get (FileCB_FileStr_Get (
+      Rcb_IthFileCB_Get (&GGoalRcb, FCB_IND_STAT))), &GGoalRcb,
+      &GRunStats);
+    }
+
+  /*  Dump run status to trace file.  */
+  if (Rcb_Flags_SaveTrace_Get (&GGoalRcb))
+    {
+    RunStats_Dump (&GRunStats, &GTraceFile, 
+      (Rcb_RunType_Get (&GGoalRcb) >= RCB_TYPE_DIS_START));
+    }
+
+
+  Rcb_Destroy (&GGoalRcb);
+  RunStats_Destroy (&GRunStats);
+  IO_Close_Files ();
+
+  /* ****>   End of SynchemN Algorithm  <**** */
+
+ return(0);
+}
+/* End of main */
+/* End of SYNCHEM.C */

@@ -1,0 +1,32 @@
+Node Fields:
+	Accept a pair of variable node numbers which define the potential carbonium
+	ion under consideration.  These nodes are a pair of substituents on a carbon
+	atom whose electronic effects combine to determine the degree of stabilizing
+	electron donation.  (The reason two nodes are used in this definition arises
+	from its most common use with olefinic subgoal patterns to determine the
+	most likely point of addition.  Another instance of this condition applies
+	to a subgoal pattern containing a vicinal diol, where again, only two nodes
+	contribute to either carbonium candidate.)
+
+IS/IS NOT Menu (select one)
+
+Comparison Operator Menu (select one)
+
+Comparison Node Fields:
+	Select a pair of nodes whose electronic effects on a second carbonium ion
+	determine a stability to serve as a comparison reference for that of the
+	incipient carbonium ion affected by the pair of nodes entered above.
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur until
+	exit from the main posttransform test editor.  Note that any condition that
+	appears in the logic string of one or more tests may not be deleted (button
+	will be disabled) so long as any of those tests remain unmarked.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current condition.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

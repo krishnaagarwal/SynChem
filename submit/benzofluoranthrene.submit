@@ -1,0 +1,40 @@
+!  SYNCHEM job submission file.
+!  User:  SYNCHEMPC+gmiller      Date:  Wed Sep 29 15:24:11 1999
+!
+CompoundName          benzofluoranthrene
+Comment   11,12-benzofluoranthrene
+TargetCompound   C<C<C<C<C<CC<C<C<C<C<C</6-4<C<C<C<C</7-1/0</5
+MaxCycles             2000
+MaxRuntime            120
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  50
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            //D/SYNCHEM/data/avlcomp
+FunctionalGroupDir         //D/SYNCHEM/data/fg
+TemplateDir                //D/SYNCHEM/data/template
+ReactionLibDir             //D/SYNCHEM/data/rxnlib
+PathDir                    //D/SYNCHEM/data/pfile
+StatusDir                  //D/SYNCHEM/data/status
+SubmitDir                  //D/SYNCHEM/data/submit
+TraceDir                   //D/SYNCHEM/data/trace
+CoverDir                   //D/SYNCHEM/data/cover
+ForceSelectDir             //D/SYNCHEM/data/select
+CoverFile             benzofluoranthrene
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       benzofluoranthrene

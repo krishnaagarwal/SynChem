@@ -1,0 +1,40 @@
+!  SYNCHEM job submission file.
+!  User:  SYNCHEMPC+gmiller      Date:  Thu Nov  4 19:37:05 1999
+!
+CompoundName          squalene
+Comment   sesquiterpene intermediate between triglycerides and cholesterol in vivo
+TargetCompound   CC=CCCCH-1=CC-1CCCH-1=CC-1CCCH-1=CC-1C-13H-2C-2CCH-1=CC-1CCCH-1=CC-1C
+MaxCycles             1000
+MaxRuntime            120
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  5
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            //D/SYNCHEM/data/avlcomp
+FunctionalGroupDir         //D/SYNCHEM/data/fg
+TemplateDir                //D/SYNCHEM/data/template
+ReactionLibDir             //D/SYNCHEM/data/rxnlib
+PathDir                    //D/SYNCHEM/data/pfile
+StatusDir                  //D/SYNCHEM/data/status
+SubmitDir                  //D/SYNCHEM/data/submit
+TraceDir                   //D/SYNCHEM/data/trace
+CoverDir                   //D/SYNCHEM/data/cover
+ForceSelectDir             //D/SYNCHEM/data/select
+CoverFile             squalene
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       squalene

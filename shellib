@@ -1,0 +1,4 @@
+#!/bin/bash
+bash ./cashell draw2
+bash ./cashell shelley1
+bash ./cashell shelley2

@@ -1,0 +1,35 @@
+Condition List:
+	1) To edit an exising condition, click within the text of that condition.
+	   A window containing the editable contents of the condition will appear.
+	2) To create a new condition, click the appropriate condition type from the
+	   bottom of the list.  A window containing an editable condition of that
+	   type will appear.
+	3) Conditions marked for deletion from their respective editors will appear
+	   as " * * *   M A R K E D   F O R   D E L E T I O N   * * * ".
+
+Test List:
+	1) To edit an exising test, click within the text of that test.  A window
+	   containing the editable contents of the test will appear.
+	2) To create a new test, click on "<ADD TEST>" at the bottom of the list.
+	   A window containing an editable test will appear.
+	3) Tests marked for deletion from within the test editor will appear as
+	   " * * *   M A R K E D   F O R   D E L E T I O N   * * * ".
+
+Goal and Subgoal Patterns (displays the transform, optionally numbered, for reference
+	in constructing conditions)
+
+Exit and Update Buffer button (closes editor window and modifies schema posttransform
+	conditions and tests accordingly, including final removal of marked conditions
+	and tests and renumbering of those retained)
+
+Quit and Cancel button (closes editor window and leaves schema posttransform tests
+	unmodified)
+
+Pattern Node Symbols/Numbering By Conditions/Pattern Nodes Numbered button:
+	1) When the state of the button is "Pattern Node Symbols," no node numbers
+	   appear with the atoms in the drawings.
+	2) When the state is "Numbering By Conditions," only the nodes referenced by
+	   one or more conditions will be numbered by superscripts next to their
+	   respective atom positions.
+	3) When the state is "Pattern Nodes Numbered," all nodes (including hydrogens,
+	   which will be explicitly shown) will be numbered by superscripts.

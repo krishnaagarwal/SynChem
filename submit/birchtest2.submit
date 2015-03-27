@@ -1,0 +1,40 @@
+!  SYNCHEM job submission file.
+!  User:  SYNCHEMPC+gmiller      Date:  Tue Apr 11 16:18:24 2000
+!
+CompoundName          birchtest2
+Comment   retest of 1 2 25
+TargetCompound   CCC=CCC=O-1CC/2-5CC/0
+MaxCycles             100
+MaxRuntime            120
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  5
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            //D/SYNCHEM/testdata/avlcomp
+FunctionalGroupDir         //D/SYNCHEM/testdata/fg
+TemplateDir                //D/SYNCHEM/testdata/template
+ReactionLibDir             //D/SYNCHEM/testdata/rxnlib
+PathDir                    //D/SYNCHEM/testdata/pfile
+StatusDir                  //D/SYNCHEM/testdata/status
+SubmitDir                  //D/SYNCHEM/testdata/submit
+TraceDir                   //D/SYNCHEM/testdata/trace
+CoverDir                   //D/SYNCHEM/testdata/cover
+ForceSelectDir             //D/SYNCHEM/testdata/select
+CoverFile             birchtest2
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       birchtest2

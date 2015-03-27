@@ -1,0 +1,40 @@
+!  SYNCHEM job submission file.
+!  User:  SYNCHEMPC+gmiller      Date:  Fri Oct 13 16:04:23 2000
+!
+CompoundName          ceclor
+Comment   ceclor
+TargetCompound   CH-1NH-1C=O-1CNH-1H-2H-1C<C<C<C<C<C</11-10C=O-1NCC=O-1OH-3=CCSC/19-1H-1/0-4(Cl)
+MaxCycles             5000
+MaxRuntime            120
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  25
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            //D/SYNCHEM/testdata/tstavl
+FunctionalGroupDir         //D/SYNCHEM/testdata/fg
+TemplateDir                //D/SYNCHEM/testdata/template
+ReactionLibDir             //D/SYNCHEM/testdata/rxnlib
+PathDir                    //D/SYNCHEM/testdata/pfile
+StatusDir                  //D/SYNCHEM/testdata/status
+SubmitDir                  //D/SYNCHEM/testdata/submit
+TraceDir                   //D/SYNCHEM/testdata/trace
+CoverDir                   //D/SYNCHEM/testdata/cover
+ForceSelectDir             //D/SYNCHEM/testdata/select
+CoverFile             ceclor
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       ceclor

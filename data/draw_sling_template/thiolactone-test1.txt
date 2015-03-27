@@ -1,0 +1,5 @@
+SYNCHEMPC+gmiller
+Fri Jun  8 14:51:45 2001
+
+thiolactone-test1
+CC=O-1OH-3C-1CCH-1=CCCCC<C<COC-2<C<C<C</13-1/9-9H-1CH-1C=O-2/0

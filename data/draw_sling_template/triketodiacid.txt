@@ -1,0 +1,5 @@
+SYNCHEMPC+gmiller
+Sat Nov  6 00:17:05 1999
+
+triketodiacid
+CH-1CC=O-1OH-4CC=O-1CCH-1C=O-1OH-3CC=O-1C/0-3H-1CCC=O-1C

@@ -1,0 +1,5 @@
+SYNCHEMPC+gmiller
+Fri Aug  4 16:11:04 2000
+fails to find beta-lactam
+lactam-fail1
+CH-1SCNC=O-1CH-1NH-1H-2/3~H-4C-4C-1C

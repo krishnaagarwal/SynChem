@@ -1,0 +1,27 @@
+The ARNOD condition type is of limited usefulness on its own; however, used as a
+prescreen for the more sophisticated ARSTD, ARRAT, ARCET, and ARTIE, conditions,
+it enables the posttransform program module to bypass cases which the latter are
+as yet unprepared to handle with any degree of confidence.
+
+EXISTS/DOES NOT EXIST Menu (select one)
+
+Node Field (enter the node number of a carbon atom whose membership in a benzene
+	ring is to be determined)
+Note: While it may seem obvious at first glance that the pattern itself will determine
+	the result of this condition, it is possible, through the use of variable
+	bonds, to define a pattern that will match both isolated and fused aromatic
+	ring systems.
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur until
+	exit from the main posttransform test editor.  Note that any condition that
+	appears in the logic string of one or more tests may not be deleted (button
+	will be disabled) so long as any of those tests remain unmarked.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current condition.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

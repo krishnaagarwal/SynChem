@@ -1,0 +1,41 @@
+!  SYNCHEM job submission file.
+!  User:  SYNCHEMPC+gmiller      Date:  Wed Dec 13 14:20:10 2000
+!
+CompoundName          azaestroneME_test2
+Comment   test of circularity flagging and update fix
+
+TargetCompound   CC=O-1NH-1CCCCCC<C<COC-2<C<C<C</10-1CCC/0/6~H-2C-4H-1/7~H
+MaxCycles             1000
+MaxRuntime            120
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  25
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            //D/SYNCHEM/testdata/tstavl
+FunctionalGroupDir         //D/SYNCHEM/testdata/fg
+TemplateDir                //D/SYNCHEM/testdata/template
+ReactionLibDir             //D/SYNCHEM/testdata/rxnlib
+PathDir                    //D/SYNCHEM/testdata/pfile
+StatusDir                  //D/SYNCHEM/testdata/status
+SubmitDir                  //D/SYNCHEM/testdata/submit
+TraceDir                   //D/SYNCHEM/testdata/trace
+CoverDir                   //D/SYNCHEM/testdata/cover
+ForceSelectDir             //D/SYNCHEM/testdata/select
+CoverFile             azaestroneME_test2
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       azaestroneME_test2

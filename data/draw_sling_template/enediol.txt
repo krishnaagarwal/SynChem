@@ -1,0 +1,5 @@
+SYNCHEMPC+gmiller
+Thu Sep  7 15:37:51 2000
+test of keto-enol tautomerization
+enediol
+CCOH-2=COH-2C=O-1C/0

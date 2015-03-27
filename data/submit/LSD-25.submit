@@ -1,0 +1,41 @@
+!  SYNCHEM job submission file.
+!  User:  kka      Date:  Tue Feb 20 11:43:37 2007
+!
+CompoundName          LSD-25
+Comment   This synthesis is not really there - it's a hallucination!
+
+TargetCompound   CH-1C=O-1NCC-2CC-4CH-1=CCH-1NC-1C/0-3CCC<CNH-1C=/18-1H-3<C<C<C<C</19-1/11
+MaxCycles             1000
+MaxRuntime            120
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  5
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        False
+SaveTraceFile         False
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            ./data/avlcomp
+FunctionalGroupDir         ./data/fg
+TemplateDir                ./data/template
+ReactionLibDir             ./data/rxnlib
+PathDir                    ./data/pfile
+StatusDir                  ./data/status
+SubmitDir                  ./data/submit
+TraceDir                   ./data/trace
+CoverDir                   ./data/cover
+ForceSelectDir             ./data/select
+CoverFile             LSD-25
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       LSD-25

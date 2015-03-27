@@ -1,0 +1,5 @@
+SYNCHEMPC+gmiller
+Sat Nov  6 00:17:05 1999
+schema 54
+trihydroxydiketone
+CC=O-1CC-1C-1C-3C-1CCOH-2H-1CCCCH-1OH-2CH-1CCCOH-2H-1C-4/0-4H-1CC-1C=O-1CC-1C-1C-3C

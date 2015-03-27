@@ -1,0 +1,41 @@
+!  SYNCHEM job submission file.
+!  User:  synchem      Date:  Thu Jan  3 16:44:21 2002
+!
+CompoundName          azabenzofuran-Lilly-RC3
+Comment   
+
+TargetCompound   CC<C<N<C<C<COC=CH-1/5-2H-3</1-7C=O-1NH-1H
+MaxCycles             30000
+MaxRuntime            12000
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  25
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            /home/synchem/data/avlcomp
+FunctionalGroupDir         /home/synchem/data/fg
+TemplateDir                /home/synchem/data/template
+ReactionLibDir             /home/synchem/data/rxnlib
+PathDir                    /home/synchem/data/pfile
+StatusDir                  /home/synchem/data/status
+SubmitDir                  /home/synchem/data/submit
+TraceDir                   /home/synchem/data/trace
+CoverDir                   /home/synchem/data/cover
+ForceSelectDir             /home/synchem/data/select
+CoverFile             azabenzofuran-Lilly-RC3
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       azabenzofuran-Lilly-RC3

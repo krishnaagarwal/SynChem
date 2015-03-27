@@ -1,0 +1,5 @@
+SYNCHEMPC+gmiller
+Mon Jul 24 15:36:26 2000
+enol-keto tautomerization test
+enol_test
+CH-1COH-2=CH-1C=O-1CCH-1C=O-1C=CC/0/10-3OH-3H

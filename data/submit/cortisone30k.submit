@@ -1,0 +1,41 @@
+!  SYNCHEM job submission file.
+!  User:  gmiller      Date:  Thu Sep 13 13:24:34 2001
+!
+CompoundName          cortisone30k
+Comment   steroid on steroids
+
+TargetCompound   CC-1CC=O-1CCH-1CCCCC-1CCC=O-1C=/10-1H-5/5~H-6CH-1CCCOH-2C=O-1COH-4/0/20
+MaxCycles             30000
+MaxRuntime            10000
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  25
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            /cygdrive/d/SYNCHEM/data/avlcomp
+FunctionalGroupDir         /cygdrive/d/SYNCHEM/data/fg
+TemplateDir                /cygdrive/d/SYNCHEM/data/template
+ReactionLibDir             /cygdrive/d/SYNCHEM/data/rxnlib
+PathDir                    /cygdrive/d/SYNCHEM/data/pfile
+StatusDir                  /cygdrive/d/SYNCHEM/data/status
+SubmitDir                  /cygdrive/d/SYNCHEM/data/submit
+TraceDir                   /cygdrive/d/SYNCHEM/data/trace
+CoverDir                   /cygdrive/d/SYNCHEM/data/cover
+ForceSelectDir             /cygdrive/d/SYNCHEM/data/select
+CoverFile             cortisone30k
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       cortisone30k

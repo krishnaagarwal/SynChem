@@ -1,0 +1,20 @@
+Molecularity is typically used, for example, to constrain two-piece subgoal patterns
+to being implicitly connected, as for a cyclization reaction.
+
+IS/IS NOT Menu (select one)
+
+Molecularity field (enter appropriate one-digit number)
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur until
+	exit from the main posttransform test editor.  Note that any condition that
+	appears in the logic string of one or more tests may not be deleted (button
+	will be disabled) so long as any of those tests remain unmarked.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current condition.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

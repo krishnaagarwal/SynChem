@@ -1,0 +1,22 @@
+Dump of RCB
+  Directories:
+    Available Compounds:   ./data/avlcomp
+    Functional Groups:     ./data/fg
+    Reaction KB:           ./data/rxnlib
+    Paths:                 ./data/pfile
+    Status:                ./data/status
+    Submission:            ./data/submit
+    Template:              ./data/template
+    Trace:                 ./data/trace
+    Force Selection:       ./data/select
+    Search Space Cover:    ./data/cover
+  User name:      kka
+  Target name:    
+  Target sling:   
+  Comment:        
+  Date of run:    Thu Oct  8 14:16:44 2009
+  Max cycles:      1000       Max runtime:      120 minutes
+  Restart:        disabled   Background:       disabled
+  Tracing level:  1
+  Effort Dist:    enabled       NTCL:           25
+  Run type:  Sequential

@@ -1,0 +1,3 @@
+#!/bin/bash
+bash ./compile $1.c
+bash ./archive libshelley.a $1.o

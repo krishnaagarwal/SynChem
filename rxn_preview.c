@@ -1,0 +1,1026 @@
+/******************************************************************************
+*
+*  Copyright (C) 1995, Synchem Group at SUNY-Stony Brook, Daren Krebsbach
+*
+*  Module Name:                     RXN_PREVIEW.C
+*
+*    This module defines the routines needed to handle the Target Reaction
+*    Preview Dialogs.  
+*
+*  Creation Date:
+*
+*    10-Jun-1995
+*
+*  Authors:
+*
+*    Daren Krebsbach
+*
+*  Routines:
+*
+*    RxnPreV_Clear
+*    RxnPreV_Create
+*    RxnPreV_Destroy
+*    RxnPreV_RxnName_Redo
+*    RxnPreV_Update
+*
+*  Callback Routines:
+*
+*    RxnPreV_ResetPB_CB
+*
+*  Static Callback Routines:
+*
+*    SRxnPV_DismissPB_CB
+*    SRxnPV_MolDA_RszExp_CB
+*
+*  Modification History, reverse chronological
+*
+* Date       Author     Modification Description
+*------------------------------------------------------------------------------
+*
+*
+******************************************************************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+
+#include <Xm/DialogS.h>
+#include <Xm/DrawingA.h>
+#include <Xm/Label.h>
+#include <Xm/PushB.h>
+#include <Xm/Form.h>
+
+#ifdef FALSE
+#undef FALSE
+#endif
+#ifdef TRUE
+#undef TRUE
+#endif
+
+#include "synchem.h"
+#include "debug.h"
+#include "synio.h"
+
+#ifndef _H_UTL_
+#include "utl.h"
+#endif
+
+#ifndef _H_SLING_
+#include "sling.h"
+#endif
+
+#ifndef _H_XTR_
+#include "xtr.h"
+#endif
+
+#ifndef _H_SLING2XTR_
+#include "sling2xtr.h"
+#endif
+
+#ifndef _H_PST_
+#include "pst.h"
+#endif
+
+#ifndef _H_APP_RESRC_
+#include "app_resrc.h"
+#endif
+
+#ifndef _H_DSP_
+#include "dsp.h"
+#endif
+
+#ifndef _H_MOL_VIEW_
+#include "mol_view.h"
+#endif
+
+#ifndef _H_RXN_PREVIEW_
+#include "rxn_preview.h"
+#endif
+
+#ifndef _H_PST_VIEW_
+#include "pst_view.h"
+#endif
+
+#ifndef _H_SYN_VIEW_
+#include "syn_view.h"
+#endif
+
+/* Callback Routine Prototypes */
+
+static void SRxnPV_DismissPB_CB    (Widget, XtPointer, XtPointer);
+static void SRxnPV_MolDA_RszExp_CB (Widget, XtPointer, XtPointer);
+
+
+/****************************************************************************
+*
+*  Function Name:                 RxnPreV_Clear
+*
+*    This routine clears the labels and drawing of previewer.
+*
+*
+*  Implicit Inputs:
+*
+*    GSynAppR, SynView application resources.
+*
+*  Implicit Outputs:
+*
+*    N/A
+*
+*  Return Values:
+*
+*    N/A
+*
+*  Side Effects:
+*
+*    Frees the molecule, if present.
+*
+******************************************************************************/
+void RxnPreV_Clear
+  (
+  RxnPreView_t  *rpv_p
+  )
+{
+  XmString       new_lbl;
+
+  new_lbl = XmStringCreateLtoR (" ", XmFONTLIST_DEFAULT_TAG);
+  XtVaSetValues (RxnPreV_CmpNumLbl_Get (rpv_p),
+    XmNrecomputeSize, False,
+    XmNlabelString, new_lbl, 
+    NULL);
+  XmStringFree (new_lbl);
+
+  new_lbl = XmStringCreateLtoR (" ", XmFONTLIST_DEFAULT_TAG);
+    XtVaSetValues (RxnPreV_NameLbl_Get (rpv_p),
+    XmNrecomputeSize, False,
+    XmNlabelString, new_lbl, 
+    NULL);
+  XmStringFree (new_lbl);
+
+  new_lbl = XmStringCreateLtoR (" ", XmFONTLIST_DEFAULT_TAG);
+    XtVaSetValues (RxnPreV_SGMrtLbl_Get (rpv_p),
+    XmNrecomputeSize, False,
+    XmNlabelString, new_lbl, 
+    NULL);
+  XmStringFree (new_lbl);
+
+  if (RxnPreV_Mol_Get (rpv_p) != NULL)
+    {
+    free_Molecule (RxnPreV_Mol_Get (rpv_p));
+    RxnPreV_Mol_Put (rpv_p, NULL);
+    }
+
+  XClearWindow (XtDisplay (RxnPreV_MolDA_Get (rpv_p)), 
+    XtWindow (RxnPreV_MolDA_Get (rpv_p)));
+
+  return ;
+}
+/*  End of RxnPreV_Clear  */
+
+
+/****************************************************************************
+*
+*  Function Name:                 RxnPreV_Create
+*
+*    This routine creates a Target Reaction Preview Dialog.  On creation,
+*    the flask pixmap is displayed in the drawing area.
+*
+*
+*  Implicit Inputs:
+*
+*    GSynAppR, SynView application resources.
+*
+*  Implicit Outputs:
+*
+*    N/A
+*
+*  Return Values:
+*
+*    N/A
+*
+*  Side Effects:
+*
+*    None.
+*
+******************************************************************************/
+void RxnPreV_Create
+  (
+  Widget         parent,
+  RxnPreView_t  *rpv_p,
+  Pixel          form_bg
+  )
+{
+  ScreenAttr_t  *scra_p;                  /* Screen Attritbutes */
+  XmString       lbl_str;
+  Widget         formdg;
+  Dimension      name_ht, num_ht, mrt_ht, pb_ht;
+  Dimension      width, height;
+
+
+  scra_p = SynAppR_ScrnAtrb_Get (&GSynAppR);
+  if (AppDim_AppSize_Get (&GAppDim) & SAR_APPSIZE_HALF_WD)
+    {
+    width = (Dimension)((Screen_Width_Get (scra_p) - SWS_APPSHELL_OFFX) >> 3)
+      + (Dimension)((Screen_Width_Get (scra_p) - SWS_APPSHELL_OFFX) >> 4);
+    height = (Dimension)((Screen_Height_Get (scra_p) - SWS_APPSHELL_OFFY) >> 2);
+    }
+  else
+    {
+    width = (Dimension)((Screen_Width_Get (scra_p) - SWS_APPSHELL_OFFX) >> 2);
+    height = (Dimension)((Screen_Height_Get (scra_p) - SWS_APPSHELL_OFFY) / 3);
+    }
+
+  /* Create the dialog form, drawing area, labels and  push buttons.  */
+  formdg = XmCreateFormDialog (parent, "RxnPreV", NULL, 0);
+  XtVaSetValues (formdg,
+    XmNdialogStyle,    XmDIALOG_MODELESS, 
+    XmNlabelFontList,  SynAppR_FontList_Get (&GSynAppR),
+    XmNbuttonFontList, SynAppR_FontList_Get (&GSynAppR),
+    XmNtextFontList,   SynAppR_FontList_Get (&GSynAppR),
+    XmNresizePolicy,   XmRESIZE_NONE,
+    XmNresizable,      False,
+    XmNautoUnmanage,   False, 
+    XmNbackground,     form_bg,
+    XmNforeground, SynAppR_IthClrPx_Get (&GSynAppR, SAR_CLRI_BLACK),
+   NULL);
+  RxnPreV_FormDlg_Put (rpv_p, formdg);
+
+  lbl_str = XmStringCreateLtoR (RPV_LABEL_NAME, XmFONTLIST_DEFAULT_TAG);
+  name_ht = XmStringHeight (SynAppR_FontList_Get (&GSynAppR), lbl_str);
+  RxnPreV_NameLbl_Put (rpv_p, XtVaCreateWidget ("RxnPreVLR", 
+    xmLabelWidgetClass,  formdg, 
+    XmNlabelType,        XmSTRING,
+    XmNlabelString,      lbl_str, 
+    XmNheight,           name_ht * RPV_LABEL_NAME_LINES, 
+    XmNalignment,        XmALIGNMENT_BEGINNING,
+    XmNrecomputeSize,    False,
+      NULL));
+  XmStringFree (lbl_str);
+
+  lbl_str = XmStringCreateLtoR (RPV_LABEL_CMPNUM, XmFONTLIST_DEFAULT_TAG);
+  num_ht = XmStringHeight (SynAppR_FontList_Get (&GSynAppR), lbl_str);
+  RxnPreV_CmpNumLbl_Put (rpv_p, XtVaCreateWidget ("RxnPreVLCN", 
+    xmLabelWidgetClass,  formdg, 
+    XmNlabelType,        XmSTRING,
+    XmNlabelString,      lbl_str, 
+    XmNalignment,        XmALIGNMENT_BEGINNING,
+    XmNrecomputeSize,    False,
+      NULL));
+  XmStringFree (lbl_str);
+
+  lbl_str = XmStringCreateLtoR (RPV_LABEL_SGMRT, XmFONTLIST_DEFAULT_TAG);
+  mrt_ht = XmStringHeight (SynAppR_FontList_Get (&GSynAppR), lbl_str);
+  RxnPreV_SGMrtLbl_Put (rpv_p, XtVaCreateWidget ("RxnPreVLSGM", 
+    xmLabelWidgetClass,  formdg, 
+    XmNlabelType,        XmSTRING,
+    XmNlabelString,      lbl_str, 
+    XmNalignment,        XmALIGNMENT_BEGINNING,
+    XmNrecomputeSize,    False,
+      NULL));
+  XmStringFree (lbl_str);
+
+  lbl_str = XmStringCreateLtoR (RPV_PUSHB_RESET, SAR_FONTTAG_FIXED_SML);
+  pb_ht = XmStringHeight (SynAppR_FontList_Get (&GSynAppR), lbl_str);
+  RxnPreV_ResetPB_Put (rpv_p, XtVaCreateWidget ("RxnPreVPB", 
+    xmPushButtonWidgetClass, formdg,
+    XmNlabelType,            XmSTRING,
+    XmNlabelString,          lbl_str, 
+    XmNshowAsDefault,        False,
+    XmNbackground,           form_bg,
+    XmNforeground, SynAppR_IthClrPx_Get (&GSynAppR, SAR_CLRI_BLACK),
+    XmNmarginHeight,         0,
+    XmNmarginWidth,          0,
+    NULL));
+  XmStringFree (lbl_str);
+  XtAddCallback (RxnPreV_ResetPB_Get (rpv_p), XmNactivateCallback, 
+    RxnPreV_ResetPB_CB, (XtPointer) rpv_p);
+
+  lbl_str = XmStringCreateLtoR (RPV_PUSHB_DISMISS, SAR_FONTTAG_FIXED_SML);
+  RxnPreV_DismissPB_Put (rpv_p, XtVaCreateWidget ("RxnPreVPB", 
+    xmPushButtonWidgetClass, formdg,
+    XmNlabelType,            XmSTRING,
+    XmNlabelString,          lbl_str, 
+    XmNshowAsDefault,        False,
+    XmNbackground,           form_bg,
+    XmNforeground, SynAppR_IthClrPx_Get (&GSynAppR, SAR_CLRI_BLACK),
+    XmNmarginHeight,         0,
+    XmNmarginWidth,          0,
+    NULL));
+  XmStringFree (lbl_str);
+  XtAddCallback (RxnPreV_DismissPB_Get (rpv_p), XmNactivateCallback, 
+    SRxnPV_DismissPB_CB, (XtPointer) rpv_p);
+
+  RxnPreV_RemHt_Put (rpv_p, 3 * name_ht + num_ht + mrt_ht + pb_ht 
+    + 5 * AppDim_SepSmall_Get (&GAppDim) 
+    + 2 * AppDim_MargMol_Get (&GAppDim));
+  RxnPreV_RemWd_Put (rpv_p, 2 * AppDim_SepSmall_Get (&GAppDim) 
+    + 2 * AppDim_MargMol_Get (&GAppDim));
+  RxnPreV_DAHt_Put (rpv_p, height - RxnPreV_RemHt_Get (rpv_p));
+  RxnPreV_DAWd_Put (rpv_p, width - RxnPreV_RemWd_Get (rpv_p));
+  RxnPreV_DfltHt_Put (rpv_p, RxnPreV_DAHt_Get (rpv_p));
+  RxnPreV_DfltWd_Put (rpv_p, RxnPreV_DAWd_Get (rpv_p));
+
+  RxnPreV_MolDA_Put (rpv_p, XtVaCreateWidget ("RxnPreVDA", 
+    xmDrawingAreaWidgetClass,  formdg, 
+    XmNbackground, SynAppR_IthClrPx_Get (&GSynAppR, SAR_CLRI_WHITE),
+    XmNforeground, SynAppR_IthClrPx_Get (&GSynAppR, SAR_CLRI_BLACK),
+    XmNmarginHeight, 0,
+    XmNmarginWidth, 0,
+    XmNheight, RxnPreV_DAHt_Get (rpv_p),
+    XmNwidth, RxnPreV_DAWd_Get (rpv_p),
+      NULL));
+  XtAddCallback (RxnPreV_MolDA_Get (rpv_p), XmNresizeCallback, 
+    SRxnPV_MolDA_RszExp_CB, (XtPointer) rpv_p);
+  XtAddCallback (RxnPreV_MolDA_Get (rpv_p), XmNexposeCallback, 
+    SRxnPV_MolDA_RszExp_CB, (XtPointer) rpv_p);
+
+
+
+  /*  Set the proper attachments.  */
+
+  XtVaSetValues (RxnPreV_NameLbl_Get (rpv_p),
+    XmNtopOffset, AppDim_SepSmall_Get (&GAppDim),
+    XmNtopAttachment, XmATTACH_FORM,
+    XmNbottomAttachment, XmATTACH_NONE,
+    XmNleftOffset, AppDim_SepSmall_Get (&GAppDim),
+    XmNleftAttachment, XmATTACH_FORM,
+    XmNrightOffset, AppDim_SepSmall_Get (&GAppDim),
+    XmNrightAttachment, XmATTACH_FORM,
+    NULL);
+
+  XtVaSetValues (RxnPreV_CmpNumLbl_Get (rpv_p),
+    XmNtopOffset, 0,
+    XmNtopAttachment, XmATTACH_WIDGET,
+    XmNtopWidget, RxnPreV_NameLbl_Get (rpv_p),
+    XmNbottomAttachment, XmATTACH_NONE,
+    XmNleftOffset, AppDim_SepSmall_Get (&GAppDim),
+    XmNleftAttachment, XmATTACH_FORM,
+    XmNrightOffset, AppDim_SepSmall_Get (&GAppDim),
+    XmNrightAttachment, XmATTACH_FORM,
+    NULL);
+
+  XtVaSetValues (RxnPreV_SGMrtLbl_Get (rpv_p),
+    XmNtopOffset, 0,
+    XmNtopAttachment, XmATTACH_WIDGET,
+    XmNtopWidget, RxnPreV_CmpNumLbl_Get (rpv_p),
+    XmNbottomAttachment, XmATTACH_NONE,
+    XmNleftOffset, AppDim_SepSmall_Get (&GAppDim),
+    XmNleftAttachment, XmATTACH_FORM,
+    XmNrightOffset, AppDim_SepSmall_Get (&GAppDim),
+    XmNrightAttachment, XmATTACH_FORM,
+    NULL);
+
+  XtVaSetValues (RxnPreV_MolDA_Get (rpv_p),
+    XmNtopOffset, AppDim_SepSmall_Get (&GAppDim),
+    XmNtopAttachment, XmATTACH_WIDGET,
+    XmNtopWidget, RxnPreV_SGMrtLbl_Get (rpv_p),
+    XmNbottomOffset, AppDim_SepSmall_Get (&GAppDim),
+    XmNbottomAttachment, XmATTACH_WIDGET,
+    XmNbottomWidget, RxnPreV_ResetPB_Get (rpv_p),
+    XmNleftOffset, AppDim_SepSmall_Get (&GAppDim),
+    XmNleftAttachment, XmATTACH_FORM,
+    XmNrightOffset, AppDim_SepSmall_Get (&GAppDim),
+    XmNrightAttachment, XmATTACH_FORM,
+    NULL);
+
+  XtVaSetValues (RxnPreV_ResetPB_Get (rpv_p),
+    XmNtopAttachment, XmATTACH_NONE,
+    XmNbottomOffset, AppDim_SepSmall_Get (&GAppDim),
+    XmNbottomAttachment, XmATTACH_FORM,
+    XmNleftOffset, AppDim_SepSmall_Get (&GAppDim),
+    XmNleftAttachment, XmATTACH_FORM,
+    XmNrightPosition, 33,
+    XmNrightAttachment, XmATTACH_POSITION,
+    NULL);
+
+  XtVaSetValues (RxnPreV_DismissPB_Get (rpv_p),
+    XmNtopOffset, 0,
+    XmNtopWidget, RxnPreV_ResetPB_Get (rpv_p),
+    XmNtopAttachment, XmATTACH_OPPOSITE_WIDGET,
+    XmNbottomOffset, 0,
+    XmNbottomWidget, RxnPreV_ResetPB_Get (rpv_p),
+    XmNbottomAttachment, XmATTACH_OPPOSITE_WIDGET,
+    XmNleftPosition, 67,
+    XmNleftAttachment, XmATTACH_POSITION,
+    XmNrightOffset, AppDim_SepSmall_Get (&GAppDim),
+    XmNrightAttachment, XmATTACH_FORM,
+    NULL);
+
+  XtManageChild (RxnPreV_ResetPB_Get (rpv_p));
+  XtManageChild (RxnPreV_DismissPB_Get (rpv_p));
+  XtManageChild (RxnPreV_NameLbl_Get (rpv_p));
+  XtManageChild (RxnPreV_CmpNumLbl_Get (rpv_p));
+  XtManageChild (RxnPreV_SGMrtLbl_Get (rpv_p));
+  XtManageChild (RxnPreV_MolDA_Get (rpv_p));
+
+  /*  Initialize other variables.  Calculate width of a character 
+      (in pixels) of the reaction name label and determine number of
+      characters per line.  */
+
+  lbl_str = XmStringCreateLtoR ("W", XmFONTLIST_DEFAULT_TAG);
+  RxnPreV_CharWd_Put (rpv_p, XmStringWidth (SynAppR_FontList_Get (&GSynAppR),
+   lbl_str));
+  XmStringFree (lbl_str);
+  RxnPreV_LineWd_Put (rpv_p, (U8_t) (RxnPreV_DfltWd_Get (rpv_p) 
+    / RxnPreV_CharWd_Get (rpv_p)));
+
+  RxnPreV_RxnName_Put (rpv_p, String_Create (RPV_LABEL_NAME, 0)); 
+  RxnPreV_IsNew_Put (rpv_p, TRUE);
+  RxnPreV_Mol_Put (rpv_p, NULL);
+
+  return ;
+}
+/*  End of RxnPreV_Create  */
+
+
+/****************************************************************************
+*
+*  Function Name:                 RxnPreV_Destroy
+*
+*    This routine.
+*
+*
+*  Implicit Inputs:
+*
+*    N/A
+*
+*  Implicit Outputs:
+*
+*    N/A
+*
+*  Return Values:
+*
+*    N/A
+*
+*  Side Effects:
+*
+*    N/A
+*
+******************************************************************************/
+void RxnPreV_Destroy
+  (
+  RxnPreView_t *rpv_p
+  )
+{
+  if (String_Alloc_Get (RxnPreV_RxnName_Get (rpv_p)))
+    String_Destroy (RxnPreV_RxnName_Get (rpv_p));
+  
+  if (RxnPreV_Mol_Get (rpv_p) != NULL)
+    {
+    free_Molecule (RxnPreV_Mol_Get (rpv_p));
+    RxnPreV_Mol_Put (rpv_p, NULL);
+    }
+
+  return ;
+}
+/*  End of RxnPreV_Destroy  */
+
+
+/****************************************************************************
+*
+*  Function Name:                 RxnPreV_ResetPB_CB
+*
+*    This routine resets the reaction preview dialog to its original size.
+*    It does not reposition the dialog to its original position.  In order
+*    to reset the size based on the size of the drawing area, the resize
+*    policy of the dialog is temporarily set to XmRESIZE_ANY.
+*
+*
+*  Implicit Inputs:
+*
+*    GSynAppR, SynView application resources.
+*
+*  Implicit Outputs:
+*
+*    N/A
+*
+*  Return Values:
+*
+*    N/A
+*
+*  Side Effects:
+*
+*    N/A
+*
+******************************************************************************/
+void RxnPreV_ResetPB_CB
+  (
+  Widget    w, 
+  XtPointer client_p, 
+  XtPointer call_p  
+  )
+{
+  RxnPreView_t    *rpv_p;
+  Dsp_Molecule_t  *mol_p;
+  Dsp_Atom_t      *atom_p;
+  U16_t            atm_i;
+  Dimension        x_off, y_off;
+
+  rpv_p = (RxnPreView_t *) client_p;
+  if (rpv_p == NULL)
+    return;
+
+  XtVaSetValues (RxnPreV_FormDlg_Get (rpv_p),
+    XmNresizePolicy, XmRESIZE_ANY,
+    NULL);
+
+  XtVaSetValues (RxnPreV_MolDA_Get (rpv_p),
+    XmNheight, RxnPreV_DfltHt_Get (rpv_p),
+    XmNwidth, RxnPreV_DfltWd_Get (rpv_p),
+    NULL);
+
+  XtVaSetValues (RxnPreV_FormDlg_Get (rpv_p),
+    XmNresizePolicy, XmRESIZE_NONE,
+    NULL);
+
+  /*  Unscale the molecule before scaling it with new da size.  */
+  mol_p = RxnPreV_Mol_Get (rpv_p);
+  if (mol_p != NULL)
+    {
+    x_off = ((Dimension) (RxnPreV_DAWd_Get (rpv_p) 
+      - (mol_p->scale * mol_p->molw) + 0.5)) >> 1;
+    y_off = ((Dimension) (RxnPreV_DAHt_Get (rpv_p) 
+      - (mol_p->scale * mol_p->molh) + 0.5)) >> 1;
+    atom_p = mol_p->atoms;
+    for (atm_i = 0; atm_i < mol_p->natms; atm_i++)
+      {
+      atom_p->x = (int) (((atom_p->x - x_off) / mol_p->scale) + 0.5);
+      atom_p->y = (int) (((atom_p->y - y_off) / mol_p->scale) + 0.5);
+      atom_p++;
+      }
+
+    mol_p->scale = 1.0;
+    Mol_Scale (RxnPreV_Mol_Get (rpv_p), RxnPreV_DfltHt_Get (rpv_p), 
+      RxnPreV_DfltWd_Get (rpv_p));
+    }
+
+  RxnPreV_DAHt_Put (rpv_p, RxnPreV_DfltHt_Get (rpv_p));
+  RxnPreV_DAWd_Put (rpv_p, RxnPreV_DfltWd_Get (rpv_p));
+  RxnPreV_LineWd_Put (rpv_p, (U8_t) (RxnPreV_DAWd_Get (rpv_p)
+    / RxnPreV_CharWd_Get (rpv_p)));
+
+  return ;
+}
+/*  End of RxnPreV_ResetPB_CB  */
+
+
+/****************************************************************************
+*
+*  Function Name:                 RxnPreV_RxnName_Redo
+*
+*    Modify the reaction name string (by inserting/removing line breaks)
+*    so that the name fits in the label, and update the reaction name label.
+*    This routine is called when a new reaction named needs to be displayed,
+*    and after window resizing events.
+*      
+*
+*
+*  Implicit Inputs:
+*
+*    N/A
+*
+*  Implicit Outputs:
+*
+*    N/A
+*
+*  Return Values:
+*
+*    N/A
+*
+*  Side Effects:
+*
+*    N/A
+*
+******************************************************************************/
+void RxnPreV_RxnName_Redo
+  (
+  RxnPreView_t  *rpv_p,
+  char          *font_tag
+  )
+{
+  char          *rxn_name;
+  char          *brk_p;
+  char          *lka_p;
+  U8_t           ch_i;
+  U8_t           ch_mx;
+  U8_t           ln_i;
+  XmString       new_lbl;
+
+  if (rpv_p == NULL)
+    return;
+
+  /*  First check to see whether the string is empty--if so
+      assume the reaction has no name.  Otherwise, break the 
+      string into smaller substrings that will fit the length
+      of the label.
+  */
+  if (String_Length_Get (RxnPreV_RxnName_Get (rpv_p)) > 0)
+    {
+    rxn_name = (char *) String_Value_Get (RxnPreV_RxnName_Get (rpv_p));
+    ch_mx = RxnPreV_LineWd_Get (rpv_p);
+    lka_p = rxn_name;
+    brk_p = NULL;
+    ch_i = 0;
+    ln_i = 0;
+    while (ln_i < RPV_LABEL_NAME_LINES - 1)
+      {
+      while (ch_i < ch_mx && *lka_p)
+        {
+        if (*lka_p == '\n')  *lka_p = ' ';
+        if (*lka_p == ' ')    brk_p = lka_p;
+        lka_p++;
+        ch_i++;
+        }
+
+      if (!*lka_p)  
+        {
+        ln_i = RPV_LABEL_NAME_LINES;
+        }
+      else
+        {
+        if (brk_p != NULL)
+          {
+          *brk_p = '\n';
+          lka_p = brk_p + 1;
+          brk_p = NULL;
+          ch_i = 0;
+          ln_i++;
+          }
+
+        /* Got to chop the line losing a character.  Oh well.  */
+        else              
+          {
+          *lka_p = '\n';
+          lka_p = lka_p + 1;
+          brk_p = NULL;
+          ch_i = 0;
+          ln_i++;
+          }
+        }
+
+      }
+
+    new_lbl = XmStringCreateLtoR (rxn_name, font_tag);
+    XtVaSetValues (RxnPreV_NameLbl_Get (rpv_p),
+      XmNrecomputeSize, False,
+      XmNlabelString, new_lbl, 
+      NULL);
+    XmStringFree (new_lbl);
+    }
+
+  else
+    {
+    new_lbl = XmStringCreateLtoR (RPV_LABEL_NONAMEWARN, font_tag);
+    XtVaSetValues (RxnPreV_NameLbl_Get (rpv_p),
+      XmNrecomputeSize, False,
+      XmNlabelString, new_lbl, 
+      NULL);
+    XmStringFree (new_lbl);
+    }
+
+  return ;
+}
+/*  End of RxnPreV_RxnName_Redo  */
+
+
+/****************************************************************************
+*
+*  Function Name:                 RxnPreV_Update
+*
+*    Update the reaction preview window:
+*      -  If compound is not null, then
+*         +  draw the new compound molecule.
+*         +  construct compound number string
+*         +  update compound number label
+*         +  construct subgoal merit string
+*         +  update subgoal merit label
+*      -  If redo reaction name string, then
+*         +  modify reaction name string
+*         +  update reaction name label
+*      
+*
+*
+*  Implicit Inputs:
+*
+*    GSynAppR, SynView application resources.
+*
+*  Implicit Outputs:
+*
+*    N/A
+*
+*  Return Values:
+*
+*    N/A
+*
+*  Side Effects:
+*
+*    N/A
+*
+******************************************************************************/
+void RxnPreV_Update
+  (
+  RxnPreView_t  *rpv_p, 
+  Compound_t    *kid_p,
+  Boolean_t      new_sg
+  )
+{
+  SymTab_t      *stab_p;
+  Xtr_t         *xtr_p;
+  Sling_t        temp_sling;
+
+
+  if (rpv_p == NULL || kid_p == NULL)
+    return;
+
+  /*  Update labels, if necessary.  */
+  if (new_sg)
+    {
+    /* Get the parent compound number and the kid compound numbers.  
+       Construct the new compound label.
+    */
+    Compound_t    *cmp_p;
+    Subgoal_t     *sgl_p;
+    XmString       new_lbl;
+    char           buff[RPV_LABEL_BUFLEN]; 
+    char          *buf_p;
+
+    buf_p = buff;
+    sgl_p = PstComp_Father_Get (kid_p);
+    if (PstSubg_Level_Get (sgl_p) == 0)
+      {
+      stab_p = PstComp_SymbolTable_Get (kid_p);
+      sprintf (buf_p, "%1lu", SymTab_Index_Get (stab_p));
+
+      new_lbl = XmStringCreateLtoR (buff, XmFONTLIST_DEFAULT_TAG);
+      XtVaSetValues (RxnPreV_CmpNumLbl_Get (rpv_p),
+        XmNrecomputeSize, False,
+        XmNlabelString, new_lbl, 
+        NULL);
+      XmStringFree (new_lbl);
+
+      sprintf (buff, "%s%1d", RPV_LABEL_CMPMRT,
+        (SymTab_Merit_Solved_Get (stab_p) != COMP_MERIT_INIT)
+        ? SymTab_Merit_Solved_Get (stab_p) : SymTab_Merit_Main_Get (stab_p));
+
+      new_lbl = XmStringCreateLtoR (buff, XmFONTLIST_DEFAULT_TAG);
+      XtVaSetValues (RxnPreV_SGMrtLbl_Get (rpv_p),
+        XmNrecomputeSize, False,
+        XmNlabelString, new_lbl, 
+        NULL);
+      XmStringFree (new_lbl);
+      }
+
+    else
+      {
+      stab_p = PstComp_SymbolTable_Get (PstSubg_Father_Get (sgl_p));
+      sprintf (buf_p, "%1lu%s", SymTab_Index_Get (stab_p),
+        RPV_LABEL_CMPN_ARRW);
+      buf_p += strlen (buf_p);
+
+      /*  Get the kid compound numbers by going up and coming back down to 
+          make sure we get them all.  
+      */
+      cmp_p = PstSubg_Son_Get (PstComp_Father_Get (kid_p));
+      while (cmp_p != NULL)
+        {
+        stab_p = PstComp_SymbolTable_Get (cmp_p);
+        sprintf (buf_p, "%1lu%s", SymTab_Index_Get (stab_p), 
+          RPV_LABEL_CMPN_PLUS);
+        buf_p += strlen (buf_p);
+        cmp_p = PstComp_Brother_Get (cmp_p);
+        }
+
+      /*  Back up over last plus and terminate strings.  */
+      *(buf_p - 3) = '\0';
+
+      new_lbl = XmStringCreateLtoR (buff, XmFONTLIST_DEFAULT_TAG);
+      XtVaSetValues (RxnPreV_CmpNumLbl_Get (rpv_p),
+        XmNrecomputeSize, False,
+        XmNlabelString, new_lbl, 
+        NULL);
+      XmStringFree (new_lbl);
+
+      sprintf (buff, "%s%1d", RPV_LABEL_SGMRT,
+        (PstSubg_Merit_Solved_Get (sgl_p) != SUBG_MERIT_INIT)
+        ? PstSubg_Merit_Solved_Get (sgl_p) : PstSubg_Merit_Main_Get (sgl_p));
+
+      new_lbl = XmStringCreateLtoR (buff, XmFONTLIST_DEFAULT_TAG);
+      XtVaSetValues (RxnPreV_SGMrtLbl_Get (rpv_p),
+        XmNrecomputeSize, False,
+        XmNlabelString, new_lbl, 
+        NULL);
+      XmStringFree (new_lbl);
+      }
+
+    RxnPreV_RxnName_Redo (rpv_p, XmFONTLIST_DEFAULT_TAG);
+    }
+
+  stab_p = PstComp_SymbolTable_Get (kid_p);
+  temp_sling = Sling_CopyTrunc (SymTab_Sling_Get (stab_p));
+  xtr_p = Sling2Xtr (temp_sling);
+  if (RxnPreV_Mol_Get (rpv_p) != NULL)
+    free_Molecule (RxnPreV_Mol_Get (rpv_p));
+ 
+  RxnPreV_Mol_Put (rpv_p, Xtr2Dsp (xtr_p));
+
+  Xtr_Destroy (xtr_p);
+  if (!dsp_Shelley (RxnPreV_Mol_Get (rpv_p)))
+    {
+    fprintf (stderr, 
+      "\nRxnPreV_Update:  unable to calculate coords for molecule.\n");
+    fprintf(stderr, "Sling:%s\n",Sling2String(temp_sling));//kka
+    //free_Molecule (RxnPreV_Mol_Get (rpv_p));//kka
+    //RxnPreV_Mol_Put (rpv_p, NULL);//kka
+    }
+  Sling_Destroy (temp_sling);
+  Mol_Scale (RxnPreV_Mol_Get (rpv_p), RxnPreV_DAHt_Get (rpv_p),
+    RxnPreV_DAWd_Get (rpv_p));
+  XClearArea (XtDisplay (RxnPreV_MolDA_Get (rpv_p)), 
+    XtWindow (RxnPreV_MolDA_Get (rpv_p)), 0, 0, 0, 0, True);
+
+  return ;
+}
+/*  End of RxnPreV_Update  */
+
+
+/****************************************************************************
+*
+*  Function Name:                 SRxnPV_DismissPB_CB
+*
+*    This routine simply unmanages (pops down) the reaction preview dialog.
+*    The window is not actually destroyed until the entire application is 
+*    exited.  If no other previewers are active, then remove event 
+*    handler for the PST tree viewing drawing area.
+*
+*
+*  Implicit Inputs:
+*
+*    N/A
+*
+*  Implicit Outputs:
+*
+*    N/A
+*
+*  Return Values:
+*
+*    N/A
+*
+*  Side Effects:
+*
+*    Unmanages preview window.
+*
+******************************************************************************/
+void SRxnPV_DismissPB_CB
+  (
+  Widget    w, 
+  XtPointer client_p, 
+  XtPointer call_p
+  )
+{
+  RxnPreView_t *rpv_p;
+  PstView_t    *pview_p;
+
+  rpv_p = (RxnPreView_t *) client_p;
+  pview_p = PstView_Handle_Grab ();
+
+  XtUnmanageChild (RxnPreV_FormDlg_Get (rpv_p));
+  if (RxnPreV_Which_Get (rpv_p) == RPV_PREVIEW_PATH)
+    {
+    PstView_Focus_Undraw  (PstView_PathVLvl_Get (pview_p));
+    if (PstView_PthEHAct_Get (pview_p))
+      {
+      XtRemoveEventHandler (DrawCxt_DA_Get (PstView_PathDC_Get (pview_p)),  
+        PointerMotionMask, False, PathView_Preview_EH, (XtPointer) pview_p);
+      PstView_PthEHAct_Put (pview_p, FALSE);
+      }
+    }
+  else
+    {
+    if (ViewLvl_TreeLvl_Get (PstView_IthVLvl_Get (pview_p, 
+        RxnPreV_Which_Get (rpv_p))) != NULL)
+      PstView_Focus_Undraw  (PstView_IthVLvl_Get (pview_p, 
+        RxnPreV_Which_Get (rpv_p)));
+
+    PstView_NumActPV_Get (pview_p)--;
+      if (PstView_NumActPV_Get (pview_p) == 0 
+          && PstView_PstEHAct_Get (pview_p))
+        {
+        XtRemoveEventHandler (DrawCxt_DA_Get (PstView_PstDC_Get (pview_p)),  
+          PointerMotionMask, False, PstView_Preview_EH, (XtPointer) pview_p);
+        PstView_PstEHAct_Put (pview_p, FALSE);
+        }
+    }
+
+  return ;
+}
+/*  End of SRxnPV_DismissPB_CB  */
+
+
+/****************************************************************************
+*
+*  Function Name:                 SRxnPV_MolDA_RszExp_CB
+*
+*    This routine handles the resize and expose events for the drawing
+*    area of the reaction preview dialog.  On an expose, it calls the
+*    update function with no changes to the data so that the same target
+*    molecule and reaction center is redrawn.  On a resize, it saves
+*    the new size of the drawing area, recalculates the number of characters
+*    per line for the reaction name label, and calls the update function.
+*    The same target is displayed but the reaction name string is reparsed
+*    and redisplayed.
+*
+*  Implicit Inputs:
+*
+*    N/A
+*
+*  Implicit Outputs:
+*
+*    N/A
+*
+*  Return Values:
+*
+*    N/A
+*
+*  Side Effects:
+*
+*    N/A
+*
+******************************************************************************/
+void SRxnPV_MolDA_RszExp_CB
+  (
+  Widget    w, 
+  XtPointer client_p, 
+  XtPointer call_p  
+  )
+{
+  XmDrawingAreaCallbackStruct *cb_p;
+  RxnPreView_t    *rpv_p;
+
+  rpv_p = (RxnPreView_t *) client_p;
+  cb_p = (XmDrawingAreaCallbackStruct *) call_p;
+
+  if (cb_p->reason == XmCR_RESIZE)
+    {
+    Dsp_Molecule_t  *mol_p;
+    Dsp_Atom_t      *atom_p;
+    U16_t            atm_i;
+    Dimension        x_off, y_off;
+    Dimension        da_ht, da_wd;
+
+    XtVaGetValues (RxnPreV_MolDA_Get (rpv_p),
+      XmNheight, &da_ht,
+      XmNwidth, &da_wd,
+      NULL);
+
+    /*  Unscale the molecule before scaling it with new da size.  */
+    mol_p = RxnPreV_Mol_Get (rpv_p);
+    if (mol_p != NULL)
+      {
+      x_off = (Dimension) (RxnPreV_DAWd_Get (rpv_p) 
+        - (mol_p->scale * mol_p->molw) + 0.5) >> 1;
+      y_off = (Dimension) (RxnPreV_DAHt_Get (rpv_p) 
+        - (mol_p->scale * mol_p->molh) + 0.5) >> 1;
+      atom_p = mol_p->atoms;
+      for (atm_i = 0; atm_i < mol_p->natms; atm_i++)
+        {
+        atom_p->x = (int) (((atom_p->x - x_off) / mol_p->scale) + 0.5);
+        atom_p->y = (int) (((atom_p->y - y_off) / mol_p->scale) + 0.5);
+        atom_p++;
+        }
+
+      mol_p->scale = 1.0;
+      Mol_Scale (RxnPreV_Mol_Get (rpv_p), da_ht, da_wd);
+      }
+
+    RxnPreV_DAHt_Put (rpv_p, da_ht);
+    RxnPreV_DAWd_Put (rpv_p, da_wd);
+    RxnPreV_LineWd_Put (rpv_p, (U8_t) (da_wd / RxnPreV_CharWd_Get (rpv_p)));
+    RxnPreV_RxnName_Redo (rpv_p, XmFONTLIST_DEFAULT_TAG);
+    }
+
+  else if (cb_p->reason == XmCR_EXPOSE)
+    {
+    XExposeEvent    *event;
+    XEvent           skip_exposes;
+
+    /* Since we are redrawing the entire drawing area after each expose
+       event, we can remove all following expose events generated by 
+       by the same user action.
+    */
+    event = (XExposeEvent *) cb_p->event;
+    if (event->count > 0)
+      {
+      while (XCheckTypedWindowEvent (event->display, event->window,
+             Expose, &skip_exposes));
+      }
+
+    XClearWindow (XtDisplay (RxnPreV_MolDA_Get (rpv_p)), 
+      XtWindow (RxnPreV_MolDA_Get (rpv_p)));
+
+    Mol_Draw (RxnPreV_Mol_Get (rpv_p), cb_p->window);
+    }
+
+  return ;
+}
+/*  End of SRxnPV_MolDA_RszExp_CB  */
+
+/*  End of RXN_PREVIEW.C  */

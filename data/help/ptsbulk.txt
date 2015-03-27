@@ -1,0 +1,35 @@
+NODE/EDGE Menu:
+	1) If NODE is selected, the user will specify a variable node whose bulk
+	   is to be assessed for the comparison that defines this condition.
+	2) If EDGE is selected, two neighboring nodes are specified.  The second
+	   node defines a fragment whose bulk is to be determined, and its bond
+	   to the first is the one whose cleavage defines the end of the fragment.
+
+Node field(s) (accepts one or a pair of node numbers - depending on the value of
+	the preceding menu - which are obtainable by reference to the numbered
+	transform patterns in the main posttransform display)
+
+IS/IS NOT Menu (select one)
+
+GREATER THAN/LESS THAN Menu (select one)
+
+GROUP/NODE/EDGE Menu:
+	If "GROUP" is selected, a group menu will follow; otherwise one or a pair of
+	node fields will follow.  (See explanation of EDGE above.)
+
+Group Menu (select the group that most closely approximates the desired bulk)
+Node field(s) (select node or pair for comparison with node or pair entered above)
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur until
+	exit from the main posttransform test editor.  Note that any condition that
+	appears in the logic string of one or more tests may not be deleted (button
+	will be disabled) so long as any of those tests remain unmarked.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current condition.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

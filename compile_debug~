@@ -1,0 +1,2 @@
+#!/bin/bash
+gcc -c ../$1 -I ../include -I ../gui/include -I ../gui/shelley/include -I /usr/X11R6/include -D _REDHAT_ -D _DEBUG_

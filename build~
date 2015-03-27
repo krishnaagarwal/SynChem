@@ -1,0 +1,3 @@
+#!/bin/bash
+bash ./compile $1.c
+gcc -o $1 -L . -L /usr/X11R6/lib -lsyn -lsyngui -lshelley -lm -lXm -lXt 

@@ -1,0 +1,26 @@
+PathTrc displays a more intuitive synthetic rendition of a path selected
+from the Syn_View PST.  When there are branches to the path (meaning that
+the synthesis of co-reactants may be necessary to complete the synthesis
+of the target compound), these will be prepended to the principal pathway
+and terminated by a semicolon.  A one-time message will appear to indicate
+the reaction step where the co-reactant branch joins a pathway of higher
+precedence.
+
+The last compound on the principal path (i.e., the target compound) and on
+each co-reactant branch is highlighted in green.  The co-reactant molecule
+also appears in green at the reaction step where it joins a higher precedence
+pathway. Available compounds are highlighted in blue wherever they appear.
+
+In order for PathTrc to understand the context of the path file, it must be
+saved in PathTrc-friendly format.  To ensure this, the target compound itself
+must be marked.  When this criterion is satisfied, any marked node which is
+not along a continuous branch descending from the target will be ignored.
+Also, you must explicitly mark available compounds that are to be included
+in the PathTrc display, with the exception that any compound that is a
+co-reactant to a marked node will be included automatically.  However, it
+does no harm to mark every node to be displayed, even those that need not
+be marked, because the program logic will work correctly either way.
+
+When running PathTrc from the Syn_View menu option Path->View, just as when
+running it as a standalone program, you must write any newly-selected path
+to the pathfile (click on Path->Write) before bringing up PathTrc.

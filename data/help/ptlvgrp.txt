@@ -1,0 +1,39 @@
+pH Menu (selects the pH conditions relevant to the reaction to which the condition
+	applies)
+
+EXISTS/DOES NOT EXIST Menu (select one)
+
+Distance Field (typically 0, but may be modified as appropriate to suit a specific
+	transform)
+
+Node Field (accepts a node number which defines the potential leaving group)
+
+Comparison Operator Menu (select one)
+
+Comparison Node Fields (select a pair of nodes whose carbonium ion stability will
+	serve as a comparison reference for the ion defined by the pair of nodes
+	entered above)
+
+VALUE/LEAVING CROUP Menu (if VALUE is selected, only a numeric value menu will appear;
+	otherwise, a second set of fields and menus for distance, node, and pH will
+	be presented)
+
+Numeric Value Menu (select the number corresponding to the best rating description)
+
+Comparison Distance Field (see comment under "Distance Field" above)
+
+Comparison Node Field (accepts a node number to define a potentially competing group)
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur until
+	exit from the main posttransform test editor.  Note that any condition that
+	appears in the logic string of one or more tests may not be deleted (button
+	will be disabled) so long as any of those tests remain unmarked.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current condition.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

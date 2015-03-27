@@ -1,0 +1,40 @@
+!  SYNCHEM job submission file.
+!  User:  gmiller      Date:  Wed Jul 11 15:15:23 2001
+!
+CompoundName          tetralin
+Comment   test of lesstif
+TargetCompound   CCC<C<C<C<C<C</2-1CC/0
+MaxCycles             100
+MaxRuntime            10
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  25
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            /cygdrive/d/SYNCHEM/testdata/tstavl
+FunctionalGroupDir         /cygdrive/d/SYNCHEM/testdata/fg
+TemplateDir                /cygdrive/d/SYNCHEM/testdata/template
+ReactionLibDir             /cygdrive/d/SYNCHEM/testdata/rxnlib
+PathDir                    /cygdrive/d/SYNCHEM/testdata/pfile
+StatusDir                  /cygdrive/d/SYNCHEM/testdata/status
+SubmitDir                  /cygdrive/d/SYNCHEM/testdata/submit
+TraceDir                   /cygdrive/d/SYNCHEM/testdata/trace
+CoverDir                   /cygdrive/d/SYNCHEM/testdata/cover
+ForceSelectDir             /cygdrive/d/SYNCHEM/testdata/select
+CoverFile             tetralin
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       tetralin

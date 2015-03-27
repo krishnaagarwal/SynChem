@@ -1,0 +1,26 @@
+Node Field (accepts a node number which defines the potential migratory group)
+
+IS/IS NOT Menu (select one)
+
+Comparison Operator Menu (select one)
+
+Comparison Group Menu (selection of "THE GROUP DEFINED BY ..." will require entry
+	of a comparison node in a field that will appear below this menu; the
+	remaining comparison values are self-defining)
+	
+Comparison Node Field (accepts a node number to define the group to serve as a
+	reference for the group defined by the above node field)
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur until
+	exit from the main posttransform test editor.  Note that any condition that
+	appears in the logic string of one or more tests may not be deleted (button
+	will be disabled) so long as any of those tests remain unmarked.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current condition.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

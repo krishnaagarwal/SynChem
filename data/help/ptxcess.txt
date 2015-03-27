@@ -1,0 +1,30 @@
+Functional Group Menu:
+	Selecting this menu brings up a scrollable selection list of functional
+	groups, from which a window containing drawings of these groups may be
+	called up.  The current selection is highlighted until another group is
+	selected to take its place in the condition statement.
+
+Presence/Occurrence Menu:
+	Selecting "OCCURS AT LEAST ..." or "DOES NOT OCCUR AT LEAST ..." introduces a
+	field to accept an appropriate number of instances of the functional group.
+	This field becomes superfluous and therefore disappears when either "IS" or
+	"IS NOT" is selected.
+
+NODE field:
+	Accepts a variable node number obtainable by reference to the numbered
+	transform patterns in the main posttransform display.  The node selected
+	is the one presumed to contain the functional-group fragment of interest.
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur until
+	exit from the main posttransform test editor.  Note that any condition that
+	appears in the logic string of one or more tests may not be deleted (button
+	will be disabled) so long as any of those tests remain unmarked.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current condition.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

@@ -1,0 +1,18 @@
+Selection List (toggles between selected and unselected by clicking on the line where
+	   the desired attribute appears)
+
+Reset button (clears all highlighted items to represent an empty test list)
+
+Restore Previous button (returns the list to its state prior to the last reset)
+
+Reset & Open button (replaces contents of the list with those of an existing template
+	file)
+
+Open & Merge (adds contents of an existing template file to those of the list)
+
+View Structures (opens a window containing one or more drawings of each attribute)
+
+Save As ... button (opens a window from which the destination file is selected from
+	among existing templates or created with a new name and description)
+
+Exit (returns to the pretransform test editor)

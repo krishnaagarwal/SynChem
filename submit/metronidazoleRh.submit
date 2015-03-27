@@ -1,0 +1,40 @@
+!  SYNCHEM job submission file.
+!  User:  synchem      Date:  Thu Nov 29 15:41:08 2001
+!
+CompoundName          metronidazoleRh
+Comment   Antibacterial
+TargetCompound   CNC=CH-1N=C/1-1C-4N=O-1=O-4COH
+MaxCycles             1000
+MaxRuntime            120
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  25
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            /home/synchem/data/avlcomp
+FunctionalGroupDir         /home/synchem/data/fg
+TemplateDir                /home/synchem/data/template
+ReactionLibDir             /home/synchem/data/rxnlib
+PathDir                    /home/synchem/data/pfile
+StatusDir                  /home/synchem/data/status
+SubmitDir                  /home/synchem/data/submit
+TraceDir                   /home/synchem/data/trace
+CoverDir                   /home/synchem/data/cover
+ForceSelectDir             /home/synchem/data/select
+CoverFile             metronidazoleRh
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       metronidazoleRh

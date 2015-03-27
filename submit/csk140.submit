@@ -1,0 +1,146 @@
+!
+!  This is the synchem submission file, which allows users to
+!  change the values of the run parameters (see defaults below).
+!  Please leave this description at the beginning of the file.
+!
+!  There are three alternative modes of submitting a run to synchem,
+!  each of which requires that different parameters be set:
+!    1)  New run:  There are several halt conditions, and synchem 
+!        will end its search on whichever condtion occurs first:
+!        a)  the maximum number of cycles have been executed (MaxCycles),
+!        b)  or the maximum time limit has been reached (MaxRuntime),
+!        c)  or a solution has been found and additional cycles have been
+!            executed (FirstSolution + AdditionalCycles),
+!        d)  or a solution has been found and additional time has passed
+!            (FirstSolution + AdditionalTime),
+!        e)  or the search space has been exhausted (the target compound
+!            is stuck).
+!        f)  or a previously developed and/or solved search space has been 
+!            covered by the current search (SearchSpaceCoverDev, 
+!           SearchSpaceCoverSlv, SeqCoverFile, DevCoverPercent).
+!
+!        If the user wishes that the search to continue until a solution
+!        has been found (or gets stuck), then both MaxCycles and MaxRuntime
+!        should be given large values.
+!
+!    2)  Restart an existing run:  same as a new run, except that
+!        the parameter RunRestart should be set to True and the
+!        halt conditions should be modified in the submission file.
+!        One should be careful using this mode since the old run
+!        parameters are reused unless explicitly changed in the submission
+!        file.
+!
+!    3)  Continue an existing run:  This is normally only used from
+!        within the GUI, but can be used with the command-line version
+!        of synchem provided that the RunRestart flag is also set (so
+!        that the status file is read in first).  This mode always 
+!        executes LeapSize more cycles ignoring MaxCycles and MaxRuntime.
+!        The LeapSize and RunContinuation parameters should be set for
+!        this mode.
+!
+!  The TargetCompound should always be specified for a new run.  The 
+!  PreserveStructures, Stereochemistry, and StrategicBonds should rarely 
+!  be changed.  The MaxNodes, MaxWorkers, MinWorkers, and ProcessesPerNode 
+!  parameters are only relevant for distributed runs.  The LeapSize and 
+!  RunContinuation parameters are usually used for continuing a run from 
+!  the GUI.  To restart a saved run, set RunRestart to TRUE, and specify 
+!  additional cycles and/or time by increasing the MaxCycles and/or 
+!  MaxRuntime parameters.
+!
+!  Format:  
+!    Lines beginning with an '!' are ignored (treated as a comment).  
+!    Both the parameter tag and value must be on the same line. 
+!    Parameter tags are case insensitive.
+!    The tag must be separated from the value with spaces or tabs.
+!
+!  Parameters:
+!    tag                default  type           comment
+!    ---                -------   ----          -------
+!    Comment               ""   string        must fit on single line
+!    CompoundName   "default"   string        must be usable as file name
+!    TargetCompound        ""   sling         sling for target compound
+!
+!    RunType                1   unsigned int  see note below
+!    MaxCycles           1000   unsigned int  absolute max cycles
+!    MaxRuntime           120   unsigned int  absolute max time (in mins)
+!    RunRestart         FALSE   boolean       restart of saved run?
+!
+!    EffortDistribution  TRUE   boolean       enable effort distribution?
+!    NTCL                   5   unsigned int  number of temp closed cycles
+!
+!    FirstSolution      FALSE   boolean       exit after first sol found?
+!    AdditionalCycles       0   unsigned int  after first solution found
+!    AdditionalTime         0   unsigned int  after first sol (in mins)
+!
+!    SaveStatusFile      TRUE   boolean       always save status file?
+!    SaveTraceFile       TRUE   boolean       always save trace file
+!    ChemistryTraceLevel    1   unsigned int  run statistics only
+!    SaveShelvedMerits   FALSE  boolean       save shelved merits in trace?
+!
+!    PreserveStructures  TRUE   boolean       
+!    NoStereochemistry  FALSE   boolean       do NOT use stereochemistry?
+!    StrategicBonds     FALSE   boolean
+!
+!    RunContinuation    FALSE   boolean       continuation of run?
+!    LeapSize               0   unsigned int  for continuation of run
+!
+!    CoverFile           "default.cover"      sequential dev search space
+!    SearchSpaceCoverDev FALSE  boolean       test cover of developed PST?
+!    SearchSpaceCoverSlv FALSE  boolean       test cover of solved paths?
+!    DevCoverPercent        0   unsigned int  percentage coverage of dev PST
+!
+!    TemplateFile        "compound.templates" compound templates file name
+!    ForceSelectFile     "default.order"      forced selection file 
+! 
+!    NOTE:  directory parameters must come before filename parameters
+!
+!  Linda Control Parameters:
+!    MaxNodes               0   unsigned int  Linda parameter
+!    ProcessesPerNode       0   unsigned int  Linda parameter
+!    MaxWorkers             0   unsigned int  Linda parameter
+!    MinWorkers             0   unsigned int  Linda parameter
+!
+!  AndParallelism        FALSE  boolean       allow and parallelism?
+!  DisSharedSels         FALSE  boolean       distribute shared selections?
+!
+!  Master Control Parameters:
+!    MasterSelNextBest   FALSE  boolean       use global nextbest selection?
+!
+!  Worker Control Parameters:
+!    WorkerLocalSel      FALSE  boolean       use global selsib selection?
+!    WorkerPreferGlobalSel FALSE boolean      prefer global over local sel?
+!    WorkerMaxCycles        0   unsigned int  max cycles, worker local search
+!    WorkerCurrentMerit  FALSE  boolean       use current merit for lb?
+!    WorkerNextBestMerit FALSE  boolean       use next best merit for lb?
+!    WorkerMeritPercent     0   unsigned int  percentage of merit for lb
+!
+!
+!  Run types:  0-none, 1-sequential, 2-seq (forced selection),
+!    10-distributed-linda, 11-distributed-pvm
+!
+!  Trace levels:  0-none, 1-run statistics, 2-select (compound sel and time),
+!    3-trace (debugging), 4-memory, . . . ,  15-parameters, 20-always
+!
+!  One can also specify the knowledge base and data directories (the
+!  defaults are given):
+!
+!    AvailCompLibDir            "/home/u7/synchem/system/data/avlcomp/sun4"
+!    FunctionalGroupDir         "/home/u7/synchem/system/data/fg/sun4"
+!    PathDir                    "/home/u7/synchem/system/data/pfile"
+!    ReactionLibDir             "/home/u7/synchem/system/data/rxnlib/sun4"
+!    StatusDir                  "/home/u7/synchem/system/data/status"
+!    SubmitDir                  "/home/u7/synchem/system/data/submit"
+!    TemplateDir                "/home/u7/synchem/system/data/submit"
+!    TraceDir                   "/home/u7/synchem/system/data/trace"
+!    CoverDir                   "/home/u7/synchem/system/data/cover"
+!    ForceSelectDir             "/home/u7/synchem/system/data/select"
+!
+!
+
+Comment          Non-default submission file
+CompoundName     csk140
+TargetCompound   c=cc=ccc=o-1oh-3=c/0cc-1=cnh-1/9
+MaxCycles        140
+MaxRuntime       100
+
+ChemistryTraceLevel 1

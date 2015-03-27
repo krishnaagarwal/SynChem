@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export XAPPLRESDIR=/home/kka/synchem/new/app_defaults
+export DISPLAY=:0.0
+export SYNDATA=/home/kka/synchem/new
+export SYNEXE=/home/kka/synchem/new/obj
+

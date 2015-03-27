@@ -1,0 +1,24 @@
+ALSMR predates the screening of small-ring alkynes and allenes in the COMPOK test.
+Its main purpose now is to continue to support those schemata for which it had been
+included as a posttransform condition prior to the COMPOK enhancement.
+
+ALKYNE/ALLENE Menu (select one)
+
+Node Fields (accept a pair of node numbers that defined both the alkyne/allene
+	and the ring, if any)
+
+IS/IS NOT Menu (select one)
+
+Mark for Deletion/Undelete button:
+	Toggles deletion mark on and off.  Irreversible deletion does not occur until
+	exit from the main posttransform test editor.  Note that any condition that
+	appears in the logic string of one or more tests may not be deleted (button
+	will be disabled) so long as any of those tests remain unmarked.
+
+Exit and Update Postran Buffer button:
+	Exiting in this way will cause the main posttransform test editor to update
+	according the the addition or modification in the current condition.
+
+Cancel button:
+	Quitting via the Cancel button will cause any interactions with this editor
+	to be discarded and a return to the unchanged main posttransform display.

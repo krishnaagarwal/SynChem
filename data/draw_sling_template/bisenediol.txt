@@ -1,0 +1,5 @@
+SYNCHEMPC+gmiller
+Thu Sep  7 15:37:51 2000
+test of keto-enol tautomerization
+bisenediol
+CH-1C=O-1C=CC/0CCC=O-1C=CC/8~H-3OH-3OH-8OH-3OH

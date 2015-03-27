@@ -1,0 +1,41 @@
+!  SYNCHEM job submission file.
+!  User:  kka      Date:  Mon Feb  9 16:38:57 2009
+!
+CompoundName          cubane
+Comment   
+
+TargetCompound   CH-1CCH-1CC/2~H-2H-1CC/5~H-2H-1CH-1/3-1/0/9~H
+MaxCycles             1000
+MaxRuntime            120
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  25
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            ./data/avlcomp
+FunctionalGroupDir         ./data/fg
+TemplateDir                ./data/template
+ReactionLibDir             ./data/rxnlib
+PathDir                    ./data/pfile
+StatusDir                  ./data/status
+SubmitDir                  ./data/submit
+TraceDir                   ./data/trace
+CoverDir                   ./data/cover
+ForceSelectDir             ./data/select
+CoverFile             cubane
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       cubane

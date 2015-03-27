@@ -1,0 +1,41 @@
+!  SYNCHEM job submission file.
+!  User:  SYNCHEMPC+gmiller      Date:  Wed Apr 14 15:16:27 1999
+!
+CompoundName          cortisone
+Comment   Default submission file
+
+TargetCompound   CC-1CC=O-1CCH-1CCCCC-1CCC=O-1C=/10-1H-5/5~H-6CH-1CCCOH-2C=O-1COH-4/0/20
+MaxCycles             500
+MaxRuntime            100
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  5
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            D:/synchem/data/avlcomp
+FunctionalGroupDir         D:/synchem/data/fg
+TemplateDir                D:/synchem/data/template
+ReactionLibDir             D:/synchem/data/rxnlib
+PathDir                    D:/synchem/data/pfile
+StatusDir                  D:/synchem/data/status
+SubmitDir                  D:/synchem/data/submit
+TraceDir                   D:/synchem/data/trace
+CoverDir                   //D/SYNCHEM/data/cover
+ForceSelectDir             //D/SYNCHEM/data/select
+CoverFile             cortisone
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       cortisone

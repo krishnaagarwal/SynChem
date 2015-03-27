@@ -1,0 +1,40 @@
+!  SYNCHEM job submission file.
+!  User:  kka      Date:  Fri Aug 14 12:30:39 2009
+!
+CompoundName          
+Comment   
+TargetCompound   
+MaxCycles             1000
+MaxRuntime            120
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  25
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            ./data/avlcomp
+FunctionalGroupDir         ./data/fg
+TemplateDir                ./data/template
+ReactionLibDir             ./data/rxnlib
+PathDir                    ./data/pfile
+StatusDir                  ./data/status
+SubmitDir                  ./data/submit
+TraceDir                   ./data/trace
+CoverDir                   ./data/cover
+ForceSelectDir             ./data/select
+CoverFile             
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       

@@ -1,0 +1,58 @@
+File menu:
+	1) Open - submit ... (brings up a file selection window positioned within the
+	   submit directory - select a file from which the sling and other data are
+	   to be read and displayed)
+	2) Open - status ... (brings up a file selection window positioned within the
+	   status directory - select a file from which the sling and other data are
+	   to be read and displayed)
+	3) Save - draw_string_template ... (writes file named in Run ID box to contain
+	   text from User, Date, Comment and Sling boxes - be sure to fill in Run Id
+	   and Comment, and update Sling by clicking Done button prior to saving)
+
+Draw button: restores the last molecule drawing submitted during this session.
+
+draw_sling_templates button: brings up a file selection window positioned within the
+	draw_sling_template directory - select a file from which the sling and other
+	data are to be read and displayed)
+
+Reset button (seldom used in validation implementation): clears drawing window and
+	restores other fields to their defaults
+
+Edit Mode buttons:
+	1) draw: enables "rubber-band" connection of atoms to one another
+	2) select: enables freehand drawing of an enclosed area around part of a
+	   drawn molecule, usually for wholesale deletion
+	3) delete: changes drawing cursor to "skull-and-crossbones," which when
+	   placed over an atom or a bond highlights it for deletion when the left
+	   mouse button is clicked
+
+Edit Options buttons:
+	1) select all: draws an enclosure around the entire molecular drawing
+	2) delete selected: deletes all atoms and bonds enclose by the selection
+	   area
+
+Atoms buttons (change current atom identity - selecting "other" brings up a periodic
+	table)
+
+Bonds buttons (change multiplicity of last-drawn bond)
+
+Drawing Area:
+	1) use left or middle button to lay down an atom (C by default)
+	2) if necessary, change the atom ID from the appropriate Atoms button
+	3) lay down a bond to the next atom by moving to the position and pressing
+	   either the left (single) or middle (double) button
+	4) if necessary, change the bond order from the appropriate Bonds button
+	5) to move without adding or modifying a bond, press the right button
+
+done button (updates Sling box from contents of drawing area)
+
+redraw button (cleans up drawing by showing a - usually - more pleasing template-
+	generated rendition)
+
+clear button (erase drawing area)
+
+submit button (accepts molecule as defined by drawing for validation process)
+
+cancel button (bypass validation process)
+
+reset button (seems to be the same as Reset button!?!?)

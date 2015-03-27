@@ -1,0 +1,3 @@
+#!/bin/bash
+bash ./compile synchem.c
+gcc -o synchem synchem.o -L . -L /usr/X11R6/lib -lsyn -lsyngui -lsyn -lsyngui -lshelley -lm -lXm -lXt -lX11

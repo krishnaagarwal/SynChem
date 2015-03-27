@@ -1,0 +1,215 @@
+
+!  Resources for svw, showing old status files
+SynView*SynFSD*directory:                   /home/kka/synchem/data/status
+SynView*SynFSD*pattern:                     *.st
+SynView*SynFSD*background:                  linen
+SynView*SynFSD*Text.background:              white
+SynView*SynFSD*FilterText.background:        white
+SynView*SynFSD*DirList.background:           white
+SynView*SynFSD*ItemsList.background:         white
+
+SynView*SynStatusFSD*background:                  linen
+SynView*SynStatusFSD*Text.background:              white
+SynView*SynStatusFSD*FilterText.background:        white
+SynView*SynStatusFSD*DirList.background:           white
+SynView*SynStatusFSD*ItemsList.background:         white
+
+SynView*SynSubmitFSD*background:                  lavender
+SynView*SynSubmitFSD*Text.background:              white
+SynView*SynSubmitFSD*FilterText.background:        white
+SynView*SynSubmitFSD*DirList.background:           white
+SynView*SynSubmitFSD*ItemsList.background:         white
+
+SynView*SynMessMD.background:                azure
+SynView*SynQuerySaveD.background:            MistyRose
+SynView*SynWarnMD.background:                yellow
+SynView*SynWorkMD.background:                AntiqueWhite
+
+ SynView*InfoWinDlg.background:               honeydew
+ SynView*InfoWinTxtSW.background:             thistle
+ SynView*InfoWinTxt.background:               white
+ SynView*InfoWinSelPB.background:             thistle
+
+SynView*RxnPreVDA.background:                white
+SynView*DA.background:                       white
+
+SynView*RxnPreVLSGM.background:              linen
+SynView*RxnPreVLCN.background:               linen
+SynView*RxnPreVLR.background:                cornsilk
+
+SynView*SynMenu.background:                  MistyRose
+SynView*SynMenuCB.background:                MistyRose
+SynView*SynMenuPDM.background:               tomato2
+SynView*SynMenuPB.background:                MistyRose
+SynView*SynMenuTB.background:                MistyRose
+
+
+SynView*PstVFm.background:                   thistle
+SynView*PstVBB.background:                   lavender
+SynView*PstVPDA.background:                  honeydew
+SynView*PstVPathL.background:                honeydew
+SynView*PstVSW.background:                   lavender
+SynView*PstVLvLL.background:                 lavender
+SynView*PstVNSGL.background:                 lavender
+
+SynView*RxnVFr.background:                   VioletRed
+ SynView*RxnVFm.background:                   LavenderBlush
+ SynView*RxnVNameL.background:                gray80
+ SynView*RxnVLibL.background:                 white
+ SynView*RxnVLibVL.background:                white
+ SynView*RxnVChapL.background:                white
+ SynView*RxnVChapVL.background:               white
+ SynView*RxnVScmaL.background:                white
+ SynView*RxnVScmaVL.background:               white
+ SynView*RxnVEaseL.background:                white
+ SynView*RxnVEaseVL.background:               white
+ SynView*RxnVYldL.background:                 white
+ SynView*RxnVYldVL.background:                white
+ SynView*RxnVConfL.background:                white
+ SynView*RxnVConfVL.background:               white
+ SynView*RxnVSolvedL.background:              white
+ SynView*RxnVSGMrtL.background:               white
+ SynView*RxnVSGMrtVL.background:              white
+
+SynView*SShotV.background:                   LightCoral
+ SynView*SShotVST.background:                 RosyBrown1
+ SynView*SShotVSTSW.background:               RosyBrown1
+ SynView*SShotVPPB.background:                thistle
+ SynView*SShotVDPB.background:                coral1
+ SynView*SShotVNPB.background:                thistle
+ SynView*SShotVPTL.background:                RosyBrown1
+
+SynView*SelTraceFD.background:               AntiqueWhite
+ SynView*SelTraceFm.background:               AntiqueWhite
+ SynView*SelTraceL.background:                AntiqueWhite
+ SynView*SelTraceT.background:                AntiqueWhite
+ SynView*SelTraceAB.background:               bisque
+ SynView*SelTracePB.background:               bisque
+ SynView*SelTraceCPB.background:              white
+ SynView*SelTraceDPB.background:              coral1
+ SynView*SelTraceNPB.background:              honeydew
+
+SynView*CmpInstFmDg.background:              lightskyblue1
+ SynView*CmpInstFm.background:                lightskyblue1
+ SynView*CmpInstL.background:                 lightskyblue1
+ SynView*CmpInstT.background:                 lightskyblue1
+ SynView*CmpInstAB.background:                lightskyblue2
+ SynView*CmpInstPBFm.background:              lightskyblue2
+ SynView*CmpInstSep.background:               lightskyblue4
+ SynView*CmpInstPB.background:                lightskyblue3
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!  Job Submission Tool:  Default resource file for Synchem's Job Submission
+!!                        Tool.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+SynView*SubmitDlg.background:                 PeachPuff1
+  SynView*SubmitPB.background:			seashell2
+  SynView*SubmitSep.background:                 salmon1
+
+SynView*SubmitMenu.background:                MistyRose
+  SynView*SubmitMenuCB.background:              MistyRose
+  SynView*SubmitMenuPDM.background:             tomato2
+  SynView*SubmitMenuPB.background:              MistyRose
+
+SynView*ExitCondFr.background:                PeachPuff2
+  SynView*ExitCondFm.background:                PeachPuff2
+  SynView*ExitCondLbl.background:               seashell2
+  SynView*ExitCondTxt.background:               white
+  SynView*ExitCondTB.background:                seashell2
+  SynView*ExitCondSep.background:               salmon1
+  SynView*ExitCondPB.background:                seashell2
+
+SynView*SavePlanFr.background:                lightskyblue1
+  SynView*SavePlanFm.background:                lightskyblue1
+  SynView*SavePlanTB_Cyc.background:            lightskyblue2
+  SynView*SavePlanLbL_PreCyc.background:        lightskyblue2
+  SynView*SavePlanTxt.background:               white
+  SynView*SavePlanLbl_PostCyc.background:       lightskyblue2
+  SynView*SavePlanLbL_BefAft.background:        lightskyblue2
+  SynView*SavePlanTxt_After.background:         white
+  SynView*SavePlanLbl_AftAft.background:        lightskyblue2
+  SynView*SavePlanTB_Max.background:            lightskyblue2
+  SynView*SavePlanLbl_Max.background:           lightskyblue2
+  SynView*SavePlanTB_1st.background:            lightskyblue2
+  SynView*SavePlanLbl_1st.background:           lightskyblue2
+  SynView*SavePlanSep.background:               lightskyblue4
+  SynView*SavePlanSep2.background:              lightskyblue4
+  SynView*SavePlanSep3.background:              lightskyblue4
+  SynView*SavePlanPB.background:                lightskyblue3
+
+SynView*JobInfoFr.background:                 PeachPuff2
+  SynView*JobInfoFm.background:                 PeachPuff2
+  SynView*JobInfoLbl.background:                seashell2
+  SynView*JobInfoTxt.background:                white
+  SynView*JobInfoSep.background:                salmon1
+  SynView*JobInfoPB.background:                 seashell2
+
+SynView*TemplateFmDg.background:              PeachPuff2
+  SynView*TemplateScLst.background:             salmon1
+  SynView*TemplateSep.background:               salmon1
+  SynView*TemplatePB.background:                seashell2
+
+SynView*RunTypeFr.background:                 PeachPuff2
+  SynView*RunTypeFm.background:                PeachPuff2
+  SynView*RunTypeLbl.background:                seashell2
+  SynView*RunTypeTB.background:                 seashell2
+  SynView*RunTypeRB.background:                 seashell2
+  SynView*RunTypeTxt.background:                white
+  SynView*RunTypeSep.background:                salmon1
+  SynView*RunTypePB.background:                 seashell2
+
+SynView*DirsMDg.background:                   seashell2
+  SynView*DirsFm.background:                    seashell2
+  SynView*DirsTxt.background:                   white
+  SynView*DirsLbl.background:                   seashell2
+
+SynView*FilesMDg.background:                  PeachPuff2
+  SynView*FilesFm.background:                   salmon1
+  SynView*FilesTB.background:                   seashell2
+  SynView*FilesLbl.background:                  seashell2
+  SynView*FilesTxt.background:                  white
+  SynView*FilesSep.background:                  salmon1
+
+SynView*StratsMDg.background:                 PeachPuff2
+  SynView*StratsRC.background:                  salmon1
+  SynView*StratsTB.background:                  seashell2
+
+SynView*DrawToolFr.background:                PeachPuff2
+  SynView*DrawToolFm.background:                PeachPuff2
+  SynView*DrawEditFm.background:                PeachPuff2
+  SynView*DrawModeLbl.background:                seashell2
+  SynView*DrawModeRB.background:                 seashell2
+  SynView*DrawEditLbl.background:                linen
+  SynView*DrawEditPB.background:                 linen
+  SynView*DrawAtomFm.background:                PeachPuff2
+  SynView*DrawAtomLbl.background:                AntiqueWhite
+  SynView*DrawAtomPB.background:                 AntiqueWhite
+  SynView*DrawBondFm.background:                PeachPuff2
+  SynView*DrawBondLbl.background:                white
+  SynView*DrawBondPB.background:                 white
+  SynView*DrawToolSW.background:                salmon1
+  SynView*DrawToolSep.background:               salmon1
+  SynView*DrawToolDA.background:                green
+  SynView*DrawToolPB.background:                PeachPuff2
+  SynView*DrawPTblFmDg.background:              WhiteSmoke
+  SynView*DrawPTblFr.background:                 WhiteSmoke
+  SynView*DrawPTblRC.background:                 WhiteSmoke
+  SynView*DrawPTblSep.background:                WhiteSmoke
+  SynView*DrawPTblPB.background:                 WhiteSmoke
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!
+!!  The following section contains the context-sensitive help for Synchem's
+!!  Job Submission Tool.
+!!  
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+SynView*help*text:               Sorry, no help available on this topic!
+SynView*SubmitDlg*help*text:     Help for the job submission window.
+SynView*SubmitMenuPDM*help*text: Help for the MAIN MENU OPTIONS.
+SynView*ExitCondFr*help*text:    Help for the EXIT CONDITIONS parameters.
+SynView*JobInfoFr*help*text:     Help for JOB INFORMATION parameters.
+SynView*RunTypeFr*help*text:     Help for the RUN TYPE parameters.

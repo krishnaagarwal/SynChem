@@ -1,0 +1,40 @@
+!  SYNCHEM job submission file.
+!  User:  kka      Date:  Tue Aug 18 13:36:14 2009
+!
+CompoundName          sitagliptin
+Comment   Januvia generic
+TargetCompound   CH-1NH-1H-2CC<C<CF-1<CF-1<C<CF-1</6-8CC=O-1NCC=NN=CN/20-1CC/18-4CF-1F-1F
+MaxCycles             10000
+MaxRuntime            120
+RunRestart            False
+BackgroundProcess     False
+EffortDistribution    True
+NTCL                  25
+FirstSolution         False
+AdditionalCycles      0
+AdditionalTime        0
+RunType               1
+NoStereochemistry     False
+PreserveStructures    True
+StrategicBonds        False
+SaveStatusFile        True
+SaveTraceFile         True
+SaveShelvedMerits     False
+ChemistryTraceLevel   1
+RunContinuation       False
+LeapSize              0
+AvailCompLibDir            ./data/avlcomp
+FunctionalGroupDir         ./data/fg
+TemplateDir                ./data/template
+ReactionLibDir             ./data/rxnlib
+PathDir                    ./data/pfile
+StatusDir                  ./data/status
+SubmitDir                  ./data/submit
+TraceDir                   ./data/trace
+CoverDir                   ./data/cover
+ForceSelectDir             ./data/select
+CoverFile             sitagliptin
+SearchSpaceCoverDev   False
+SearchSpaceCoverSlv   False
+DevCoverPercent       0
+ForceSelectFile       sitagliptin

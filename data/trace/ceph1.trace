@@ -1,0 +1,46 @@
+Dump of RCB
+  Directories:
+    Available Compounds:   /home/synchem/new/data/avlcomp
+    Functional Groups:     /home/synchem/new/data/fg
+    Reaction KB:           /home/synchem/new/data/rxnlib
+    Paths:                 /home/synchem/new/data/pfile
+    Status:                /home/synchem/new/data/status
+    Submission:            /home/synchem/new/data/submit
+    Template:              /home/synchem/new/data/template
+    Trace:                 /home/synchem/new/data/trace
+    Force Selection:       /home/synchem/new/data/select
+    Search Space Cover:    /home/synchem/new/data/cover
+  User name:      synchem
+  Target name:    ceph
+  Target sling:   CNCCC<C<COCOC<C<C</4-1CCOH-2H-1COC-2=C/0CCC/1-4/13~H-3H-7</6
+  Comment:        
+  Date of run:    Mon Feb 18 18:54:18 2002
+  Max cycles:         1       Max runtime:      120 minutes
+  Restart:        disabled   Background:       disabled
+  Tracing level:  1
+  Effort Dist:    enabled       NTCL:           25
+  Run type:  Sequential
+End cycle #1
+
+Dump of Run Status
+  Cycles completed:             1
+  Unique compounds generated:   23
+  Total compounds generated:    25
+  Total subgoals generated:     24
+
+  Status file was saved
+  Trace file was saved
+
+  Cummulative times:
+    Initialization:          0.0751
+    Select next:             0.0002
+    Expansion:               1.0172
+    Update:                  0.0000
+    Cycle time:              1.0174
+
+    Communication:           0.0000
+    Wait:                    0.0000
+    Tuple wait:              0.0000
+
+  Exit Condition:  Maximum cycles exceeded.
+
